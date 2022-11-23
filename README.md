@@ -132,6 +132,28 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.add(input: Input)</code>
+  </summary>
+
+	Performs the addition and returns the sum as new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).add({ x: 3, y: 4 }).toString();  // -> "(4, 6, 0)"
+  vector([ 1, 2, 3 ]).add([ 4, 5, 6 ]).toString();        // -> "(5, 7, 9)"
+  ```
+
+  Another instance can be used as an input as well:
+
+  ```js
+  const a = vector({ x: 1, y: 2, z: 3 });
+  const b = vector({ x: -1, y: -2, z: -3 });
+
+  a.add(b).toString();  // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.toString()</code>
   </summary>
 

@@ -21,6 +21,18 @@ export class Vector {
 		this.planar = (z === 0);
 	}
 
+	/**
+	 * Performs the addition and returns the sum as new `Vector` instance.
+	 */
+	add(input: Input): Vector {
+		const other = vector(input);
+		return new Vector([
+			this.x + other.x,
+			this.y + other.y,
+			this.z + other.z
+		]);
+	}
+
 	toString() {
 		return `(${this.x}, ${this.y}, ${this.z})`;
 	}

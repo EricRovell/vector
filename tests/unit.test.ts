@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
-import type { Coords, CoordsTuple, InputUser } from "../src/types";
+import type { Coords, CoordsTuple, Input, InputUser } from "../src/types";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -71,5 +71,18 @@ describe("Parsing", () => {
 		expect(fn([ 1, 2, 3, 4 ])).toBe(false);
 		// @ts-expect-error: test invalid input
 		expect(fn([ "1", "2", "3" ])).toBe(false);
+	});
+});
+
+describe("Arithmetics", () => {
+	it("Adds two vectors", () => {
+		const fn = (input1: Input, input2: Input) => vector(input1).add(input2).toString();
+
+		expect(fn([ 1 ], [ 2 ])).toBe("(3, 0, 0)");
+		expect(fn([ 1 ], [ 2, 3 ])).toBe("(3, 3, 0)");
+		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(2, 2, 3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(1, 4, 3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(1, 4, 3)");
+		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(2, 4, 6)");
 	});
 });
