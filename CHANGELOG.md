@@ -3,6 +3,7 @@
 ## Unreleased (2022-11-24)
 
 - [feat]: `.add()` method for vector addition;
+- [feat]: `.mul()` method for vector multiplication;
 
 ## 0.1.0 (2022-11-23)
 

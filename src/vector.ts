@@ -34,6 +34,26 @@ export class Vector {
 	}
 
 	/**
+	 * Performs the multiplication and returns the sum as new `Vector` instance.
+	 */
+	mul(input: Input | number): Vector {
+		if (typeof input === "number" && !Number.isNaN(input)) {
+			return new Vector([
+				this.x * input,
+				this.y * input,
+				this.z * input
+			]);
+		}
+
+		const other = vector(input as Input);
+		return new Vector([
+			this.x * other.x,
+			this.y * other.y,
+			this.z * other.z
+		]);
+	}
+
+	/**
 	 * Returns a `Vector` string representation.
 	 */
 	toString() {
