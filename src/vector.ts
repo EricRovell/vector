@@ -33,10 +33,16 @@ export class Vector {
 		]);
 	}
 
+	/**
+	 * Returns a `Vector` string representation.
+	 */
 	toString() {
 		return `(${this.x}, ${this.y}, ${this.z})`;
 	}
 
+	/**
+	 * Returns a boolean indicating whether or not a user input was valid.
+	 */
 	get valid() {
 		return Boolean(this.parsed);
 	}
