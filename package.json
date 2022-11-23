@@ -1,6 +1,6 @@
 {
 	"name": "@ericrovell/vector",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "Euclidian vector library written in JavaScript",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -14,7 +14,7 @@
 		"test": "vitest run --coverage",
 		"test:watch": "vitest"
 	},
-	"repository": "github:EricRovell/rational",
+	"repository": "github:EricRovell/vector",
 	"keywords": [
 		"calculations",
 		"geometric vector",
