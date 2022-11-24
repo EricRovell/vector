@@ -10,7 +10,6 @@ export class Vector {
 	readonly x: number;
 	readonly y: number;
 	readonly z: number;
-	private readonly planar: boolean;
 
 	constructor(input?: InputUser) {
 		this.parsed = parse(input);
@@ -18,7 +17,6 @@ export class Vector {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.planar = (z === 0);
 	}
 
 	/**
@@ -36,27 +34,18 @@ export class Vector {
 	/**
 	 * Returns the inverted `Vector` instance.
 	 */
-	get inverted() {
-		return this.mul(-1);
+	get inverted(): Vector {
+		return this.scale(-1);
 	}
 
 	/**
-	 * Performs the multiplication and returns the sum as new `Vector` instance.
+	 * Performs the scalar multiplication and returns as new `Vector` instance.
 	 */
-	mul(input: Input | number): Vector {
-		if (typeof input === "number" && !Number.isNaN(input)) {
-			return new Vector([
-				this.x * input,
-				this.y * input,
-				this.z * input
-			]);
-		}
-
-		const other = vector(input as Input);
+	scale(value: number): Vector {
 		return new Vector([
-			this.x * other.x,
-			this.y * other.y,
-			this.z * other.z
+			this.x * value,
+			this.y * value,
+			this.z * value
 		]);
 	}
 
