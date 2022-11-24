@@ -167,25 +167,14 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.mul(input: Input | number)</code>
+    <code>.scale(input: number)</code>
   </summary>
 
-	Performs the multiplication and returns the sum as new `Vector` instance.
-
-  If a number provided as an argument, the scalar multiplication is performed:
+	Performs the scalar vector multiplication and returns a new `Vector` instance:
 
   ```js
   vector({ x: 1, y: 2 }).mul(2).toString();  // -> "(2, 4, 0)"
   vector([ 1, 2, 3 ]).mul(-2).toString();    // -> "(-2, -4, -6)"
-  ```
-
-  If vector input or another `Vector` instance is provided, each pair components are multipliyed:
-
-  ```js
-  const a = vector({ x: 1, y: 2, z: 3 });
-  const b = vector({ x: -1, y: -2, z: -3 });
-
-  a.mul(b).toString();  // -> "(-1, -4, -9)"
   ```
 </details>
 
