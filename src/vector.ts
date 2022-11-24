@@ -34,6 +34,13 @@ export class Vector {
 	}
 
 	/**
+	 * Returns the inverted `Vector` instance.
+	 */
+	get inverted() {
+		return this.mul(-1);
+	}
+
+	/**
 	 * Performs the multiplication and returns the sum as new `Vector` instance.
 	 */
 	mul(input: Input | number): Vector {

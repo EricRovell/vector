@@ -154,6 +154,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.inverted</code>
+  </summary>
+
+  Returns an inverted `Vector` instance.
+
+  ```js
+  vector({ x: -1, y: 2 }).inverted;   // -> "(1, -2, 0)"
+  vector([ 1, -2, 3 ]).inverted;   // -> "(-1, 2, -3)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.mul(input: Input | number)</code>
   </summary>
 

@@ -117,4 +117,20 @@ describe("Arithmetics", () => {
 		expect(fn({ x: 1, y: 2 }, { x: 3, y: 4 })).toBe("(3, 8, 0)");
 		expect(fn({ x: 1, y: 2, z: 3 }, { x: 4, y: 5, z: 6 })).toBe("(4, 10, 18)");
 	});
+	it("Inverts the vector", () => {
+		const fn = (input: Input) => vector(input).inverted.toString();
+
+		expect(fn([ 2 ])).toBe("(-2, 0, 0)");
+		expect(fn([ 1, 2 ])).toBe("(-1, -2, 0)");
+		expect(fn([ 1, 2, 3 ])).toBe("(-1, -2, -3)");
+		expect(fn({ x: 2 })).toBe("(-2, 0, 0)");
+		expect(fn({ x: 1, y: 2 })).toBe("(-1, -2, 0)");
+		expect(fn({ x: 1, y: 2, z: 3 })).toBe("(-1, -2, -3)");
+		expect(fn([ -2 ])).toBe("(2, 0, 0)");
+		expect(fn([ -1, -2 ])).toBe("(1, 2, 0)");
+		expect(fn([ -1, -2, -3 ])).toBe("(1, 2, 3)");
+		expect(fn({ x: -2 })).toBe("(2, 0, 0)");
+		expect(fn({ x: -1, y: -2 })).toBe("(1, 2, 0)");
+		expect(fn({ x: -1, y: -2, z: -3 })).toBe("(1, 2, 3)");
+	});
 });

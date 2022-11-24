@@ -4,6 +4,7 @@
 
 - [feat]: `.add()` method for vector addition;
 - [feat]: `.mul()` method for vector multiplication;
+- [feat]: `inverted` property for inverting the vector;
 
 ## 0.1.0 (2022-11-23)
 
