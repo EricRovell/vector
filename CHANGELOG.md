@@ -1,6 +1,6 @@
 # Rational
 
-## Unreleased (2022-11-24)
+## 0.2.0 (2022-11-24)
 
 - [feat]: `.add()` method for vector addition;
 - [feat]: `.scale()` method for scalar vector multiplication;
