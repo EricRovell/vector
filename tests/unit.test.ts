@@ -123,4 +123,14 @@ describe("Arithmetics", () => {
 		expect(fn({ x: -1, y: -2 })).toBe("(1, 2, 0)");
 		expect(fn({ x: -1, y: -2, z: -3 })).toBe("(1, 2, 3)");
 	});
+	it("Subtracts two vectors", () => {
+		const fn = (input1: Input, input2: Input) => vector(input1).sub(input2).toString();
+
+		expect(fn([ 1 ], [ 2 ])).toBe("(-1, 0, 0)");
+		expect(fn([ 1 ], [ 2, 3 ])).toBe("(-1, -3, 0)");
+		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(0, -2, -3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(-1, 0, -3)");
+		expect(fn({ y: 2, z: 5 }, [ 1, 2, 3 ])).toBe("(-1, 0, 2)");
+		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(0, 0, 0)");
+	});
 });

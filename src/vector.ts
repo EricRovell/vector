@@ -50,6 +50,13 @@ export class Vector {
 	}
 
 	/**
+	 * Performs the subtraction and returns the sum as new `Vector` instance.
+	 */
+	sub(input: Input): Vector {
+		return this.add(vector(input).inverted);
+	}
+
+	/**
 	 * Returns a `Vector` string representation.
 	 */
 	toString() {
