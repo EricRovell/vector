@@ -132,6 +132,76 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.add(input: Input)</code>
+  </summary>
+
+	Performs the addition and returns the sum as new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).add({ x: 3, y: 4 }).toString();  // -> "(4, 6, 0)"
+  vector([ 1, 2, 3 ]).add([ 4, 5, 6 ]).toString();        // -> "(5, 7, 9)"
+  ```
+
+  Another instance can be used as an input as well:
+
+  ```js
+  const a = vector({ x: 1, y: 2, z: 3 });
+  const b = vector({ x: -1, y: -2, z: -3 });
+
+  a.add(b).toString();  // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.inverted</code>
+  </summary>
+
+  Returns an inverted `Vector` instance.
+
+  ```js
+  vector({ x: -1, y: 2 }).inverted;   // -> "(1, -2, 0)"
+  vector([ 1, -2, 3 ]).inverted;   // -> "(-1, 2, -3)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.scale(input: number)</code>
+  </summary>
+
+	Performs the scalar vector multiplication and returns a new `Vector` instance:
+
+  ```js
+  vector({ x: 1, y: 2 }).mul(2).toString();  // -> "(2, 4, 0)"
+  vector([ 1, 2, 3 ]).mul(-2).toString();    // -> "(-2, -4, -6)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.sub(input: Input)</code>
+  </summary>
+
+	Performs the subtraction and returns the result as new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).sub({ x: 3, y: 4 }).toString();  // -> "(-2, -2, 0)"
+  vector([ 1, 2, 3 ]).sub([ 4, 5, 6 ]).toString();        // -> "(-3, -3, -3)"
+  ```
+
+  Another instance can be used as an input as well:
+
+  ```js
+  const a = vector({ x: 1, y: 2, z: 3 });
+  const b = vector({ x: 1, y: 2, z: 3 });
+
+  a.sub(b).toString();  // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.toString()</code>
   </summary>
 

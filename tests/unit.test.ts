@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
-import type { Coords, CoordsTuple, InputUser } from "../src/types";
+import type { Coords, CoordsTuple, Input, InputUser } from "../src/types";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -71,5 +71,66 @@ describe("Parsing", () => {
 		expect(fn([ 1, 2, 3, 4 ])).toBe(false);
 		// @ts-expect-error: test invalid input
 		expect(fn([ "1", "2", "3" ])).toBe(false);
+	});
+});
+
+describe("Arithmetics", () => {
+	it("Adds two vectors", () => {
+		const fn = (input1: Input, input2: Input) => vector(input1).add(input2).toString();
+
+		expect(fn([ 1 ], [ 2 ])).toBe("(3, 0, 0)");
+		expect(fn([ 1 ], [ 2, 3 ])).toBe("(3, 3, 0)");
+		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(2, 2, 3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(1, 4, 3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(1, 4, 3)");
+		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(2, 4, 6)");
+	});
+	it("Performs the scalar multiplication of the vector", () => {
+		const fn = (input1: Input, value: number) => vector(input1).scale(value).toString();
+
+		expect(fn([ 1 ], 3)).toBe("(3, 0, 0)");
+		expect(fn([ 1, 2 ], 3)).toBe("(3, 6, 0)");
+		expect(fn([ 1, 2, 3 ], 3)).toBe("(3, 6, 9)");
+		expect(fn({ x: 1, y: 2 }, 3)).toBe("(3, 6, 0)");
+		expect(fn({ x: 1, y: 2 }, 3)).toBe("(3, 6, 0)");
+		expect(fn({ x: 1, y: 2, z: 3 }, 3)).toBe("(3, 6, 9)");
+		expect(fn([ 1 ], -3)).toBe("(-3, 0, 0)");
+		expect(fn([ 1, 2 ], -3)).toBe("(-3, -6, 0)");
+		expect(fn([ 1, 2, 3 ], -3)).toBe("(-3, -6, -9)");
+		expect(fn({ x: 1, y: 2 }, -3)).toBe("(-3, -6, 0)");
+		expect(fn({ x: 1, y: 2 }, -3)).toBe("(-3, -6, 0)");
+		expect(fn({ x: 1, y: 2, z: 3 }, -3)).toBe("(-3, -6, -9)");
+		expect(fn([ 1 ], 0.5)).toBe("(0.5, 0, 0)");
+		expect(fn([ 1, 2 ], 0.5)).toBe("(0.5, 1, 0)");
+		expect(fn([ 1, 2, 3 ], 0.5)).toBe("(0.5, 1, 1.5)");
+		expect(fn({ x: 1, y: 2 }, 0.5)).toBe("(0.5, 1, 0)");
+		expect(fn({ x: 1, y: 2 }, 0.5)).toBe("(0.5, 1, 0)");
+		expect(fn({ x: 1, y: 2, z: 3 }, 0.5)).toBe("(0.5, 1, 1.5)");
+	});
+	it("Inverts the vector", () => {
+		const fn = (input: Input) => vector(input).inverted.toString();
+
+		expect(fn([ 2 ])).toBe("(-2, 0, 0)");
+		expect(fn([ 1, 2 ])).toBe("(-1, -2, 0)");
+		expect(fn([ 1, 2, 3 ])).toBe("(-1, -2, -3)");
+		expect(fn({ x: 2 })).toBe("(-2, 0, 0)");
+		expect(fn({ x: 1, y: 2 })).toBe("(-1, -2, 0)");
+		expect(fn({ x: 1, y: 2, z: 3 })).toBe("(-1, -2, -3)");
+		expect(fn([ -2 ])).toBe("(2, 0, 0)");
+		expect(fn([ -1, -2 ])).toBe("(1, 2, 0)");
+		expect(fn([ -1, -2, -3 ])).toBe("(1, 2, 3)");
+		expect(fn({ x: -2 })).toBe("(2, 0, 0)");
+		expect(fn({ x: -1, y: -2 })).toBe("(1, 2, 0)");
+		expect(fn({ x: -1, y: -2, z: -3 })).toBe("(1, 2, 3)");
+	});
+	it("Subtracts two vectors", () => {
+		const fn = (input1: Input, input2: Input) => vector(input1).sub(input2).toString();
+
+		expect(fn([ 1 ], [ 2 ])).toBe("(-1, 0, 0)");
+		expect(fn([ 1 ], [ 2, 3 ])).toBe("(-1, -3, 0)");
+		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(0, -2, -3)");
+		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(-1, 0, -3)");
+		expect(fn({ y: 2, z: 5 }, [ 1, 2, 3 ])).toBe("(-1, 0, 2)");
+		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(0, 0, 0)");
 	});
 });

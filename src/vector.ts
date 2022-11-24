@@ -10,7 +10,6 @@ export class Vector {
 	readonly x: number;
 	readonly y: number;
 	readonly z: number;
-	private readonly planar: boolean;
 
 	constructor(input?: InputUser) {
 		this.parsed = parse(input);
@@ -18,13 +17,55 @@ export class Vector {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.planar = (z === 0);
 	}
 
+	/**
+	 * Performs the addition and returns the sum as new `Vector` instance.
+	 */
+	add(input: Input): Vector {
+		const other = vector(input);
+		return new Vector([
+			this.x + other.x,
+			this.y + other.y,
+			this.z + other.z
+		]);
+	}
+
+	/**
+	 * Returns the inverted `Vector` instance.
+	 */
+	get inverted(): Vector {
+		return this.scale(-1);
+	}
+
+	/**
+	 * Performs the scalar multiplication and returns as new `Vector` instance.
+	 */
+	scale(value: number): Vector {
+		return new Vector([
+			this.x * value,
+			this.y * value,
+			this.z * value
+		]);
+	}
+
+	/**
+	 * Performs the subtraction and returns the sum as new `Vector` instance.
+	 */
+	sub(input: Input): Vector {
+		return this.add(vector(input).inverted);
+	}
+
+	/**
+	 * Returns a `Vector` string representation.
+	 */
 	toString() {
 		return `(${this.x}, ${this.y}, ${this.z})`;
 	}
 
+	/**
+	 * Returns a boolean indicating whether or not a user input was valid.
+	 */
 	get valid() {
 		return Boolean(this.parsed);
 	}
