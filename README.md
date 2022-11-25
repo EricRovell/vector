@@ -101,7 +101,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   The `Coords` object is considered valid if it is contains at least one of coordinate keys: `x`, `y`, or `z`.
   All missed keys defaults to zero, all extra keys are ignored.
 
-    ```js
+  ```js
   vector({ x: 1, data: "hello!" }).toString();               // -> "(1, 0, 0)"
   vector({ x: 1, y: 2, z: 3, data: "hello!" }).toString();   // -> "(1, 2, 3)"
   ```
@@ -126,6 +126,38 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ , 2 ]).toString();     // -> "(0, 0, 0)"
   vector([ , , 3 ]).toString();   // -> "(0, 0, 3)"
   ```
+</details>
+
+<details>
+  <summary>
+    <code>input: CoordsPolar</code>
+  </summary>
+
+  Parses the given input from `CoordsPolar` representing the vector [in polar coordinates](https://en.wikipedia.org/wiki/Vector_notation#Spherical_vectors) and returns a new `Vector` instance:
+
+  ```js
+  vector({ phi: 0 }).toString();                                    // -> "(1, 0, 0)"
+  vector({ phi: Math.PI / 2 }));                                    // -> "(0, 1, 0)";
+  vector({ phi: 0, magnitude: 2 }).toString();                      // -> "(2, 0, 0)"
+  vector({ phi: Math.PI / 2, magnitude: 2 }));                      // -> "(0, 2, 0)";
+  vector({ theta: 0 })                                              // -> "(0, 0, 1)");
+  vector({ theta: Math.PI / 2 })                                    // -> "(1, 0, 0)");
+  vector({ phi: Math.PI / 2, theta: 0 })                            // -> "(0, 0, 1)");
+  vector({ phi: Math.PI / 2, theta: Math.PI / 2 })                  // -> "(0, 1, 0)");
+  vector({ phi: Math.PI / 2, theta: 0, magnitude: 2 })              // -> "(0, 0, 2)");
+  vector({ phi: Math.PI / 2, theta: Math.PI / 2, magnitude: 2 })    // -> "(0, 2, 0)");
+  ```
+
+  By default angles input require [radians](https://en.wikipedia.org/wiki/Radian). To use degrees, pass a `degrees` property:
+
+  ```js
+  vector({ degrees: true, phi: 0 })                              // -> "(1, 0, 0)");
+  vector({ degrees: true, phi: 90 })                             // -> "(0, 1, 0)");
+  vector({ degrees: true, phi: 90, theta: 0, magnitude: 2 })     // -> "(0, 0, 2)");
+  vector({ degrees: true, phi: 90, theta: 90, magnitude: 2 })    // -> "(0, 2, 0)");
+  ```
+
+  The `CoordsPolar` object is considered valid if it is contains at least one of angle keys: `phi` or `theta`. The `magnitude` defaults to unit length.
 </details>
 
 ## API
