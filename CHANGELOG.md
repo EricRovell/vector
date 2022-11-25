@@ -1,5 +1,9 @@
 # Rational
 
+## 0.3.0 (2022-11-25)
+
+- [feat]: parse input using polar coordinates input;
+
 ## 0.2.0 (2022-11-24)
 
 - [feat]: `.add()` method for vector addition;

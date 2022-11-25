@@ -1,5 +1,5 @@
 import { parsers } from "./parsers";
-import type { Input, Parser } from "../types";
+import type { InputUser, Parser } from "../types";
 
 /**
  * Parses input into Ratio.
@@ -8,7 +8,7 @@ import type { Input, Parser } from "../types";
  *  + parse({ x, y, z });
  *  + parse([ x, y, z ]);
  */
-export const parse: Parser<Input | undefined> = (input) => {
+export const parse: Parser<InputUser | undefined> = (input) => {
 	if (typeof input === "undefined") {
 		return [ 0, 0, 0 ];
 	}

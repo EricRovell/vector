@@ -1,15 +1,12 @@
-import { isObject } from "../utils";
-import { Parser, Coords } from "../types";
+import { round, deg2rad } from "../utils";
+import { isCoords, isCoordsPolar, isCoordsTuple } from "./guards";
+import type { Parser } from "../types";
 
 /**
  * Parses a coordinates object.
  */
 const parseCoordsObject: Parser = coords => {
-	if (!isObject<Coords>(coords)) {
-		return null;
-	}
-
-	if ([ "x", "y", "z" ].some(key => key in coords)) {
+	if (isCoords(coords)) {
 		const { x = 0, y = 0, z = 0 } = coords;
 		return [ x, y, z ];
 	}
@@ -18,14 +15,40 @@ const parseCoordsObject: Parser = coords => {
 };
 
 /**
- * Parses a coordinates tuple.
+ * Parses vector in polar coordinates.
  */
-const parseCoordsTuple: Parser = coords => {
-	if (!Array.isArray(coords) || coords.length < 1 || coords.length > 3) {
+const parseCoordsPolar: Parser = coords => {
+	if (!isCoordsPolar(coords)) {
 		return null;
 	}
 
-	if (coords.some(value => typeof value !== "number" || Number.isNaN(value))) {
+	const { degrees = false, magnitude = 1 } = coords;
+	let {
+		phi = 0,
+		theta = (degrees ? 90 : Math.PI / 2)
+	} = coords;
+
+	if ([ magnitude, phi, theta ].some(value => typeof value !== "number" || Number.isNaN(value))) {
+		return null;
+	}
+
+	if (degrees) {
+		phi *= deg2rad;
+		theta *= deg2rad;
+	}
+
+	return [
+		round(magnitude * Math.sin(theta) * Math.cos(phi), 12),
+		round(magnitude * Math.sin(theta) * Math.sin(phi), 12),
+		round(magnitude * Math.cos(theta), 12),
+	];
+};
+
+/**
+ * Parses a coordinates tuple.
+ */
+const parseCoordsTuple: Parser = coords => {
+	if (!isCoordsTuple(coords)) {
 		return null;
 	}
 
@@ -35,5 +58,6 @@ const parseCoordsTuple: Parser = coords => {
 
 export const parsers: Parser[] = [
 	parseCoordsObject,
-	parseCoordsTuple
+	parseCoordsTuple,
+	parseCoordsPolar
 ];

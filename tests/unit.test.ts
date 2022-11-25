@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
-import type { Coords, CoordsTuple, Input, InputUser } from "../src/types";
+import type { Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -60,6 +60,81 @@ describe("Parsing", () => {
 		// eslint-disable-next-line no-sparse-arrays
 		expect(fn([ , , 3 ])).toBe("(0, 0, 3)");
 	});
+	it("Parses a polar coordinates input", () => {
+		const fn = (input: Partial<CoordsPolar>) => vector(input).toString();
+
+		expect(fn({ phi: 0 })).toBe("(1, 0, 0)");
+		expect(fn({ phi: Math.PI / 2 })).toBe("(0, 1, 0)");
+		expect(fn({ phi: Math.PI })).toBe("(-1, 0, 0)");
+		expect(fn({ phi: 3 * Math.PI / 2 })).toBe("(0, -1, 0)");
+		expect(fn({ phi: 2 * Math.PI })).toBe("(1, 0, 0)");
+
+		expect(fn({ degrees: true, phi: 0 })).toBe("(1, 0, 0)");
+		expect(fn({ degrees: true, phi: 90 })).toBe("(0, 1, 0)");
+		expect(fn({ degrees: true, phi: 180 })).toBe("(-1, 0, 0)");
+		expect(fn({ degrees: true, phi: 270 })).toBe("(0, -1, 0)");
+		expect(fn({ degrees: true, phi: 360 })).toBe("(1, 0, 0)");
+
+		expect(fn({ theta: 0 })).toBe("(0, 0, 1)");
+		expect(fn({ theta: Math.PI / 2 })).toBe("(1, 0, 0)");
+		expect(fn({ theta: Math.PI })).toBe("(0, 0, -1)");
+		expect(fn({ theta: 3 * Math.PI / 2 })).toBe("(-1, 0, 0)");
+		expect(fn({ theta: 2 * Math.PI })).toBe("(0, 0, 1)");
+
+		expect(fn({ degrees: true, theta: 0 })).toBe("(0, 0, 1)");
+		expect(fn({ degrees: true, theta: 90 })).toBe("(1, 0, 0)");
+		expect(fn({ degrees: true, theta: 180 })).toBe("(0, 0, -1)");
+		expect(fn({ degrees: true, theta: 270 })).toBe("(-1, 0, 0)");
+		expect(fn({ degrees: true, theta: 360 })).toBe("(0, 0, 1)");
+
+		expect(fn({ phi: Math.PI / 2, theta: 0 })).toBe("(0, 0, 1)");
+		expect(fn({ phi: Math.PI / 2, theta: Math.PI / 2 })).toBe("(0, 1, 0)");
+		expect(fn({ phi: Math.PI / 2, theta: Math.PI })).toBe("(0, 0, -1)");
+		expect(fn({ phi: Math.PI / 2, theta: 3 * Math.PI / 2 })).toBe("(0, -1, 0)");
+		expect(fn({ phi: Math.PI / 2, theta: 2 * Math.PI })).toBe("(0, 0, 1)");
+
+		expect(fn({ degrees: true, phi: 90, theta: 0 })).toBe("(0, 0, 1)");
+		expect(fn({ degrees: true, phi: 90, theta: 90 })).toBe("(0, 1, 0)");
+		expect(fn({ degrees: true, phi: 90, theta: 180 })).toBe("(0, 0, -1)");
+		expect(fn({ degrees: true, phi: 90, theta: 270 })).toBe("(0, -1, 0)");
+		expect(fn({ degrees: true, phi: 90, theta: 360 })).toBe("(0, 0, 1)");
+
+		expect(fn({ phi: 0, magnitude: 10 })).toBe("(10, 0, 0)");
+		expect(fn({ phi: Math.PI / 2, magnitude: 10 })).toBe("(0, 10, 0)");
+		expect(fn({ phi: Math.PI, magnitude: 10 })).toBe("(-10, 0, 0)");
+		expect(fn({ phi: 3 * Math.PI / 2, magnitude: 10 })).toBe("(0, -10, 0)");
+		expect(fn({ phi: 2 * Math.PI, magnitude: 10 })).toBe("(10, 0, 0)");
+
+		expect(fn({ degrees: true, phi: 0, magnitude: 10 })).toBe("(10, 0, 0)");
+		expect(fn({ degrees: true, phi: 90, magnitude: 10 })).toBe("(0, 10, 0)");
+		expect(fn({ degrees: true, phi: 180, magnitude: 10 })).toBe("(-10, 0, 0)");
+		expect(fn({ degrees: true, phi: 270, magnitude: 10 })).toBe("(0, -10, 0)");
+		expect(fn({ degrees: true, phi: 360, magnitude: 10 })).toBe("(10, 0, 0)");
+
+		expect(fn({ theta: 0, magnitude: 10 })).toBe("(0, 0, 10)");
+		expect(fn({ theta: Math.PI / 2, magnitude: 10 })).toBe("(10, 0, 0)");
+		expect(fn({ theta: Math.PI, magnitude: 10 })).toBe("(0, 0, -10)");
+		expect(fn({ theta: 3 * Math.PI / 2, magnitude: 10 })).toBe("(-10, 0, 0)");
+		expect(fn({ theta: 2 * Math.PI, magnitude: 10 })).toBe("(0, 0, 10)");
+
+		expect(fn({ degrees: true, theta: 0, magnitude: 10 })).toBe("(0, 0, 10)");
+		expect(fn({ degrees: true, theta: 90, magnitude: 10 })).toBe("(10, 0, 0)");
+		expect(fn({ degrees: true, theta: 180, magnitude: 10 })).toBe("(0, 0, -10)");
+		expect(fn({ degrees: true, theta: 270, magnitude: 10 })).toBe("(-10, 0, 0)");
+		expect(fn({ degrees: true, theta: 360, magnitude: 10 })).toBe("(0, 0, 10)");
+
+		expect(fn({ phi: Math.PI / 2, theta: 0, magnitude: 10 })).toBe("(0, 0, 10)");
+		expect(fn({ phi: Math.PI / 2, theta: Math.PI / 2, magnitude: 10 })).toBe("(0, 10, 0)");
+		expect(fn({ phi: Math.PI / 2, theta: Math.PI, magnitude: 10 })).toBe("(0, 0, -10)");
+		expect(fn({ phi: Math.PI / 2, theta: 3 * Math.PI / 2, magnitude: 10 })).toBe("(0, -10, 0)");
+		expect(fn({ phi: Math.PI / 2, theta: 2 * Math.PI, magnitude: 10 })).toBe("(0, 0, 10)");
+
+		expect(fn({ degrees: true, phi: 90, theta: 0, magnitude: 10 })).toBe("(0, 0, 10)");
+		expect(fn({ degrees: true, phi: 90, theta: 90, magnitude: 10 })).toBe("(0, 10, 0)");
+		expect(fn({ degrees: true, phi: 90, theta: 180, magnitude: 10 })).toBe("(0, 0, -10)");
+		expect(fn({ degrees: true, phi: 90, theta: 270, magnitude: 10 })).toBe("(0, -10, 0)");
+		expect(fn({ degrees: true, phi: 90, theta: 360, magnitude: 10 })).toBe("(0, 0, 10)");
+	});
 	it("Detects invalid input", () => {
 		const fn = (input: InputUser) => vector(input).valid;
 
@@ -71,6 +146,11 @@ describe("Parsing", () => {
 		expect(fn([ 1, 2, 3, 4 ])).toBe(false);
 		// @ts-expect-error: test invalid input
 		expect(fn([ "1", "2", "3" ])).toBe(false);
+		expect(fn({ magnitude: 5 })).toBe(false);
+		expect(fn({ degrees: true, magnitude: 5 })).toBe(false);
+		// @ts-expect-error: invalid polar coords without angles
+		expect(fn({ phi: "23" })).toBe(false);
+		expect(fn({ phi: NaN })).toBe(false);
 	});
 });
 
