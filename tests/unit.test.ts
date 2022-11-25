@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
 import type { Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
+import { round } from "../src/utils";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -212,5 +213,50 @@ describe("Arithmetics", () => {
 		expect(fn({ y: 2 }, [ 1, 2, 3 ])).toBe("(-1, 0, -3)");
 		expect(fn({ y: 2, z: 5 }, [ 1, 2, 3 ])).toBe("(-1, 0, 2)");
 		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(0, 0, 0)");
+	});
+});
+
+describe("Properties", () => {
+	it("Calculates the magnitude squared", () => {
+		const fn = (input: InputUser) => vector(input).magnitudeSq;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(25);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(169);
+	});
+	it("Calculates the magnitude", () => {
+		const fn = (input: InputUser) => vector(input).magnitude;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(5);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(13);
+	});
+	it("Sets the magnitude", () => {
+		const fn = (input: InputUser, value: number) => vector(input).setMagnitude(value).magnitude;
+
+		expect(fn({ x: 1 }, 5)).toBe(5);
+		expect(fn({ x: 1, y: 2 }, 5)).toBe(5);
+		expect(fn({ x: 1, y: 2, z: 3 }, 5)).toBe(5);
+	});
+	it("Limits the magnitude", () => {
+		const fn = (input: InputUser, value: number) => round(vector(input).limit(value).magnitude, 10);
+
+		expect(fn({ x: 3, y: 4 }, 10)).toBe(5);
+		expect(fn({ x: 3, y: 4 }, 2)).toBe(2);
+		expect(fn({ x: 3, y: 4 }, 5)).toBe(5);
+		expect(fn({ x: 3, y: 4, z: 12 }, 15)).toBe(13);
+		expect(fn({ x: 3, y: 4, z: 12 }, 10)).toBe(10);
+		expect(fn({ x: 3, y: 4, z: 12 }, 13)).toBe(13);
+	});
+	it("Normalizes the vector and returns a unit vector", () => {
+		const fn = (input: InputUser) => vector(input).unit.magnitude;
+
+		expect(fn({ x: 3, y: 4 })).toBe(1);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(1);
+	});
+	it("Do not normalize the zero vector, marks as invalid", () => {
+		expect(vector({ x: 0 }).unit.valid).toBe(false);
+		expect(vector([ 0, 0 ]).unit.valid).toBe(false);
+		expect(vector([ 0, 0, 0 ]).unit.valid).toBe(false);
 	});
 });

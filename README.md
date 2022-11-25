@@ -199,7 +199,66 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.scale(input: number)</code>
+    <code>.limit(value: number)</code>
+  </summary>
+
+  Limits the magnitude of the vector and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 3, y: 4 }).limit(10).magnitude          // -> 5
+  vector({ x: 3, y: 4 }).limit(2).magnitude           // -> 2
+  vector({ x: 3, y: 4 }).limit(5).magnitude           // -> 5
+  vector({ x: 3, y: 4, z: 12 }).limit(15).magnitude   // -> 13
+  vector({ x: 3, y: 4, z: 12 }).limit(10).magnitude   // -> 10
+  vector({ x: 3, y: 4, z: 12 }).limit(13).magnitude   // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.magnitude</code>
+  </summary>
+
+  Calculates the magnitude of the vector:
+
+  ```js
+  vector({ x: 0 }).magnitude;               // -> 0
+  vector({ x: 3, y: 4 }).magnitude;         // -> 5
+  vector({ x: 3, y: 4, z: 12 }).magnitude;  // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.magnitudeSq</code>
+  </summary>
+
+  Calculates the squared magnitude of the vector, which may be useful and faster where the real value is not that important, for example, to compare two vector's length:
+
+  ```js
+  vector({ x: 0 }).magnitudeSq;               // -> 0
+  vector({ x: 3, y: 4 }).magnitudeSq;         // -> 25
+  vector({ x: 3, y: 4, z: 12 }).magnitudeSq;  // -> 169
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setMagnitude(value: number)</code>
+  </summary>
+
+  Sets the magnitude of the vector and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1 }).setMagnitude(5).magnitude               // -> 5;
+  vector({ x: 1, y: 2 }).setMagnitude(5).magnitude         // -> 5;
+  vector({ x: 1, y: 2, z: 3 }).setMagnitude(5).magnitude   // -> 5;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.scale(value: number)</code>
   </summary>
 
 	Performs the scalar vector multiplication and returns a new `Vector` instance:
@@ -246,6 +305,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ 1 ]).toString();                  // -> "(1, 0, 0)"
   vector([ 1, 2 ]).toString();               // -> "(0, 2, 0)"
   vector([ 1, 2, 3 ]).toString();            // -> "(0, 0, 3)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.unit</code>
+  </summary>
+
+  Normalizes the original vector and returns [the unit vector](https://en.wikipedia.org/wiki/Unit_vector):
+
+  ```js
+  vector({ x: 0 }).unit.magnitude;                // -> 1
+  vector({ x: 3, y: 4 }).unit.magnitude;          // -> 1
+  vector({ x: 3, y: 4, z: 12 }).unit.magnitude;   // -> 1
   ```
 </details>
 

@@ -39,6 +39,37 @@ export class Vector {
 	}
 
 	/**
+	 * Limits the magnitude of the vector and returns a new `Vector` instance.
+	 */
+	limit(value: number): Vector {
+		return this.magnitudeSq < value ** 2
+			? this
+			: this.setMagnitude(value);
+	}
+
+	/**
+	 * Calculates the magnitude of the vector.
+	 */
+	get magnitude() {
+		return this.magnitudeSq ** 0.5;
+	}
+
+	/**
+	 * Calculates the squared magnitude of the vector.
+	 * Usefull when the real length is not required, for example to compare vectors.
+	 */
+	get magnitudeSq() {
+		return this.x ** 2 + this.y ** 2 + this.z ** 2;
+	}
+
+	/**
+	 * Sets the magnitude of the vector and returns a new `Vector` instance.
+	 */
+	setMagnitude(value: number): Vector {
+		return this.unit.scale(value);
+	}
+
+	/**
 	 * Performs the scalar multiplication and returns as new `Vector` instance.
 	 */
 	scale(value: number): Vector {
@@ -61,6 +92,19 @@ export class Vector {
 	 */
 	toString() {
 		return `(${this.x}, ${this.y}, ${this.z})`;
+	}
+
+	/**
+	 * Normalizes the original vector and returns the unit vector.
+	 */
+	get unit() {
+		const magnitude = this.magnitude;
+		if (magnitude) {
+			return this.scale(1 / magnitude);
+		}
+
+		// @ts-expect-error: mark the resulting vector as invalid
+		return vector(null);
 	}
 
 	/**
