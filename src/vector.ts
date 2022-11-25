@@ -39,6 +39,15 @@ export class Vector {
 	}
 
 	/**
+	 * Limits the magnitude of the vector and returns a new `Vector` instance.
+	 */
+	limit(value: number): Vector {
+		return this.magnitudeSq < value ** 2
+			? this
+			: this.setMagnitude(value);
+	}
+
+	/**
 	 * Calculates the magnitude of the vector.
 	 */
 	get magnitude() {

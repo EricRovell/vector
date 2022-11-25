@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
 import type { Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
+import { round } from "../src/utils";
 
 describe("Rational constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -236,6 +237,16 @@ describe("Properties", () => {
 		expect(fn({ x: 1 }, 5)).toBe(5);
 		expect(fn({ x: 1, y: 2 }, 5)).toBe(5);
 		expect(fn({ x: 1, y: 2, z: 3 }, 5)).toBe(5);
+	});
+	it("Limits the magnitude", () => {
+		const fn = (input: InputUser, value: number) => round(vector(input).limit(value).magnitude, 10);
+
+		expect(fn({ x: 3, y: 4 }, 10)).toBe(5);
+		expect(fn({ x: 3, y: 4 }, 2)).toBe(2);
+		expect(fn({ x: 3, y: 4 }, 5)).toBe(5);
+		expect(fn({ x: 3, y: 4, z: 12 }, 15)).toBe(13);
+		expect(fn({ x: 3, y: 4, z: 12 }, 10)).toBe(10);
+		expect(fn({ x: 3, y: 4, z: 12 }, 13)).toBe(13);
 	});
 	it("Normalizes the vector and returns a unit vector", () => {
 		const fn = (input: InputUser) => vector(input).unit.magnitude;

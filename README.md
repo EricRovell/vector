@@ -199,6 +199,23 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.limit(value: number)</code>
+  </summary>
+
+  Limits the magnitude of the vector and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 3, y: 4 }).limit(10).magnitude          // -> 5
+  vector({ x: 3, y: 4 }).limit(2).magnitude           // -> 2
+  vector({ x: 3, y: 4 }).limit(5).magnitude           // -> 5
+  vector({ x: 3, y: 4, z: 12 }).limit(15).magnitude   // -> 13
+  vector({ x: 3, y: 4, z: 12 }).limit(10).magnitude   // -> 10
+  vector({ x: 3, y: 4, z: 12 }).limit(13).magnitude   // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.magnitude</code>
   </summary>
 
