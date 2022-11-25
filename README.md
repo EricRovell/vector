@@ -279,6 +279,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.unit</code>
+  </summary>
+
+  Normalizes the original vector and returns [the unit vector](https://en.wikipedia.org/wiki/Unit_vector):
+
+  ```js
+  vector({ x: 0 }).unit.magnitude;                // -> 1
+  vector({ x: 3, y: 4 }).unit.magnitude;          // -> 1
+  vector({ x: 3, y: 4, z: 12 }).unit.magnitude;   // -> 1
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.valid</code>
   </summary>
 

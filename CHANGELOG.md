@@ -3,6 +3,7 @@
 ## 0.4.0 (2022-11-25)
 
 - [feat]: `magnitude` and `magnitudeSq` properties;
+- [feat]: `unit` property;
 
 ## 0.3.0 (2022-11-25)
 

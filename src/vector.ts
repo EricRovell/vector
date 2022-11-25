@@ -79,6 +79,19 @@ export class Vector {
 	}
 
 	/**
+	 * Normalizes the original vector and returns the unit vector.
+	 */
+	get unit() {
+		const magnitude = this.magnitude;
+		if (magnitude) {
+			return this.scale(1 / magnitude);
+		}
+
+		// @ts-expect-error: mark the resulting vector as invalid
+		return vector(null);
+	}
+
+	/**
 	 * Returns a boolean indicating whether or not a user input was valid.
 	 */
 	get valid() {
