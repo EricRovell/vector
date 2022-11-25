@@ -1,5 +1,9 @@
 # Rational
 
+## 0.4.0 (2022-11-25)
+
+- [feat]: `magnitude` and `magnitudeSq` properties;
+
 ## 0.3.0 (2022-11-25)
 
 - [feat]: parse input using polar coordinates input;

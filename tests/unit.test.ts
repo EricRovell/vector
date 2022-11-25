@@ -214,3 +214,20 @@ describe("Arithmetics", () => {
 		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(0, 0, 0)");
 	});
 });
+
+describe("Properties", () => {
+	it("Calculates the magnitude squared", () => {
+		const fn = (input: InputUser) => vector(input).magnitudeSq;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(25);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(169);
+	});
+	it("Calculates the magnitude", () => {
+		const fn = (input: InputUser) => vector(input).magnitude;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(5);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(13);
+	});
+});

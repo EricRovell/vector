@@ -39,6 +39,21 @@ export class Vector {
 	}
 
 	/**
+	 * Calculates the magnitude of the vector.
+	 */
+	get magnitude() {
+		return this.magnitudeSq ** 0.5;
+	}
+
+	/**
+	 * Calculates the squared magnitude of the vector.
+	 * Usefull when the real length is not required, for example to compare vectors.
+	 */
+	get magnitudeSq() {
+		return this.x ** 2 + this.y ** 2 + this.z ** 2;
+	}
+
+	/**
 	 * Performs the scalar multiplication and returns as new `Vector` instance.
 	 */
 	scale(value: number): Vector {

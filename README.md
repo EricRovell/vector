@@ -199,6 +199,34 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.magnitude</code>
+  </summary>
+
+  Calculates the magnitude of the vector:
+
+  ```js
+  vector({ x: 0 }).magnitude;               // -> 0
+  vector({ x: 3, y: 4 }).magnitude;         // -> 5
+  vector({ x: 3, y: 4, z: 12 }).magnitude;  // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.magnitudeSq</code>
+  </summary>
+
+  Calculates the squared magnitude of the vector, which may be useful and faster where the real value is not that important, for example, to compare two vector's length:
+
+  ```js
+  vector({ x: 0 }).magnitudeSq;               // -> 0
+  vector({ x: 3, y: 4 }).magnitudeSq;         // -> 25
+  vector({ x: 3, y: 4, z: 12 }).magnitudeSq;  // -> 169
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.scale(input: number)</code>
   </summary>
 
