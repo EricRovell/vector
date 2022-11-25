@@ -54,6 +54,13 @@ export class Vector {
 	}
 
 	/**
+	 * Sets the magnitude of the vector and returns a new `Vector` instance.
+	 */
+	setMagnitude(value: number): Vector {
+		return this.unit.scale(value);
+	}
+
+	/**
 	 * Performs the scalar multiplication and returns as new `Vector` instance.
 	 */
 	scale(value: number): Vector {

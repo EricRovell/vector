@@ -227,7 +227,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.scale(input: number)</code>
+    <code>.setMagnitude(value: number)</code>
+  </summary>
+
+  Sets the magnitude of the vector and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1 }).setMagnitude(5).magnitude               // -> 5;
+  vector({ x: 1, y: 2 }).setMagnitude(5).magnitude         // -> 5;
+  vector({ x: 1, y: 2, z: 3 }).setMagnitude(5).magnitude   // -> 5;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.scale(value: number)</code>
   </summary>
 
 	Performs the scalar vector multiplication and returns a new `Vector` instance:

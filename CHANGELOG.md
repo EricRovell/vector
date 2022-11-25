@@ -4,6 +4,7 @@
 
 - [feat]: `magnitude` and `magnitudeSq` properties;
 - [feat]: `unit` property;
+- [feat]: `.setMagnitude()` method;
 
 ## 0.3.0 (2022-11-25)
 

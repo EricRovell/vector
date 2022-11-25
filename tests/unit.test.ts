@@ -230,6 +230,13 @@ describe("Properties", () => {
 		expect(fn({ x: 3, y: 4 })).toBe(5);
 		expect(fn({ x: 3, y: 4, z: 12 })).toBe(13);
 	});
+	it("Sets the magnitude", () => {
+		const fn = (input: InputUser, value: number) => vector(input).setMagnitude(value).magnitude;
+
+		expect(fn({ x: 1 }, 5)).toBe(5);
+		expect(fn({ x: 1, y: 2 }, 5)).toBe(5);
+		expect(fn({ x: 1, y: 2, z: 3 }, 5)).toBe(5);
+	});
 	it("Normalizes the vector and returns a unit vector", () => {
 		const fn = (input: InputUser) => vector(input).unit.magnitude;
 
