@@ -186,6 +186,32 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.getPhi(degrees = false)</code>
+  </summary>
+
+  Calculates vector's azimutal angle.
+
+  ```js
+  vector({ x: 3, y: 4 }).getPhi();    // -> 0.927295
+  vector([ 1, -2, 3 ]).getPhi(true);   // -> 53.130102
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.getTheta(degrees = false)</code>
+  </summary>
+
+  Calculates vector's elevation angle.
+
+  ```js
+  vector({ x: 3, y: 4, z: 5 }).getTheta();       // -> 0.785398
+  vector({ x: 3, y: 4, z: 5 }).getTheta(true);   // -> 45
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.inverted</code>
   </summary>
 
@@ -244,6 +270,32 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.rotate(value: number, degrees = false)</code>
+  </summary>
+
+  Rotates the vector by an azimuthal angle (XOY plane) and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).rotate(Math.PI / 3);
+  vector({ x: 1, y: 2 }).rotate(60, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.rotate3d(phi: number = 0, theta: number = 0, degrees = false)</code>
+  </summary>
+
+  Rotates the vector by an azimuthal and elevation angles and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2, z: 3 }).rotate3d(Math.PI / 3, Math.PI / 6);
+  vector({ x: 1, y: 2, z: 3 }).rotate3d(60, 30, true);
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.setMagnitude(value: number)</code>
   </summary>
 
@@ -253,6 +305,32 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector({ x: 1 }).setMagnitude(5).magnitude               // -> 5;
   vector({ x: 1, y: 2 }).setMagnitude(5).magnitude         // -> 5;
   vector({ x: 1, y: 2, z: 3 }).setMagnitude(5).magnitude   // -> 5;
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setPhi(value: number, degrees = false)</code>
+  </summary>
+
+  Rotates the vector to a specific azimuthal angle (OXY plane) and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).setPhi(Math.PI / 3);
+  vector({ x: 1, y: 2, z: 3 }).setPhi(60, degrees);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setTheta(value: number, degrees = false)</code>
+  </summary>
+
+  Rotates the vector to a specific elevation angle and returns a new `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).setTheta(Math.PI / 3);
+  vector({ x: 1, y: 2, z: 3 }).setTheta(60, degrees);
   ```
 </details>
 

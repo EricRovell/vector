@@ -1,5 +1,6 @@
 import { parse } from "./parser";
 import type { InputUser, Input } from "./types";
+import { rad2deg } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -29,6 +30,20 @@ export class Vector {
 			this.y + other.y,
 			this.z + other.z
 		]);
+	}
+
+	/**
+	 * Calculates vector's azimuthal angle.
+	 */
+	getPhi(degrees = false): number {
+		return Math.atan2(this.y, this.x) * (degrees ? rad2deg : 1);
+	}
+
+	/**
+	 * Calculates vector's elevation angle.
+	 */
+	getTheta(degrees = false): number {
+		return Math.acos(this.z / this.magnitude) * (degrees ? rad2deg : 1);
 	}
 
 	/**
@@ -63,10 +78,53 @@ export class Vector {
 	}
 
 	/**
+	 * Rotates the vector by an azimuthal angle (XOY plane) and returns a new `Vector` instance.
+	 */
+	rotate(value: number, degrees = false): Vector {
+		return this.rotate3d(value, 0, degrees);
+	}
+
+	/**
+	 * Rotates the vector by an azimuthal and elevation angles and returns a new `Vector` instance.
+	 */
+	rotate3d(phi = 0, theta = 0, degrees = false): Vector {
+		return new Vector({
+			degrees,
+			phi: this.getPhi(degrees) + phi,
+			theta: this.getTheta(degrees) + theta,
+			magnitude: this.magnitude
+		});
+	}
+
+	/**
 	 * Sets the magnitude of the vector and returns a new `Vector` instance.
 	 */
 	setMagnitude(value: number): Vector {
 		return this.unit.scale(value);
+	}
+
+	/**
+	 * Rotates the vector to a specific azimuthal angle (OXY plane) and returns a new `Vector` instance.
+	 */
+	setPhi(value: number, degrees = false): Vector {
+		return new Vector({
+			degrees,
+			phi: value,
+			theta: this.getTheta(degrees),
+			magnitude: this.magnitude
+		});
+	}
+
+	/**
+	 * Rotates the vector to a specific angle and returns a new `Vector` instance.
+	 */
+	setTheta(value: number, degrees = false): Vector {
+		return new Vector({
+			degrees,
+			phi: this.getPhi(degrees),
+			theta: value,
+			magnitude: this.magnitude
+		});
 	}
 
 	/**

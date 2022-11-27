@@ -260,3 +260,59 @@ describe("Properties", () => {
 		expect(vector([ 0, 0, 0 ]).unit.valid).toBe(false);
 	});
 });
+
+describe("Rotation", () => {
+	it("Calculates the azimuthal angle", () => {
+		const fn = (input: InputUser, degrees = false) => round(vector(input).getPhi(degrees), 6);
+
+		expect(fn({ x: 3, y: 4 })).toBe(0.927295);
+		expect(fn({ x: -2, y: 5 })).toBe(1.951303);
+		expect(fn({ x: 3, y: 4 }, true)).toBe(53.130102);
+		expect(fn({ x: -2, y: 5 }, true)).toBe(111.801409);
+	});
+	it("Calculates the elevation angle", () => {
+		const fn = (input: InputUser, degrees = false) => round(vector(input).getTheta(degrees), 6);
+
+		expect(fn({ x: 3, y: 4, z: 5 })).toBe(0.785398);
+		expect(fn({ x: -2, y: 5, z: -6 })).toBe(2.410145);
+		expect(fn({ x: 3, y: 4, z: 5 }, true)).toBe(45);
+		expect(fn({ x: -2, y: 5, z: -6 }, true)).toBe(138.091152);
+	});
+	it("Sets the azimuthal angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setPhi(value, degrees).getPhi(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
+	it("Sets the elevation angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setTheta(value, degrees).getTheta(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
+	it("Rotates a vector by azimuthal angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => vector(input).rotate(value, degrees);
+
+		expect(round(fn({ x: 1 }, 1).rotate(1).rotate(-0.5).getPhi(), 2)).toBe(1.5);
+		expect(round(fn({ x: 1 }, 60, true).rotate(30, true).rotate(-45, true).getPhi(true), 2)).toBe(45);
+	});
+	it("Rotates a vector in space", () => {
+		const radians = vector({ phi: Math.PI / 3, theta: Math.PI / 3 })
+			.rotate3d(Math.PI / 3, Math.PI / 3)
+			.rotate3d(-Math.PI / 2, -Math.PI / 2);
+
+		const degrees = vector({ degrees: true, phi: 0, theta: 0 })
+			.rotate3d(60, 30, true)
+			.rotate3d(30, 15, true)
+			.rotate3d(-45, -30, true);
+
+		expect(round(radians.getPhi(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(radians.getTheta(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(degrees.getPhi(true), 2)).toBe(45);
+		expect(round(degrees.getTheta(true), 2)).toBe(15);
+	});
+});
