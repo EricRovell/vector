@@ -504,6 +504,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.toArray()</code>
+  </summary>
+
+  Returns vector's components packed into array.
+
+  ```js
+  vector({ x: 1 }).toArray();               // -> [ 1, 0, 0 ]
+  vector({ x: 1, y: 2 }).toArray();         // -> [ 1, 2, 0 ]
+  vector({ x: 1, y: 2, z: 3 }).toArray();   // -> [ 1, 2, 3 ]
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.toString()</code>
   </summary>
 
@@ -547,6 +561,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ NaN ]).valid; // -> false
   vector({ x: 1, y: 2 }).valid;  // -> true
   vector({ a: 1, b: 2 }).valid; // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.valueOf()</code>
+  </summary>
+
+  Converts the vector instance to primitive value - it's magnitude.
+
+  ```js
+  const a = vector([ 3, 4 ]);
+  const b = vector([ 6, 8 ]);
+
+  a + b // -> 15
   ```
 </details>
 

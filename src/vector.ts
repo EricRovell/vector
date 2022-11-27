@@ -248,6 +248,13 @@ export class Vector {
 	}
 
 	/**
+	 * Returns vector's components packed into array.
+	 */
+	toArray() {
+		return [ this.x, this.y, this.z ];
+	}
+
+	/**
 	 * Returns a `Vector` string representation.
 	 */
 	toString() {
@@ -272,6 +279,13 @@ export class Vector {
 	 */
 	get valid() {
 		return Boolean(this.parsed);
+	}
+
+	/**
+	 * Converts the vector instance to primitive value - it's magnitude.
+	 */
+	valueOf(): number {
+		return this.magnitude;
 	}
 }
 
