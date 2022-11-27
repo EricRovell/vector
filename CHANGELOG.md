@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [feat]: `.equals()` method;
+- [feat]: `.cross()` method;
 
 ## 0.5.0 (2022-11-27)
 

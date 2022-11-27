@@ -33,6 +33,18 @@ export class Vector {
 	}
 
 	/**
+	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
+	 */
+	cross(input: Input): Vector {
+		const other = vector(input);
+		return new Vector([
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		]);
+	}
+
+	/**
 	 * Performs an equality check against another vector input or `Vector` instance.
 	 */
 	equals(input: Input): boolean {
