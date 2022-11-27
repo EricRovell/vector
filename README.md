@@ -186,6 +186,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.equals(input: Input)</code>
+  </summary>
+
+  Performs an equality check against another vector input or `Vector` instance.
+
+  ```js
+  vector({ x: 1, y: 2 }).equals([ 1, 2 ]);          // -> true
+  vector({ x: -1, y: -2 }).equals({ x: -1, y: 2});  // -> false
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.getPhi(degrees = false)</code>
   </summary>
 

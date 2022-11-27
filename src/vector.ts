@@ -33,6 +33,18 @@ export class Vector {
 	}
 
 	/**
+	 * Performs an equality check against another vector input or `Vector` instance.
+	 */
+	equals(input: Input): boolean {
+		const other = vector(input);
+		return (
+			this.x === other.x &&
+			this.y === other.y &&
+			this.z === other.z
+		);
+	}
+
+	/**
 	 * Calculates vector's azimuthal angle.
 	 */
 	getPhi(degrees = false): number {

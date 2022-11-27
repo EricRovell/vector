@@ -1,5 +1,9 @@
 # Rational
 
+## Unreleased
+
+- [feat]: `.equals()` method;
+
 ## 0.5.0 (2022-11-27)
 
 - [feat]: Azimuthal (`phi`) and Elevation (`theta`) angles getters;
