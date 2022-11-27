@@ -3,6 +3,7 @@
 # 0.7.0 (2022-11-28)
 
 - [feat]: `.distance()` and `.distanceSq()` methods;
+- [feat]: `angle()` method;
 
 ## 0.6.0 (2022-11-27)
 

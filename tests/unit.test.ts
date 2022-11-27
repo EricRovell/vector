@@ -248,6 +248,23 @@ describe("Arithmetics", () => {
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(5.19615);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(11.59051);
 	});
+	it("Calculates the angle between two vectors", () => {
+		const fn = (a: Input, b: Input, signed = false, degrees = false) => round(vector(a).angle(b, signed, degrees), 5);
+
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(0.22573);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(1.96572);
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ], false, true)).toBe(12.93315);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ], false, true)).toBe(112.62759);
+		expect(fn([ 0 ], [ 4, 5, 6 ])).toBe(0);
+		expect(fn([ 1, 2, 3 ], [ 0 ], false, true)).toBe(0);
+
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ], true)).toBe(-0.22573);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ], true)).toBe(-1.96572);
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ], true, true)).toBe(-12.93315);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ], true, true)).toBe(-112.62759);
+		expect(fn([ 0 ], [ 4, 5, 6 ], true)).toBe(0);
+		expect(fn([ 1, 2, 3 ], [ 0 ], true, true)).toBe(0);
+	});
 });
 
 describe("Properties", () => {

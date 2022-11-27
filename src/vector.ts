@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { InputUser, Input } from "./types";
-import { rad2deg } from "./utils";
+import { clamp, rad2deg } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -30,6 +30,24 @@ export class Vector {
 			this.y + other.y,
 			this.z + other.z
 		]);
+	}
+
+	/**
+	 * Calculates the angle between two vectors.
+	 */
+	angle(input: Input, signed = false, degrees = false): number {
+		const other = vector(input);
+
+		const magnitude = this.magnitude;
+		const magnitudeOther = other.magnitude;
+
+		if (magnitude === 0 || magnitudeOther === 0) {
+			return 0;
+		}
+
+		const cosine = clamp(this.dot(other) / magnitude / magnitudeOther, -1, 1);
+		const angle = Math.acos(cosine) * (signed ? Math.sign(this.cross(other).z || 1) : 1);
+		return angle * (degrees ? rad2deg : 1);
 	}
 
 	/**

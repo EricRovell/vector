@@ -186,6 +186,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.angle(input: Input, signed = false, degrees = false)</code>
+  </summary>
+
+  Calculates the angle between two vectors.
+
+  ```js
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ]) // -> 0.22573
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ], true) // -> -0.22573
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ], true, true) // -> -12.93315
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.cross(input: Input)</code>
   </summary>
 
