@@ -214,6 +214,22 @@ describe("Arithmetics", () => {
 		expect(fn({ y: 2, z: 5 }, [ 1, 2, 3 ])).toBe("(-1, 0, 2)");
 		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(0, 0, 0)");
 	});
+	it("Performs an equality check", () => {
+		const fn = (input1: Input, input2: Input) => vector(input1).equals(input2);
+
+		expect(fn([ 1, 1, 1 ], { x: 1, y: 1, z: 1 })).toBe(true);
+		expect(fn({ x: 1, y: 1, z: 1 }, [ 1, 1, 1 ])).toBe(true);
+		expect(fn([ 1, 1, 1 ], [ 1, 1, 1 ])).toBe(true);
+		expect(fn(vector([ 1, 1, 1 ]), vector({ x: 1, y: 1, z: 1 }))).toBe(true);
+		expect(fn(vector({ x: 1, y: 1, z: 1 }), vector([ 1, 1, 1 ]))).toBe(true);
+		expect(fn(vector([ 1, 1, 1 ]), vector([ 1, 1, 1 ]))).toBe(true);
+		expect(fn([ 1, 0, 1 ], { x: 1, y: -1, z: 1 })).toBe(false);
+		expect(fn({ x: -1, y: 1, z: 1 }, [ 1, 1, 1 ])).toBe(false);
+		expect(fn([ 1, 1, 1 ], [ 1, 2, 1 ])).toBe(false);
+		expect(fn(vector([ -3, 1, 1 ]), vector({ x: 1, y: 1, z: 1 }))).toBe(false);
+		expect(fn(vector({ x: 2.5, y: 1, z: 1 }), vector([ 1, 1, 1 ]))).toBe(false);
+		expect(fn(vector([ 1, 1, 1 ]), vector([ 2.005, 1, 1 ]))).toBe(false);
+	});
 });
 
 describe("Properties", () => {
