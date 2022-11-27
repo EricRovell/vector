@@ -3,6 +3,7 @@
 # 0.8.0 (2022-11-28)
 
 - [feat]: `toArray()` method;
+- [feat]: `valueOf()` method;
 
 # 0.7.0 (2022-11-28)
 

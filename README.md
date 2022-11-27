@@ -564,6 +564,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```
 </details>
 
+<details>
+  <summary>
+    <code>.valueOf()</code>
+  </summary>
+
+  Converts the vector instance to primitive value - it's magnitude.
+
+  ```js
+  const a = vector([ 3, 4 ]);
+  const b = vector([ 6, 8 ]);
+
+  a + b // -> 15
+  ```
+</details>
+
 ## Extending
 
 To extend the functionality for your needs, [extend](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) the parent `Vector` class:

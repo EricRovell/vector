@@ -280,6 +280,13 @@ export class Vector {
 	get valid() {
 		return Boolean(this.parsed);
 	}
+
+	/**
+	 * Converts the vector instance to primitive value - it's magnitude.
+	 */
+	valueOf(): number {
+		return this.magnitude;
+	}
 }
 
 /**
