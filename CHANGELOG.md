@@ -1,5 +1,11 @@
 # Rational
 
+## 0.5.0 (2022-11-27)
+
+- [feat]: Azimuthal (`phi`) and Elevation (`theta`) angles getters;
+- [feat]: Azimuthal (`phi`) and Elevation (`theta`) angles setters;
+- [feat]: `.rotate(phi)` and `.rotate3d(phi, theta)` methods;
+
 ## 0.4.0 (2022-11-25)
 
 - [feat]: `magnitude` and `magnitudeSq` properties;
