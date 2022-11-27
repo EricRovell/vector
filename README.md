@@ -305,6 +305,27 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.lerp(input: Input, coef = 0)</code>
+  </summary>
+
+  Linearly interpolate the vector to another vector.
+
+  ```js
+  const a = vector([ 4, 8, 16 ]);
+  const b = vector([ 8, 24, 48 ]);
+
+  a.lerp(b)         // ->  "(4, 8, 16)"
+  a.lerp(b, -0.5)   // ->  "(4, 8, 16)"
+  a.lerp(b, 0.25)   // ->  "(5, 12, 24)"
+  a.lerp(b, 0.5)    // ->  "(6, 16, 32)"
+  a.lerp(b, 0.75)   // ->  "(7, 20, 40)"
+  a.lerp(b, 1)      // ->  "(8, 24, 48)"
+  a.lerp(b, 1.5)    // ->  "(8, 24, 48)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.limit(value: number)</code>
   </summary>
 
