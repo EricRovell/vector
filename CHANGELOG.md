@@ -1,5 +1,9 @@
 # Rational
 
+# 0.9.0 (2022-11-28)
+
+- [feat]: `random()` method;
+
 # 0.8.0 (2022-11-28)
 
 - [feat]: `toArray()` method;

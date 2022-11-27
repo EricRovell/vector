@@ -386,6 +386,18 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.random(random = Math.random)</code>
+  </summary>
+
+  Makes a new 2D vector from a random azimuthal angle.
+
+  ```js
+  vector().random().toArray() // ->  [ 0.23565, 0.75624, 0 ]
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.reflect(input: Input)</code>
   </summary>
 

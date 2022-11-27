@@ -171,6 +171,15 @@ export class Vector {
 	}
 
 	/**
+	 * Makes a new planar vector from a random azimuthal angle.
+	 */
+	random(random = Math.random): Vector {
+		return new Vector({
+			phi: 2 * Math.PI * random()
+		});
+	}
+
+	/**
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */
