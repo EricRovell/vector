@@ -45,6 +45,14 @@ export class Vector {
 	}
 
 	/**
+	 * Calculates the dot product of two vectors.
+	 */
+	dot(input: Input): number {
+		const other = vector(input);
+		return this.x * other.x + this.y * other.y + this.z * other.z;
+	}
+
+	/**
 	 * Performs an equality check against another vector input or `Vector` instance.
 	 */
 	equals(input: Input): boolean {
