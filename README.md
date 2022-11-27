@@ -167,7 +167,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
     <code>.add(input: Input)</code>
   </summary>
 
-	Performs the addition and returns the sum as new `Vector` instance.
+  Performs the addition and returns the sum as new `Vector` instance.
 
   ```js
   vector({ x: 1, y: 2 }).add({ x: 3, y: 4 }).toString();  // -> "(4, 6, 0)"
@@ -339,7 +339,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
     <code>.scale(value: number)</code>
   </summary>
 
-	Performs the scalar vector multiplication and returns a new `Vector` instance:
+  Performs the scalar vector multiplication and returns a new `Vector` instance:
 
   ```js
   vector({ x: 1, y: 2 }).mul(2).toString();  // -> "(2, 4, 0)"
@@ -352,7 +352,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
     <code>.sub(input: Input)</code>
   </summary>
 
-	Performs the subtraction and returns the result as new `Vector` instance.
+  Performs the subtraction and returns the result as new `Vector` instance.
 
   ```js
   vector({ x: 1, y: 2 }).sub({ x: 3, y: 4 }).toString();  // -> "(-2, -2, 0)"
