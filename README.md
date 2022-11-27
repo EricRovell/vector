@@ -386,6 +386,23 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.reflect(input: Input)</code>
+  </summary>
+
+  Reflects the vector about a normal line for 2D vector, or about a normal to a plane in 3D.
+
+  Here, in an example the vector `a` can be viewed as the incident ray, the vector `n` as the normal, and the resulting vector should be the reflected ray.
+
+  ```js
+  const a = vector([ 4, 6 ]);
+  const n = vector([ 0, -1 ]);
+
+  a.reflect(n).toString() // ->  "(4, -6, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.rotate(value: number, degrees = false)</code>
   </summary>
 

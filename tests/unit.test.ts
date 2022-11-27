@@ -287,6 +287,12 @@ describe("Operations", () => {
 		expect(a.equals(b)).toBe(true);
 		expect(c.equals(b)).toBe(false);
 	});
+	it("Reflects the vector", () => {
+		const a = vector([ 4, 6 ]);
+		const n = vector([ 0, -1 ]);
+
+		expect(a.reflect(n).toString()).toBe("(4, -6, 0)");
+	});
 });
 
 describe("Properties", () => {
