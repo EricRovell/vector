@@ -395,3 +395,13 @@ describe("Rotation", () => {
 		expect(round(degrees.getTheta(true), 2)).toBe(15);
 	});
 });
+
+describe("Representation", () => {
+	it("Returns vector's components packed into array", () => {
+		const fn = (input: Input) => vector(input).toArray();
+
+		expect(fn({ x: 1 })).toEqual([ 1, 0, 0 ]);
+		expect(fn({ x: 1, y: 2 })).toEqual([ 1, 2, 0 ]);
+		expect(fn({ x: 1, y: 2, z: 3 })).toEqual([ 1, 2, 3 ]);
+	});
+});

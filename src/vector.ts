@@ -248,6 +248,13 @@ export class Vector {
 	}
 
 	/**
+	 * Returns vector's components packed into array.
+	 */
+	toArray() {
+		return [ this.x, this.y, this.z ];
+	}
+
+	/**
 	 * Returns a `Vector` string representation.
 	 */
 	toString() {

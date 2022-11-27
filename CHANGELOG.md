@@ -1,5 +1,9 @@
 # Rational
 
+# 0.8.0 (2022-11-28)
+
+- [feat]: `toArray()` method;
+
 # 0.7.0 (2022-11-28)
 
 - [feat]: `.distance()` and `.distanceSq()` methods;
