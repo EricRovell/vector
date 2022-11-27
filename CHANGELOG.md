@@ -1,6 +1,6 @@
 # Rational
 
-## Unreleased
+## 0.6.0 (2022-11-27)
 
 - [feat]: `.equals()` method;
 - [feat]: `.cross()` method;
