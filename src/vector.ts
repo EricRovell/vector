@@ -127,6 +127,19 @@ export class Vector {
 	}
 
 	/**
+	 * Linearly interpolate the vector to another vector.
+	 */
+	lerp(input: Input, coef = 0): Vector {
+		const other = vector(input);
+		const factor = clamp(coef);
+		return new Vector([
+			this.x + (other.x - this.x) * factor,
+			this.y + (other.y - this.y) * factor,
+			this.z + (other.z - this.z) * factor
+		]);
+	}
+
+	/**
 	 * Limits the magnitude of the vector and returns a new `Vector` instance.
 	 */
 	limit(value: number): Vector {

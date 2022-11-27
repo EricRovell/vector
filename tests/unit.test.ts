@@ -155,7 +155,7 @@ describe("Parsing", () => {
 	});
 });
 
-describe("Arithmetics", () => {
+describe("Operations", () => {
 	it("Adds two vectors", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).add(input2).toString();
 
@@ -264,6 +264,20 @@ describe("Arithmetics", () => {
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ], true, true)).toBe(-112.62759);
 		expect(fn([ 0 ], [ 4, 5, 6 ], true)).toBe(0);
 		expect(fn([ 1, 2, 3 ], [ 0 ], true, true)).toBe(0);
+	});
+	it("Linearly interpolate the vector to another vector", () => {
+		const a = vector([ 4, 8, 16 ]);
+		const b = vector([ 8, 24, 48 ]);
+
+		const fn = (coef?: number) => a.lerp(b, coef).toString();
+
+		expect(fn()).toBe("(4, 8, 16)");
+		expect(fn(-0.5)).toBe("(4, 8, 16)");
+		expect(fn(0.25)).toBe("(5, 12, 24)");
+		expect(fn(0.5)).toBe("(6, 16, 32)");
+		expect(fn(0.75)).toBe("(7, 20, 40)");
+		expect(fn(1)).toBe("(8, 24, 48)");
+		expect(fn(1.5)).toBe("(8, 24, 48)");
 	});
 });
 
