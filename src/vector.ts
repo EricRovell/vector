@@ -45,6 +45,29 @@ export class Vector {
 	}
 
 	/**
+	 * Calculates the Euclidian distance between two points,
+	 * considering a point as a vector.
+	 */
+	distance(input: Input): number {
+		return this.distanceSq(input) ** 0.5;
+	}
+
+	/**
+	 * Calculates the squared Euclidian distance between two points,
+	 * considering a point as a vector.
+	 *
+	 * Slighty more efficient to calculate, useful to comparing.
+	 */
+	distanceSq(input: Input): number {
+		const other = vector(input);
+		return (
+			(this.x - other.x) ** 2 +
+			(this.y - other.y) ** 2 +
+			(this.z - other.z) ** 2
+		);
+	}
+
+	/**
 	 * Calculates the dot product of two vectors.
 	 */
 	dot(input: Input): number {

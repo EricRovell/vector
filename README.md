@@ -199,6 +199,33 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.distance(input: Input)</code>
+  </summary>
+
+  Calculates the Euclidian distance between two points, considering a point as a vector.
+
+  ```js
+	vector([ 1, 2, 3 ]).distance([ 4, 5, 6 ]) // -> 5.19615
+	vector([ -2.5 ]).distance([ 4, 5.3, -8 ]) // -> 11.59051
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.distanceSq(input: Input)</code>
+  </summary>
+
+  Calculates the squared Euclidian distance between two points, considering a point as a vector.
+  Slighty more efficient to calculate, useful to comparing.
+
+  ```js
+	vector([ 1, 2, 3 ]).distanceSq([ 4, 5, 6 ]) // -> 27
+	vector([ -2.5 ]).distanceSq([ 4, 5.3, -8 ]) // -> 134.34
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.dot(input: Input)</code>
   </summary>
 

@@ -242,6 +242,12 @@ describe("Arithmetics", () => {
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(32);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(-10);
 	});
+	it("Calculates the distance between two vectors", () => {
+		const fn = (a: Input, b: Input) => round(vector(a).distance(b), 5);
+
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(5.19615);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(11.59051);
+	});
 });
 
 describe("Properties", () => {
