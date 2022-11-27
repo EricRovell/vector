@@ -6,6 +6,7 @@
 - [feat]: `angle()` method;
 - [feat]: `lerp()` method;
 - [feat]: `copy()` method;
+- [feat]: `reflect()` method;
 
 ## 0.6.0 (2022-11-27)
 

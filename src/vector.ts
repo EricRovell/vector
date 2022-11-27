@@ -171,6 +171,15 @@ export class Vector {
 	}
 
 	/**
+	 * Reflects the vector about a normal line for 2D vector,
+	 * or about a normal to a plane in 3D.
+	 */
+	reflect(input: Input): Vector {
+		const surface = vector(input).unit;
+		return this.sub(surface.scale(2 * this.dot(surface)));
+	}
+
+	/**
 	 * Rotates the vector by an azimuthal angle (XOY plane) and returns a new `Vector` instance.
 	 */
 	rotate(value: number, degrees = false): Vector {
