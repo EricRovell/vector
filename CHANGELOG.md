@@ -3,6 +3,7 @@
 # 0.9.0 (2022-11-28)
 
 - [feat]: `random()` method;
+- [feat]: `random3d()` method;
 
 # 0.8.0 (2022-11-28)
 

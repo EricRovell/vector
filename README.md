@@ -398,6 +398,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.random3d(random = Math.random)</code>
+  </summary>
+
+  Makes a new 3D vector.
+
+  Correct distribution thanks to [wolfram](https://mathworld.wolfram.com/SpherePointPicking.html).
+
+  ```js
+  vector().random3d().toArray() // ->  [ 0.23565, 0.75624, -0.56571 ]
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.reflect(input: Input)</code>
   </summary>
 

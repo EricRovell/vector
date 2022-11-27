@@ -301,6 +301,14 @@ describe("Operations", () => {
 			}
 		}
 	});
+	it("Generates a random 3D vector", () => {
+		for (let i = 0; i < 10; i++) {
+			for (const component of vector().random3d().toArray()) {
+				expect(component).lessThanOrEqual(1);
+				expect(component).greaterThanOrEqual(-1);
+			}
+		}
+	});
 });
 
 describe("Properties", () => {
