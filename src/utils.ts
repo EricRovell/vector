@@ -1,4 +1,12 @@
 /**
+ * Clamps a value between an upper and lower bound.
+ * NaN is clamped to the lower bound
+ */
+export const clamp = (number: number, min = 0, max = 1): number => {
+	return Math.min(Math.max(number, min), max);
+};
+
+/**
 	* Multiplier to convert degrees into radians.
 	*/
 export const deg2rad = Math.PI / 180;

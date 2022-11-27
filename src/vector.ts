@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { InputUser, Input } from "./types";
-import { rad2deg } from "./utils";
+import { clamp, rad2deg } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -33,6 +33,24 @@ export class Vector {
 	}
 
 	/**
+	 * Calculates the angle between two vectors.
+	 */
+	angle(input: Input, signed = false, degrees = false): number {
+		const other = vector(input);
+
+		const magnitude = this.magnitude;
+		const magnitudeOther = other.magnitude;
+
+		if (magnitude === 0 || magnitudeOther === 0) {
+			return 0;
+		}
+
+		const cosine = clamp(this.dot(other) / magnitude / magnitudeOther, -1, 1);
+		const angle = Math.acos(cosine) * (signed ? Math.sign(this.cross(other).z || 1) : 1);
+		return angle * (degrees ? rad2deg : 1);
+	}
+
+	/**
 	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
 	 */
 	cross(input: Input): Vector {
@@ -42,6 +60,29 @@ export class Vector {
 			this.z * other.x - this.x * other.z,
 			this.x * other.y - this.y * other.x
 		]);
+	}
+
+	/**
+	 * Calculates the Euclidian distance between two points,
+	 * considering a point as a vector.
+	 */
+	distance(input: Input): number {
+		return this.distanceSq(input) ** 0.5;
+	}
+
+	/**
+	 * Calculates the squared Euclidian distance between two points,
+	 * considering a point as a vector.
+	 *
+	 * Slighty more efficient to calculate, useful to comparing.
+	 */
+	distanceSq(input: Input): number {
+		const other = vector(input);
+		return (
+			(this.x - other.x) ** 2 +
+			(this.y - other.y) ** 2 +
+			(this.z - other.z) ** 2
+		);
 	}
 
 	/**

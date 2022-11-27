@@ -186,6 +186,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.angle(input: Input, signed = false, degrees = false)</code>
+  </summary>
+
+  Calculates the angle between two vectors.
+
+  ```js
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ]) // -> 0.22573
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ], true) // -> -0.22573
+	vector([ 1, 2, 3 ].angle([ 4, 5, 6 ], true, true) // -> -12.93315
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.cross(input: Input)</code>
   </summary>
 
@@ -194,6 +208,33 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```js
 	vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
 	vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.distance(input: Input)</code>
+  </summary>
+
+  Calculates the Euclidian distance between two points, considering a point as a vector.
+
+  ```js
+	vector([ 1, 2, 3 ]).distance([ 4, 5, 6 ]) // -> 5.19615
+	vector([ -2.5 ]).distance([ 4, 5.3, -8 ]) // -> 11.59051
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.distanceSq(input: Input)</code>
+  </summary>
+
+  Calculates the squared Euclidian distance between two points, considering a point as a vector.
+  Slighty more efficient to calculate, useful to comparing.
+
+  ```js
+	vector([ 1, 2, 3 ]).distanceSq([ 4, 5, 6 ]) // -> 27
+	vector([ -2.5 ]).distanceSq([ 4, 5.3, -8 ]) // -> 134.34
   ```
 </details>
 
