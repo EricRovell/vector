@@ -171,6 +171,32 @@ export class Vector {
 	}
 
 	/**
+	 * Makes a new planar vector from a random azimuthal angle.
+	 */
+	random(random = Math.random): Vector {
+		return new Vector({
+			phi: 2 * Math.PI * random()
+		});
+	}
+
+	/**
+	 * Makes a new random 3D vector.
+	 *
+	 * Correct distribution thanks to [wolfram](https://mathworld.wolfram.com/SpherePointPicking.html).
+	 */
+	random3d(random = Math.random): Vector {
+		const u = 2 * (random() - 0.5); // random value in [ -1, 1 ]
+		const t = 2 * Math.PI * random();
+		const f = (1 - u ** 2) ** 0.5;
+
+		return new Vector([
+			f * Math.cos(t),
+			f * Math.sin(t),
+			u
+		]);
+	}
+
+	/**
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */

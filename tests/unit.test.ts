@@ -293,6 +293,22 @@ describe("Operations", () => {
 
 		expect(a.reflect(n).toString()).toBe("(4, -6, 0)");
 	});
+	it("Generates a random 2D vector", () => {
+		for (let i = 0; i < 10; i++) {
+			for (const component of vector().random().toArray()) {
+				expect(component).lessThanOrEqual(1);
+				expect(component).greaterThanOrEqual(-1);
+			}
+		}
+	});
+	it("Generates a random 3D vector", () => {
+		for (let i = 0; i < 10; i++) {
+			for (const component of vector().random3d().toArray()) {
+				expect(component).lessThanOrEqual(1);
+				expect(component).greaterThanOrEqual(-1);
+			}
+		}
+	});
 });
 
 describe("Properties", () => {
