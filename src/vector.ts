@@ -51,6 +51,13 @@ export class Vector {
 	}
 
 	/**
+	 * Returns a copy of current vector instance.
+	 */
+	copy(): Vector {
+		return new Vector([ this.x, this.y, this.z ]);
+	}
+
+	/**
 	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
 	 */
 	cross(input: Input): Vector {

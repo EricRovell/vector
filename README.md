@@ -200,6 +200,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.copy()</code>
+  </summary>
+
+  Returns a copy of current vector instance.
+
+  ```js
+  const a = vector([ 1, 2, 3 ]);
+  const b = a.copy();
+
+  b.toString(); // -> "(1, 2, 3)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.cross(input: Input)</code>
   </summary>
 

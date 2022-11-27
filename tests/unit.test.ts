@@ -279,6 +279,14 @@ describe("Operations", () => {
 		expect(fn(1)).toBe("(8, 24, 48)");
 		expect(fn(1.5)).toBe("(8, 24, 48)");
 	});
+	it("Creates a copy of itself", () => {
+		const a = vector([ 1, 2, 3 ]);
+		const b = a.copy();
+		const c = vector([ 2, 4, 6 ]);
+
+		expect(a.equals(b)).toBe(true);
+		expect(c.equals(b)).toBe(false);
+	});
 });
 
 describe("Properties", () => {
