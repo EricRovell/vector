@@ -186,6 +186,32 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.cross(input: Input)</code>
+  </summary>
+
+  Calculates the cross product between two vectors and returns a new `Vector` instance.
+
+  ```js
+	vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
+	vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.dot(input: Input)</code>
+  </summary>
+
+  Calculates the dot product of two vectors.
+
+  ```js
+	vector([ 1, 2, 3 ]).dot([ 4, 5, 6 ])   // -> 32
+	vector([ -2.5 ]).dot([ 4, 5.3, -8 ])   // -> -10
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.equals(input: Input)</code>
   </summary>
 

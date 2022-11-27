@@ -230,6 +230,18 @@ describe("Arithmetics", () => {
 		expect(fn(vector({ x: 2.5, y: 1, z: 1 }), vector([ 1, 1, 1 ]))).toBe(false);
 		expect(fn(vector([ 1, 1, 1 ]), vector([ 2.005, 1, 1 ]))).toBe(false);
 	});
+	it("Calculates the cross product between two vectors", () => {
+		const fn = (a: Input, b: Input) => vector(a).cross(b).toString();
+
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe("(-3, 6, -3)");
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe("(0, -20, -13.25)");
+	});
+	it("Calculates the dot product between two vectors", () => {
+		const fn = (a: Input, b: Input) => vector(a).dot(b);
+
+		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(32);
+		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(-10);
+	});
 });
 
 describe("Properties", () => {
