@@ -1,5 +1,5 @@
 import { isObject, validateNumbers } from "../utils";
-import type { Coords, CoordsPolar, CoordsTuple } from "../types";
+import type { Component, Coords, CoordsPolar, CoordsTuple } from "../types";
 
 export const isCoords = (input: unknown): input is Coords => {
 	if (!isObject(input)) {
@@ -25,4 +25,8 @@ export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
 	}
 
 	return validateNumbers(...input);
+};
+
+export const isComponent = (input: string): input is Component => {
+	return [ "x", "y", "z" ].includes(input);
 };
