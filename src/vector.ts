@@ -36,8 +36,8 @@ export class Vector {
 	/**
 	 * Adds the another `Vector` instance or valid vector input to this vector.
 	 */
-	addSelf(input: Input): Vector {
-		const other = vector(input);
+	addSelf(x: Input | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
 		this.x += other.x;
 		this.y += other.y;
 		this.z += other.z;

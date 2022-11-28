@@ -194,7 +194,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.addSelf(input: Input): Vector</code>
+    <code>.addSelf(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Adds the another `Vector` instance or valid vector input to this vector.
