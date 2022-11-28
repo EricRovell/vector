@@ -1,7 +1,7 @@
 import { parse } from "./parser";
 import { isComponent } from "./parser/guards";
 import type { Component, Input, InputUser } from "./types";
-import { clamp, rad2deg } from "./utils";
+import { clamp, convertAngle } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -48,7 +48,7 @@ export class Vector {
 
 		const cosine = clamp(this.dot(other) / magnitude / magnitudeOther, -1, 1);
 		const angle = Math.acos(cosine) * (signed ? Math.sign(this.cross(other).z || 1) : 1);
-		return angle * (degrees ? rad2deg : 1);
+		return convertAngle(angle, degrees);
 	}
 
 	/**
@@ -117,14 +117,14 @@ export class Vector {
 	 * Calculates vector's azimuthal angle.
 	 */
 	getPhi(degrees = false): number {
-		return Math.atan2(this.y, this.x) * (degrees ? rad2deg : 1);
+		return convertAngle(Math.atan2(this.y, this.x), degrees);
 	}
 
 	/**
 	 * Calculates vector's elevation angle.
 	 */
 	getTheta(degrees = false): number {
-		return Math.acos(this.z / this.magnitude) * (degrees ? rad2deg : 1);
+		return convertAngle(Math.acos(this.z / this.magnitude), degrees);
 	}
 
 	/**

@@ -35,3 +35,12 @@ export function round(number: number, digits = 0, base = Math.pow(10, digits)): 
 export const validateNumbers = (...items: unknown[]) => {
 	return items.every(item => typeof item === "number" && !Number.isNaN(item));
 };
+
+/**
+ * Converts the angle in radians to degrees if specified.
+ */
+export const convertAngle = (value: number, degrees = false) => {
+	return degrees
+		? value * rad2deg
+		: value;
+};
