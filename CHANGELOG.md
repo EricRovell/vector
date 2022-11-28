@@ -1,10 +1,11 @@
 # Rational
 
-# Unreleased
+# 0.10.0 (2022-11-28)
 
 - [feat]: `vector` instance can be iterated over it's components;
 - [feat]: providing vector components as arguments to constructor;
-- [breaing]: disallow sparse array input;
+- [brekaing]: disallow sparse array input;
+- [feat]: `setComponent()` method;
 
 # 0.9.0 (2022-11-28)
 

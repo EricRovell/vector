@@ -1,5 +1,10 @@
 import type { Vector } from "./vector";
 
+/**
+ * Vector components.
+ */
+export type Component = "x" | "y" | "z";
+
 export interface Coords {
 	x: number;
 	y: number;

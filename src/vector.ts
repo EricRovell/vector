@@ -1,5 +1,6 @@
 import { parse } from "./parser";
-import type { InputUser, Input } from "./types";
+import { isComponent } from "./parser/guards";
+import type { Component, Input, InputUser } from "./types";
 import { clamp, rad2deg } from "./utils";
 
 /**
@@ -222,6 +223,21 @@ export class Vector {
 			theta: this.getTheta(degrees) + theta,
 			magnitude: this.magnitude
 		});
+	}
+
+	/**
+	 * Sets the vector component value and returns a new `Vector` instance.
+	 */
+	setComponent(component: Component, value: number): Vector {
+		if (!isComponent(component)) {
+			// @ts-expect-error: mark the vector as invalid
+			return vector(null);
+		}
+
+		const components = { x: this.x, y: this.y, z: this.z };
+		components[component] = value;
+
+		return new Vector(components);
 	}
 
 	/**
