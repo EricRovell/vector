@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
-import type { Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
+import type { Component, Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
 import { round } from "../src/utils";
 
 describe("Rational constructor", () => {
@@ -305,6 +305,21 @@ describe("Operations", () => {
 				expect(component).greaterThanOrEqual(-1);
 			}
 		}
+	});
+	it("Sets the vector's component value", () => {
+		const a = vector(1, 2, 3);
+		const fn = (input: Component, value: number) => a.setComponent(input, value).toString();
+
+		expect(fn("x", 2)).toBe("(2, 2, 3)");
+		expect(fn("y", 3)).toBe("(1, 3, 3)");
+		expect(fn("z", 4)).toBe("(1, 2, 4)");
+
+		// @ts-expect-error: test invalid input
+		expect(fn("d", 3)).toBe("(0, 0, 0)");
+		// @ts-expect-error: test invalid input
+		expect(fn("d", "3")).toBe("(0, 0, 0)");
+		// @ts-expect-error: test invalid input
+		expect(fn("f", NaN)).toBe("(0, 0, 0)");
 	});
 });
 

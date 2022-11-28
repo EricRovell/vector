@@ -463,6 +463,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.setComponent(component: Component, value: number)</code>
+  </summary>
+
+  Sets the vector component value and returns a new `Vector` instance.
+
+  ```js
+  vector(1, 2, 3).setComponent("x", 2).toString(); // -> "(2, 2, 3)"
+  vector(1, 2, 3).setComponent("y", 3).toString(); // -> "(1, 3, 3)"
+  vector(1, 2, 3).setComponent("z", 4).toString(); // -> "(1, 2, 4)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.setMagnitude(value: number)</code>
   </summary>
 
