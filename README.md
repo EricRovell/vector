@@ -605,7 +605,9 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```
 </details>
 
-## Extending
+## Other Features
+
+### Extedibility
 
 To extend the functionality for your needs, [extend](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) the parent `Vector` class:
 
@@ -626,6 +628,19 @@ const instance = new VectorExtended([ 1, 2, 3 ]);
 instance.sum; // -> 6
 ```
 
+## Iterability
+
+The `Vector` instance can be iterated via `for ... of` loop to loop through the vector's components:
+
+```js
+for (const component of vector([ 1, 2, 3 ])) {
+  console.log(component);
+  // -> 1, 2, 3
+}
+```
+
+The same way the spread operator can be used, Array.from(), and all other methods and functions that operates on iterables.
+
 ## Types
 
 Tha package includes all necessary types useful for all possible valid input options are available for import:
@@ -634,6 +649,7 @@ Tha package includes all necessary types useful for all possible valid input opt
 export type {
   Coords,
   CoordsTuple,
+  CoordsPolar,
   Input,
   Vector
 } from "@ericrovell/vector";
