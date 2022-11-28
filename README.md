@@ -134,13 +134,6 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ 1, 2 ]).toString();      // -> "(0, 2, 0)"
   vector([ 1, 2, 3 ]).toString();   // -> "(0, 0, 3)"
   ```
-
-  Sparse arrays can be used to skip values, they are defaulted to zero:
-
-  ```js
-  vector([ , 2 ]).toString();     // -> "(0, 0, 0)"
-  vector([ , , 3 ]).toString();   // -> "(0, 0, 3)"
-  ```
 </details>
 
 <details>

@@ -58,16 +58,6 @@ describe("Parsing", () => {
 		expect(fn([ 1, 2 ])).toBe("(1, 2, 0)");
 		expect(fn([ 1, 2, 3 ])).toBe("(1, 2, 3)");
 	});
-	it("Parses a coordinates tuple input with missed values", () => {
-		const fn = (input: CoordsTuple) => vector(input).toString();
-
-		// @ts-expect-error: test against invalid input
-		// eslint-disable-next-line no-sparse-arrays
-		expect(fn([ , 2 ])).toBe("(0, 2, 0)");
-		// @ts-expect-error: test against invalid input
-		// eslint-disable-next-line no-sparse-arrays
-		expect(fn([ , , 3 ])).toBe("(0, 0, 3)");
-	});
 	it("Parses a polar coordinates input", () => {
 		const fn = (input: Partial<CoordsPolar>) => vector(input).toString();
 
