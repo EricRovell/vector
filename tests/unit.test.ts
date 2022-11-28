@@ -323,6 +323,18 @@ describe("Operations", () => {
 	});
 });
 
+describe("Mutable operations", () => {
+	it("Adds another vector to the current one", () => {
+		const a = vector(1, 2, 3)
+			.addSelf([ -1, 0, 0 ])
+			.addSelf([ 0, -2, 0 ])
+			.addSelf([ 0, 0, -3 ])
+			.addSelf([ -2, -5, 8 ]);
+
+		expect(a.equals([ -2, -5, 8 ])).toBe(true);
+	});
+});
+
 describe("Properties", () => {
 	it("Calculates the magnitude squared", () => {
 		const fn = (input: InputUser) => vector(input).magnitudeSq;

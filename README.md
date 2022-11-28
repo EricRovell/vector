@@ -194,6 +194,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.addSelf(input: Input): Vector</code>
+  </summary>
+
+  Adds the another `Vector` instance or valid vector input to this vector.
+
+  ```js
+  const a = vector(1, 2, 3)
+    .addSelf([ 1, 2, 3 ]);
+
+  a.toString(); // -> "(2, 4, 6)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.angle(input: Input, signed = false, degrees = false): number</code>
   </summary>
 

@@ -9,9 +9,9 @@ import { clamp, convertAngle } from "./utils";
  */
 export class Vector {
 	private readonly parsed: ReturnType<typeof parse>;
-	readonly x: number;
-	readonly y: number;
-	readonly z: number;
+	x: number;
+	y: number;
+	z: number;
 
 	constructor(x?: InputUser | number, y?: number, z?: number) {
 		this.parsed = parse(x, y, z);
@@ -31,6 +31,18 @@ export class Vector {
 			this.y + other.y,
 			this.z + other.z
 		]);
+	}
+
+	/**
+	 * Adds the another `Vector` instance or valid vector input to this vector.
+	 */
+	addSelf(input: Input): Vector {
+		const other = vector(input);
+		this.x += other.x;
+		this.y += other.y;
+		this.z += other.z;
+
+		return this;
 	}
 
 	/**

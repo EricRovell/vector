@@ -1,23 +1,27 @@
 # Rational
 
-# 0.10.0 (2022-11-28)
+## 0.11.0
+
+- [feat]: `addSelf()` method;
+
+## 0.10.0 (2022-11-28)
 
 - [feat]: `vector` instance can be iterated over it's components;
 - [feat]: providing vector components as arguments to constructor;
 - [brekaing]: disallow sparse array input;
 - [feat]: `setComponent()` method;
 
-# 0.9.0 (2022-11-28)
+## 0.9.0 (2022-11-28)
 
 - [feat]: `random()` method;
 - [feat]: `random3d()` method;
 
-# 0.8.0 (2022-11-28)
+## 0.8.0 (2022-11-28)
 
 - [feat]: `toArray()` method;
 - [feat]: `valueOf()` method;
 
-# 0.7.0 (2022-11-28)
+## 0.7.0 (2022-11-28)
 
 - [feat]: `.distance()` and `.distanceSq()` methods;
 - [feat]: `angle()` method;
