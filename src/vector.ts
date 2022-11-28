@@ -12,12 +12,12 @@ export class Vector {
 	readonly y: number;
 	readonly z: number;
 
-	constructor(input?: InputUser) {
-		this.parsed = parse(input);
-		const [ x = 0, y = 0, z = 0 ] = this.parsed ?? [];
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	constructor(x?: InputUser | number, y?: number, z?: number) {
+		this.parsed = parse(x, y, z);
+		const [ vx = 0, vy = 0, vz = 0 ] = this.parsed ?? [];
+		this.x = vx;
+		this.y = vy;
+		this.z = vz;
 	}
 
 	/**
@@ -328,10 +328,10 @@ export class Vector {
  * Creates an instance of 2 or 3-dimensional vector,
  * specifically a Euclidean (also known as geometric) vector.
  */
-export function vector(input?: Input): Vector {
-	if (input instanceof Vector) {
-		return input;
+export function vector(x?: Input | number, y?: number, z?: number): Vector {
+	if (x instanceof Vector) {
+		return x;
 	}
 
-	return new Vector(input);
+	return new Vector(x, y, z);
 }

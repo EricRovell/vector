@@ -14,6 +14,13 @@ describe("Parsing", () => {
 	it("No arguments creates a zero vector", () => {
 		expect(vector().toString()).toBe("(0, 0, 0)");
 	});
+	it("Parses arguments", () => {
+		const fn = (x?: number, y?: number, z?: number) => vector(x, y, z).toString();
+
+		expect(fn(1)).toBe("(1, 0, 0)");
+		expect(fn(1, 2)).toBe("(1, 2, 0)");
+		expect(fn(1, 2, 3)).toBe("(1, 2, 3)");
+	});
 	it("Parses a coordinates object input", () => {
 		const fn = (input?: Partial<Coords>) => vector(input).toString();
 
@@ -50,16 +57,6 @@ describe("Parsing", () => {
 		expect(fn([ 1 ])).toBe("(1, 0, 0)");
 		expect(fn([ 1, 2 ])).toBe("(1, 2, 0)");
 		expect(fn([ 1, 2, 3 ])).toBe("(1, 2, 3)");
-	});
-	it("Parses a coordinates tuple input with missed values", () => {
-		const fn = (input: CoordsTuple) => vector(input).toString();
-
-		// @ts-expect-error: test against invalid input
-		// eslint-disable-next-line no-sparse-arrays
-		expect(fn([ , 2 ])).toBe("(0, 2, 0)");
-		// @ts-expect-error: test against invalid input
-		// eslint-disable-next-line no-sparse-arrays
-		expect(fn([ , , 3 ])).toBe("(0, 0, 3)");
 	});
 	it("Parses a polar coordinates input", () => {
 		const fn = (input: Partial<CoordsPolar>) => vector(input).toString();

@@ -3,6 +3,8 @@
 # Unreleased
 
 - [feat]: `vector` instance can be iterated over it's components;
+- [feat]: providing vector components as arguments to constructor;
+- [breaing]: disallow sparse array input;
 
 # 0.9.0 (2022-11-28)
 

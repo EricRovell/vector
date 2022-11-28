@@ -37,4 +37,4 @@ export type Input = InputUser | Vector;
 /**
  * Parser function that attempts to produce a Ratio.
  */
-export type Parser<T = Input> = (input: T) => CoordsTuple | null;
+export type Parser<T = InputUser> = (input: T) => CoordsTuple | null;

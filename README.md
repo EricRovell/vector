@@ -68,18 +68,33 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>vector(input)</code>
+    <code>vector(x: number | Input, y = 0, z = 0): Vector</code>
   </summary>
 
-  Parses the given input and created a new `Vector` instance.
+  Parses the given input and creates a new `Vector` instance.
 
   ```js
+  vector(1, 2).toString();                  // -> "(1, 2, 0)"
   vector({ x: 1, y: 2, z: 3 }).toString();  // -> "(1, 2, 0)"
   vector([ 1, 2, 3 ]).toString();           // -> "(1, 2, 0)"
   ```
 </details>
 
 ### Supported input
+
+<details>
+  <summary>
+    <code>input: (x: number, y: number, z: number)</code>
+  </summary>
+
+  Parses numerical vector components from arguments.
+
+  ```js
+  vector(1).toString();        // -> "(1, 0, 0)"
+  vector(1, 2).toString();     // -> "(1, 2, 0)"
+  vector(1, 2, 3).toString();  // -> "(1, 2, 3)"
+  ```
+</details>
 
 <details>
   <summary>
@@ -118,13 +133,6 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ 1 ]).toString();         // -> "(1, 0, 0)"
   vector([ 1, 2 ]).toString();      // -> "(0, 2, 0)"
   vector([ 1, 2, 3 ]).toString();   // -> "(0, 0, 3)"
-  ```
-
-  Sparse arrays can be used to skip values, they are defaulted to zero:
-
-  ```js
-  vector([ , 2 ]).toString();     // -> "(0, 0, 0)"
-  vector([ , , 3 ]).toString();   // -> "(0, 0, 3)"
   ```
 </details>
 
