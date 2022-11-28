@@ -28,3 +28,10 @@ export const rad2deg = 180 / Math.PI;
 export function round(number: number, digits = 0, base = Math.pow(10, digits)): number {
 	return Math.round(number * base) / base + 0;
 }
+
+/**
+ * Validates numbers input.
+ */
+export const validateNumbers = (...items: unknown[]) => {
+	return items.every(item => typeof item === "number" && !Number.isNaN(item));
+};
