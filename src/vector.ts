@@ -313,6 +313,15 @@ export class Vector {
 	}
 
 	/**
+	 * Subtracts another `Vector` instance or valid vector input from this vector.
+	 */
+	subSelf(x: Input | number, y?: number, z?: number): Vector {
+		return this.addSelf(
+			vector(x, y, z).scale(-1)
+		);
+	}
+
+	/**
 	 * Returns vector's components packed into array.
 	 */
 	toArray(): [ x: number, y: number, z: number ] {

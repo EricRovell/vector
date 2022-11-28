@@ -583,6 +583,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.subSelf(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Subtracts another `Vector` instance or valid vector input from this vector.
+
+  ```js
+  const a = vector(1, 2, 3)
+    .subSelf([ 2, 1, 5 ]);
+
+  a.toString(); // -> "(-1, 1, -2)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.toArray(): number[]</code>
   </summary>
 

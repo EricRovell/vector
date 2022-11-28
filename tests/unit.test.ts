@@ -341,6 +341,14 @@ describe("Mutable operations", () => {
 
 		expect(a.equals([ -12, -24, -36 ])).toBe(true);
 	});
+	it("Subtracts another vector from the current one", () => {
+		const a = vector(12, 15, 25)
+			.subSelf(1, 2, 3)
+			.subSelf([ -2, -3, -4 ])
+			.subSelf({ x: -1, y: 2, z: -3 });
+
+		expect(a.equals([ 14, 14, 29 ])).toBe(true);
+	});
 });
 
 describe("Properties", () => {
