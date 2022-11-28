@@ -14,6 +14,13 @@ describe("Parsing", () => {
 	it("No arguments creates a zero vector", () => {
 		expect(vector().toString()).toBe("(0, 0, 0)");
 	});
+	it("Parses arguments", () => {
+		const fn = (x?: number, y?: number, z?: number) => vector(x, y, z).toString();
+
+		expect(fn(1)).toBe("(1, 0, 0)");
+		expect(fn(1, 2)).toBe("(1, 2, 0)");
+		expect(fn(1, 2, 3)).toBe("(1, 2, 3)");
+	});
 	it("Parses a coordinates object input", () => {
 		const fn = (input?: Partial<Coords>) => vector(input).toString();
 
