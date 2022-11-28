@@ -172,7 +172,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.add(input: Input)</code>
+    <code>.add(input: Input): Vector</code>
   </summary>
 
   Performs the addition and returns the sum as new `Vector` instance.
@@ -194,7 +194,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.angle(input: Input, signed = false, degrees = false)</code>
+    <code>.angle(input: Input, signed = false, degrees = false): number</code>
   </summary>
 
   Calculates the angle between two vectors.
@@ -208,7 +208,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.copy()</code>
+    <code>.copy(): Vector</code>
   </summary>
 
   Returns a copy of current vector instance.
@@ -223,7 +223,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.cross(input: Input)</code>
+    <code>.cross(input: Input): Vector</code>
   </summary>
 
   Calculates the cross product between two vectors and returns a new `Vector` instance.
@@ -236,7 +236,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distance(input: Input)</code>
+    <code>.distance(input: Input): number</code>
   </summary>
 
   Calculates the Euclidian distance between two points, considering a point as a vector.
@@ -249,7 +249,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distanceSq(input: Input)</code>
+    <code>.distanceSq(input: Input): number</code>
   </summary>
 
   Calculates the squared Euclidian distance between two points, considering a point as a vector.
@@ -263,7 +263,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.dot(input: Input)</code>
+    <code>.dot(input: Input): number</code>
   </summary>
 
   Calculates the dot product of two vectors.
@@ -276,7 +276,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.equals(input: Input)</code>
+    <code>.equals(input: Input): boolean</code>
   </summary>
 
   Performs an equality check against another vector input or `Vector` instance.
@@ -289,7 +289,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.getPhi(degrees = false)</code>
+    <code>.getPhi(degrees = false): number</code>
   </summary>
 
   Calculates vector's azimutal angle.
@@ -302,7 +302,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.getTheta(degrees = false)</code>
+    <code>.getTheta(degrees = false): number</code>
   </summary>
 
   Calculates vector's elevation angle.
@@ -315,7 +315,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.inverted</code>
+    <code>.inverted: Vector</code>
   </summary>
 
   Returns an inverted `Vector` instance.
@@ -328,7 +328,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.lerp(input: Input, coef = 0)</code>
+    <code>.lerp(input: Input, coef = 0): Vector</code>
   </summary>
 
   Linearly interpolate the vector to another vector.
@@ -349,7 +349,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.limit(value: number)</code>
+    <code>.limit(value: number): Vector</code>
   </summary>
 
   Limits the magnitude of the vector and returns a new `Vector` instance.
@@ -366,7 +366,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.magnitude</code>
+    <code>.magnitude: number</code>
   </summary>
 
   Calculates the magnitude of the vector:
@@ -380,7 +380,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.magnitudeSq</code>
+    <code>.magnitudeSq: number</code>
   </summary>
 
   Calculates the squared magnitude of the vector, which may be useful and faster where the real value is not that important, for example, to compare two vector's length:
@@ -394,7 +394,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.random(random = Math.random)</code>
+    <code>.random(random = Math.random): Vector</code>
   </summary>
 
   Makes a new 2D vector from a random azimuthal angle.
@@ -406,7 +406,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.random3d(random = Math.random)</code>
+    <code>.random3d(random = Math.random): Vector</code>
   </summary>
 
   Makes a new 3D vector.
@@ -420,7 +420,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.reflect(input: Input)</code>
+    <code>.reflect(input: Input): Vector</code>
   </summary>
 
   Reflects the vector about a normal line for 2D vector, or about a normal to a plane in 3D.
@@ -437,7 +437,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.rotate(value: number, degrees = false)</code>
+    <code>.rotate(value: number, degrees = false): Vector</code>
   </summary>
 
   Rotates the vector by an azimuthal angle (XOY plane) and returns a new `Vector` instance.
@@ -450,7 +450,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.rotate3d(phi: number = 0, theta: number = 0, degrees = false)</code>
+    <code>.rotate3d(phi: number = 0, theta: number = 0, degrees = false): Vector</code>
   </summary>
 
   Rotates the vector by an azimuthal and elevation angles and returns a new `Vector` instance.
@@ -463,7 +463,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.setComponent(component: Component, value: number)</code>
+    <code>.setComponent(component: Component, value: number): Vector</code>
   </summary>
 
   Sets the vector component value and returns a new `Vector` instance.
@@ -477,7 +477,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.setMagnitude(value: number)</code>
+    <code>.setMagnitude(value: number): Vector</code>
   </summary>
 
   Sets the magnitude of the vector and returns a new `Vector` instance.
@@ -491,7 +491,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.setPhi(value: number, degrees = false)</code>
+    <code>.setPhi(value: number, degrees = false): Vector</code>
   </summary>
 
   Rotates the vector to a specific azimuthal angle (OXY plane) and returns a new `Vector` instance.
@@ -504,7 +504,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.setTheta(value: number, degrees = false)</code>
+    <code>.setTheta(value: number, degrees = false): Vector</code>
   </summary>
 
   Rotates the vector to a specific elevation angle and returns a new `Vector` instance.
@@ -517,7 +517,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.scale(value: number)</code>
+    <code>.scale(value: number): Vector</code>
   </summary>
 
   Performs the scalar vector multiplication and returns a new `Vector` instance:
@@ -530,7 +530,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.sub(input: Input)</code>
+    <code>.sub(input: Input): Vector</code>
   </summary>
 
   Performs the subtraction and returns the result as new `Vector` instance.
@@ -552,7 +552,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.toArray()</code>
+    <code>.toArray(): number[]</code>
   </summary>
 
   Returns vector's components packed into array.
@@ -566,7 +566,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.toString()</code>
+    <code>.toString(): `(x: number, y: number, z: number)`</code>
   </summary>
 
   Returns a `Vector` string representation.
@@ -583,7 +583,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.unit</code>
+    <code>.unit: Vector</code>
   </summary>
 
   Normalizes the original vector and returns [the unit vector](https://en.wikipedia.org/wiki/Unit_vector):
@@ -597,7 +597,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.valid</code>
+    <code>.valid: boolean</code>
   </summary>
 
   On invalid input there is no error thrown.
@@ -614,7 +614,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.valueOf()</code>
+    <code>.valueOf(): number</code>
   </summary>
 
   Converts the vector instance to primitive value - it's magnitude.
