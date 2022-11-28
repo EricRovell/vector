@@ -313,6 +313,15 @@ export class Vector {
 	valueOf(): number {
 		return this.magnitude;
 	}
+
+	/**
+	 * Makes the instance iterable.
+	 */
+	*[Symbol.iterator]() {
+		yield this.x;
+		yield this.y;
+		yield this.z;
+	}
 }
 
 /**

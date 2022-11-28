@@ -1,5 +1,9 @@
 # Rational
 
+# Unreleased
+
+- [feat]: `vector` instance can be iterated over it's components;
+
 # 0.9.0 (2022-11-28)
 
 - [feat]: `random()` method;

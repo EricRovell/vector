@@ -427,4 +427,8 @@ describe("Representation", () => {
 		// @ts-expect-error: testing coercion
 		expect(a + b).toBe(15);
 	});
+	it("Iterates the instance", () => {
+		expect(Array.from(vector([ 1, 2, 3 ]))).toEqual([ 1, 2, 3 ]);
+		expect([ ...vector([ 1, 2, 3 ]) ]).toEqual([ 1, 2, 3 ]);
+	});
 });
