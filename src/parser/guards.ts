@@ -24,5 +24,5 @@ export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
 		return false;
 	}
 
-	return validateNumbers(input);
+	return validateNumbers(...input);
 };
