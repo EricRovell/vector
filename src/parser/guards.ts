@@ -1,4 +1,4 @@
-import { isObject } from "../utils";
+import { isObject, validateNumbers } from "../utils";
 import type { Coords, CoordsPolar, CoordsTuple } from "../types";
 
 export const isCoords = (input: unknown): input is Coords => {
@@ -24,6 +24,5 @@ export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
 		return false;
 	}
 
-	return input
-		.every(item => typeof item === "number" && !Number.isNaN(item));
+	return validateNumbers(input);
 };
