@@ -333,6 +333,14 @@ describe("Mutable operations", () => {
 
 		expect(a.equals([ -2, -5, 8 ])).toBe(true);
 	});
+	it("Scales the current vector", () => {
+		const a = vector(1, 2, 3)
+			.scaleSelf(2)
+			.scaleSelf(3)
+			.scaleSelf(-2);
+
+		expect(a.equals([ -12, -24, -36 ])).toBe(true);
+	});
 });
 
 describe("Properties", () => {

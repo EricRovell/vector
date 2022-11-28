@@ -545,6 +545,22 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.scaleSelf(value: number): Vector</code>
+  </summary>
+
+  Scales this vector by a scalar value.
+
+  ```js
+  const a = vector(-1, 2, 3)
+    .scaleSelf(5)
+    .scaleSelf(-2);
+
+  a.toString() // -> "(10, -20, -30)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.sub(input: Input): Vector</code>
   </summary>
 

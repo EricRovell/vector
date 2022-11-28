@@ -3,6 +3,7 @@
 ## 0.11.0
 
 - [feat]: `addSelf()` method;
+- [feat]: `scaleSelf()` method;
 
 ## 0.10.0 (2022-11-28)
 

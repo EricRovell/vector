@@ -295,6 +295,17 @@ export class Vector {
 	}
 
 	/**
+	 * Scales this vector by a scalar value.
+	 */
+	scaleSelf(value: number): Vector {
+		this.x *= value;
+		this.y *= value;
+		this.z *= value;
+
+		return this;
+	}
+
+	/**
 	 * Performs the subtraction and returns the sum as new `Vector` instance.
 	 */
 	sub(input: Input): Vector {
