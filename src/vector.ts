@@ -159,7 +159,7 @@ export class Vector {
 	/**
 	 * Calculates the magnitude of the vector.
 	 */
-	get magnitude() {
+	get magnitude(): number {
 		return this.magnitudeSq ** 0.5;
 	}
 
@@ -167,7 +167,7 @@ export class Vector {
 	 * Calculates the squared magnitude of the vector.
 	 * Usefull when the real length is not required, for example to compare vectors.
 	 */
-	get magnitudeSq() {
+	get magnitudeSq(): number {
 		return this.x ** 2 + this.y ** 2 + this.z ** 2;
 	}
 
@@ -292,21 +292,21 @@ export class Vector {
 	/**
 	 * Returns vector's components packed into array.
 	 */
-	toArray() {
+	toArray(): [ x: number, y: number, z: number ] {
 		return [ this.x, this.y, this.z ];
 	}
 
 	/**
 	 * Returns a `Vector` string representation.
 	 */
-	toString() {
+	toString(): `(${number}, ${number}, ${number})` {
 		return `(${this.x}, ${this.y}, ${this.z})`;
 	}
 
 	/**
 	 * Normalizes the original vector and returns the unit vector.
 	 */
-	get unit() {
+	get unit(): Vector {
 		const magnitude = this.magnitude;
 		if (magnitude) {
 			return this.scale(1 / magnitude);
@@ -319,7 +319,7 @@ export class Vector {
 	/**
 	 * Returns a boolean indicating whether or not a user input was valid.
 	 */
-	get valid() {
+	get valid(): boolean {
 		return Boolean(this.parsed);
 	}
 
