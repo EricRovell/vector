@@ -380,6 +380,22 @@ describe("Mutable operations", () => {
 		expect(round(degrees.getPhi(true), 2)).toBe(45);
 		expect(round(degrees.getTheta(true), 2)).toBe(15);
 	});
+	it("Sets the current vector's azimuthal angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setPhiSelf(value, degrees).getPhi(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
+	it("Sets the current vector's elevation angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setThetaSelf(value, degrees).getTheta(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
 });
 
 describe("Properties", () => {

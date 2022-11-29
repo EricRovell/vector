@@ -287,7 +287,15 @@ export class Vector {
 	}
 
 	/**
-	 * Rotates the vector to a specific angle and returns a new `Vector` instance.
+	 * Rotates the current vector to a specific azimuthal angle (OXY plane).
+	 */
+	setPhiSelf(value: number, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.setPhi(value, degrees).toArray();
+		return this;
+	}
+
+	/**
+	 * Rotates the vector to a specific elevation angle and returns a new `Vector` instance.
 	 */
 	setTheta(value: number, degrees = false): Vector {
 		return new Vector({
@@ -296,6 +304,14 @@ export class Vector {
 			theta: value,
 			magnitude: this.magnitude
 		});
+	}
+
+	/**
+	 * Rotates the current vector to a specific elevation angle.
+	 */
+	setThetaSelf(value: number, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.setTheta(value, degrees).toArray();
+		return this;
 	}
 
 	/**

@@ -7,6 +7,8 @@
 - [feat]: `subSelf()` method;
 - [feat]: `rotateSelf()` method;
 - [feat]: `rotateSelf3d()` method;
+- [feat]: `setPhiSelf()` method;
+- [feat]: `setThetaSelf()` method;
 
 ## 0.10.0 (2022-11-28)
 
