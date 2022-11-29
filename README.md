@@ -452,7 +452,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.reflect(input: Input): Vector</code>
+    <code>.reflect(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Reflects the vector about a normal line for 2D vector, or about a normal to a plane in 3D.
@@ -663,12 +663,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.sub(input: Input): Vector</code>
+    <code>.sub(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Performs the subtraction and returns the result as new `Vector` instance.
 
   ```js
+  vector(1, 2, 3).sub(2, 3, 4).toString()                 // -> "(-1, -1, -1)"
   vector({ x: 1, y: 2 }).sub({ x: 3, y: 4 }).toString();  // -> "(-2, -2, 0)"
   vector([ 1, 2, 3 ]).sub([ 4, 5, 6 ]).toString();        // -> "(-3, -3, -3)"
   ```

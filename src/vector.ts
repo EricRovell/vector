@@ -224,8 +224,8 @@ export class Vector {
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */
-	reflect(input: Input): Vector {
-		const surface = vector(input).unit;
+	reflect(x?: InputUser | number, y?: number, z?: number): Vector {
+		const surface = vector(x, y, z).unit;
 		return this.sub(surface.scale(2 * this.dot(surface)));
 	}
 
@@ -370,8 +370,8 @@ export class Vector {
 	/**
 	 * Performs the subtraction and returns the sum as new `Vector` instance.
 	 */
-	sub(input: Input): Vector {
-		return this.add(vector(input).inverted);
+	sub(x: Input | number, y?: number, z?: number): Vector {
+		return this.add(vector(x, y, z).inverted);
 	}
 
 	/**

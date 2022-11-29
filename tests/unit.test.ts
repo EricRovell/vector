@@ -207,6 +207,7 @@ describe("Operations", () => {
 	it("Subtracts two vectors", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).sub(input2).toString();
 
+		expect(vector(1, 2, 3).sub(vector(3, 4, 5)).equals(-2, -2, -2)).toBe(true);
 		expect(fn([ 1 ], [ 2 ])).toBe("(-1, 0, 0)");
 		expect(fn([ 1 ], [ 2, 3 ])).toBe("(-1, -3, 0)");
 		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(0, -2, -3)");
@@ -299,6 +300,7 @@ describe("Operations", () => {
 		const a = vector([ 4, 6 ]);
 		const n = vector([ 0, -1 ]);
 
+		expect(vector(4, 6).reflect(0, -1).equals(4, -6)).toBe(true);
 		expect(a.reflect(n).toString()).toBe("(4, -6, 0)");
 	});
 	it("Generates a random 2D vector", () => {

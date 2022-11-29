@@ -12,7 +12,7 @@
 - [feat]: `setComponentSelf()` method;
 - [feat]: `set()` method;
 - [feat]: `normalizeSelf()` method;
-- [feat]: update input options for `add()`, `cross()`, `distance()`, `distanceSq()`, `dot()`, `equality()` methods;
+- [feat]: update input options for `add()`, `cross()`, `distance()`, `distanceSq()`, `dot()`, `equality()`, `reflect()`, `sub()` methods;
 
 ## 0.10.0 (2022-11-28)
 
