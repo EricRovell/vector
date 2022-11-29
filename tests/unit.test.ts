@@ -280,7 +280,7 @@ describe("Operations", () => {
 
 		const fn = (coef?: number) => a.lerp(b, coef).toString();
 
-		expect(fn()).toBe("(4, 8, 16)");
+		expect(fn()).toBe("(8, 24, 48)");
 		expect(fn(-0.5)).toBe("(4, 8, 16)");
 		expect(fn(0.25)).toBe("(5, 12, 24)");
 		expect(fn(0.5)).toBe("(6, 16, 32)");
