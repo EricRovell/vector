@@ -518,6 +518,23 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.setComponentSelf(component: Component, value: number): Vector</code>
+  </summary>
+
+  Sets the current vector's component value.
+
+  ```js
+  const v = vector(1, 2, 3)
+    .setComponentSelf("x", 0)
+    .setComponentSelf("y", 0)
+    .setComponentSelf("z", 0)
+
+  .toString() // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.setMagnitude(value: number): Vector</code>
   </summary>
 

@@ -9,6 +9,7 @@
 - [feat]: `rotateSelf3d()` method;
 - [feat]: `setPhiSelf()` method;
 - [feat]: `setThetaSelf()` method;
+- [feat]: `setComponentSelf()` method;
 
 ## 0.10.0 (2022-11-28)
 

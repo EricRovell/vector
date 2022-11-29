@@ -1,5 +1,4 @@
 import { parse } from "./parser";
-import { isComponent } from "./parser/guards";
 import type { Component, Input, InputUser } from "./types";
 import { clamp, convertAngle } from "./utils";
 
@@ -256,7 +255,7 @@ export class Vector {
 	 * Sets the vector component value and returns a new `Vector` instance.
 	 */
 	setComponent(component: Component, value: number): Vector {
-		if (!isComponent(component)) {
+		if (!this[component]) {
 			// @ts-expect-error: mark the vector as invalid
 			return vector(null);
 		}
