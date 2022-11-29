@@ -1,5 +1,4 @@
 import { parse } from "./parser";
-import { isComponent } from "./parser/guards";
 import type { Component, Input, InputUser } from "./types";
 import { clamp, convertAngle } from "./utils";
 
@@ -9,9 +8,9 @@ import { clamp, convertAngle } from "./utils";
  */
 export class Vector {
 	private readonly parsed: ReturnType<typeof parse>;
-	readonly x: number;
-	readonly y: number;
-	readonly z: number;
+	x: number;
+	y: number;
+	z: number;
 
 	constructor(x?: InputUser | number, y?: number, z?: number) {
 		this.parsed = parse(x, y, z);
@@ -31,6 +30,18 @@ export class Vector {
 			this.y + other.y,
 			this.z + other.z
 		]);
+	}
+
+	/**
+	 * Adds the another `Vector` instance or valid vector input to this vector.
+	 */
+	addSelf(x: Input | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
+		this.x += other.x;
+		this.y += other.y;
+		this.z += other.z;
+
+		return this;
 	}
 
 	/**
@@ -172,6 +183,18 @@ export class Vector {
 	}
 
 	/**
+	 * Makes the current vector a unit vector (sets the magnitude to 1).
+	 */
+	normalizeSelf(): Vector {
+		const magnitude = this.magnitude;
+		if (magnitude) {
+			return this.scaleSelf(1 / magnitude);
+		}
+
+		return this;
+	}
+
+	/**
 	 * Makes a new planar vector from a random azimuthal angle.
 	 */
 	random(random = Math.random): Vector {
@@ -214,6 +237,13 @@ export class Vector {
 	}
 
 	/**
+	 * Rotates the current vector by an azimuthal angle (XOY plane).
+	 */
+	rotateSelf(value: number, degrees = false): Vector {
+		return this.rotateSelf3d(value, 0, degrees);
+	}
+
+	/**
 	 * Rotates the vector by an azimuthal and elevation angles and returns a new `Vector` instance.
 	 */
 	rotate3d(phi = 0, theta = 0, degrees = false): Vector {
@@ -226,10 +256,26 @@ export class Vector {
 	}
 
 	/**
+	 * Rotates the current vector by an azimuthal and elevation angles.
+	 */
+	rotateSelf3d(phi = 0, theta = 0, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.rotate3d(phi, theta, degrees).toArray();
+		return this;
+	}
+
+	/**
+	 * Set's the current vector state from another `Vector` instance or valid vector input.
+	 */
+	set(x: Input | number, y?: number, z?: number): Vector {
+		[ this.x, this.y, this.z ] = vector(x, y, z).toArray();
+		return this;
+	}
+
+	/**
 	 * Sets the vector component value and returns a new `Vector` instance.
 	 */
 	setComponent(component: Component, value: number): Vector {
-		if (!isComponent(component)) {
+		if (!this[component]) {
 			// @ts-expect-error: mark the vector as invalid
 			return vector(null);
 		}
@@ -238,6 +284,18 @@ export class Vector {
 		components[component] = value;
 
 		return new Vector(components);
+	}
+
+	/**
+	 * Sets the current vector's component value.
+	 */
+	setComponentSelf(component: Component, value: number): Vector {
+		if (!this[component]) {
+			return this;
+		}
+
+		this[component] = value;
+		return this;
 	}
 
 	/**
@@ -260,7 +318,15 @@ export class Vector {
 	}
 
 	/**
-	 * Rotates the vector to a specific angle and returns a new `Vector` instance.
+	 * Rotates the current vector to a specific azimuthal angle (OXY plane).
+	 */
+	setPhiSelf(value: number, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.setPhi(value, degrees).toArray();
+		return this;
+	}
+
+	/**
+	 * Rotates the vector to a specific elevation angle and returns a new `Vector` instance.
 	 */
 	setTheta(value: number, degrees = false): Vector {
 		return new Vector({
@@ -269,6 +335,14 @@ export class Vector {
 			theta: value,
 			magnitude: this.magnitude
 		});
+	}
+
+	/**
+	 * Rotates the current vector to a specific elevation angle.
+	 */
+	setThetaSelf(value: number, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.setTheta(value, degrees).toArray();
+		return this;
 	}
 
 	/**
@@ -283,10 +357,30 @@ export class Vector {
 	}
 
 	/**
+	 * Scales this vector by a scalar value.
+	 */
+	scaleSelf(value: number): Vector {
+		this.x *= value;
+		this.y *= value;
+		this.z *= value;
+
+		return this;
+	}
+
+	/**
 	 * Performs the subtraction and returns the sum as new `Vector` instance.
 	 */
 	sub(input: Input): Vector {
 		return this.add(vector(input).inverted);
+	}
+
+	/**
+	 * Subtracts another `Vector` instance or valid vector input from this vector.
+	 */
+	subSelf(x: Input | number, y?: number, z?: number): Vector {
+		return this.addSelf(
+			vector(x, y, z).scale(-1)
+		);
 	}
 
 	/**

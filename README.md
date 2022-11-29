@@ -194,6 +194,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.addSelf(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Adds the another `Vector` instance or valid vector input to this vector.
+
+  ```js
+  const a = vector(1, 2, 3)
+    .addSelf([ 1, 2, 3 ]);
+
+  a.toString(); // -> "(2, 4, 6)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.angle(input: Input, signed = false, degrees = false): number</code>
   </summary>
 
@@ -394,6 +409,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.normalizeSelf(): Vector</code>
+  </summary>
+
+  Makes the current vector a unit vector (sets the magnitude to 1).
+
+  ```js
+  vector(0).normalizeSelf().margnitude;          // -> 0
+  vector(3, 4).normalizeSelf().margnitude;       // -> 5
+  vector(3, 4, 12).normalizeSelf().margnitude;   // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.random(random = Math.random): Vector</code>
   </summary>
 
@@ -450,6 +479,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.rotateSelf(value: number, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector by an azimuthal angle (XOY plane).
+
+  ```js
+  vector(1, 2).rotateSelf(Math.PI / 3);
+  vector(1, 2).rotateSelf(60, true);
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.rotate3d(phi: number = 0, theta: number = 0, degrees = false): Vector</code>
   </summary>
 
@@ -458,6 +500,35 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```js
   vector({ x: 1, y: 2, z: 3 }).rotate3d(Math.PI / 3, Math.PI / 6);
   vector({ x: 1, y: 2, z: 3 }).rotate3d(60, 30, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.rotateSelf3d(phi: number = 0, theta: number = 0, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector by an azimuthal and elevation angles.
+
+  ```js
+  vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(Math.PI / 3, Math.PI / 6);
+  vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(60, 30, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.set(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Set's the current vector state from another `Vector` instance or valid vector input.
+
+  ```js
+  const v1 = vector(1, 2, 3).set(0, 0, 0);
+  v1.set([ 3, 4, 5 ]);
+  v1.set({ x: -1, y: -2, z: -3 });
+
+  v1.toString() // -> "(-1, -2, -3)"
   ```
 </details>
 
@@ -472,6 +543,23 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector(1, 2, 3).setComponent("x", 2).toString(); // -> "(2, 2, 3)"
   vector(1, 2, 3).setComponent("y", 3).toString(); // -> "(1, 3, 3)"
   vector(1, 2, 3).setComponent("z", 4).toString(); // -> "(1, 2, 4)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setComponentSelf(component: Component, value: number): Vector</code>
+  </summary>
+
+  Sets the current vector's component value.
+
+  ```js
+  const v = vector(1, 2, 3)
+    .setComponentSelf("x", 0)
+    .setComponentSelf("y", 0)
+    .setComponentSelf("z", 0)
+
+  .toString() // -> "(0, 0, 0)"
   ```
 </details>
 
@@ -498,7 +586,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
   ```js
   vector({ x: 1, y: 2 }).setPhi(Math.PI / 3);
-  vector({ x: 1, y: 2, z: 3 }).setPhi(60, degrees);
+  vector({ x: 1, y: 2, z: 3 }).setPhi(60, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setPhiSelf(value: number, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector to a specific azimuthal angle (OXY plane).
+
+  ```js
+  vector({ x: 1, y: 2 }).setPhiSelf(Math.PI / 3);
+  vector({ x: 1, y: 2, z: 3 }).setPhiSelf(60, true);
   ```
 </details>
 
@@ -511,7 +612,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
   ```js
   vector({ x: 1, y: 2 }).setTheta(Math.PI / 3);
-  vector({ x: 1, y: 2, z: 3 }).setTheta(60, degrees);
+  vector({ x: 1, y: 2, z: 3 }).setTheta(60, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.setThetaSelf(value: number, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector to a specific elevation angle.
+
+  ```js
+  vector({ x: 1, y: 2 }).setThetaSelf(Math.PI / 3);
+  vector({ x: 1, y: 2, z: 3 }).setThetaSelf(60, true);
   ```
 </details>
 
@@ -525,6 +639,22 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```js
   vector({ x: 1, y: 2 }).mul(2).toString();  // -> "(2, 4, 0)"
   vector([ 1, 2, 3 ]).mul(-2).toString();    // -> "(-2, -4, -6)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.scaleSelf(value: number): Vector</code>
+  </summary>
+
+  Scales this vector by a scalar value.
+
+  ```js
+  const a = vector(-1, 2, 3)
+    .scaleSelf(5)
+    .scaleSelf(-2);
+
+  a.toString() // -> "(10, -20, -30)"
   ```
 </details>
 
@@ -547,6 +677,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   const b = vector({ x: 1, y: 2, z: 3 });
 
   a.sub(b).toString();  // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.subSelf(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Subtracts another `Vector` instance or valid vector input from this vector.
+
+  ```js
+  const a = vector(1, 2, 3)
+    .subSelf([ 2, 1, 5 ]);
+
+  a.toString(); // -> "(-1, 1, -2)"
   ```
 </details>
 

@@ -323,6 +323,112 @@ describe("Operations", () => {
 	});
 });
 
+describe("Mutable operations", () => {
+	it("Adds another vector to the current one", () => {
+		const a = vector(1, 2, 3)
+			.addSelf(-1, 0, 0)
+			.addSelf([ 0, -2, 0 ])
+			.addSelf(0, 0, -3)
+			.addSelf({ x: -2, y: -5, z: 8 });
+
+		expect(a.equals([ -2, -5, 8 ])).toBe(true);
+	});
+	it("Scales the current vector", () => {
+		const a = vector(1, 2, 3)
+			.scaleSelf(2)
+			.scaleSelf(3)
+			.scaleSelf(-2);
+
+		expect(a.equals([ -12, -24, -36 ])).toBe(true);
+	});
+	it("Subtracts another vector from the current one", () => {
+		const a = vector(12, 15, 25)
+			.subSelf(1, 2, 3)
+			.subSelf([ -2, -3, -4 ])
+			.subSelf({ x: -1, y: 2, z: -3 });
+
+		expect(a.equals([ 14, 14, 29 ])).toBe(true);
+	});
+	it("Rotates a current vector by azimuthal angle", () => {
+		const radians = vector(1)
+			.rotateSelf(1)
+			.rotateSelf(1)
+			.rotateSelf(-0.5)
+			.getPhi();
+
+		const degrees = vector(1)
+			.rotateSelf(60, true)
+			.rotateSelf(30, true)
+			.rotateSelf(-45, true)
+			.getPhi(true);
+
+		expect(round(radians, 2)).toBe(1.5);
+		expect(round(degrees, 2)).toBe(45);
+	});
+	it("Rotates a current vector in space", () => {
+		const radians = vector({ phi: Math.PI / 3, theta: Math.PI / 3 })
+			.rotateSelf3d(Math.PI / 3, Math.PI / 3)
+			.rotateSelf3d(-Math.PI / 2, -Math.PI / 2);
+
+		const degrees = vector({ degrees: true, phi: 0, theta: 0 })
+			.rotateSelf3d(60, 30, true)
+			.rotateSelf3d(30, 15, true)
+			.rotateSelf3d(-45, -30, true);
+
+		expect(round(radians.getPhi(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(radians.getTheta(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(degrees.getPhi(true), 2)).toBe(45);
+		expect(round(degrees.getTheta(true), 2)).toBe(15);
+	});
+	it("Sets the current vector's azimuthal angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setPhiSelf(value, degrees).getPhi(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
+	it("Sets the current vector's elevation angle", () => {
+		const fn = (input: InputUser, value: number, degrees = false) => round(vector(input).setThetaSelf(value, degrees).getTheta(degrees), 6);
+
+		expect(fn({ x: 1 }, 0.927295)).toBe(0.927295);
+		expect(fn({ x: 1 }, 53.130102, true)).toBe(53.130102);
+		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
+		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
+	});
+	it("Sets the current vector's component value", () => {
+		const a = vector(1, 2, 3);
+		const fn = (input: Component, value: number) => a.setComponentSelf(input, value).toString();
+
+		expect(fn("x", 2)).toBe("(2, 2, 3)");
+		expect(fn("y", 3)).toBe("(2, 3, 3)");
+		expect(fn("z", 4)).toBe("(2, 3, 4)");
+
+		// @ts-expect-error: test invalid input
+		expect(fn("d", 3)).toBe("(2, 3, 4)");
+		// @ts-expect-error: test invalid input
+		expect(fn("d", "3")).toBe("(2, 3, 4)");
+		// @ts-expect-error: test invalid input
+		expect(fn("f", NaN)).toBe("(2, 3, 4)");
+	});
+	it("Sets the current vector's state", () => {
+		const v1 = vector(1, 2, 3).set(0, 0, 0);
+		const v2 = v1.set([ 3, 4, 5 ]);
+		const v3 = v2.set({ x: -1, y: -2, z: -3 });
+
+		expect(v1.equals([ -1, -2, -3 ])).toBe(true);
+		expect(v2.equals([ -1, -2, -3 ])).toBe(true);
+		expect(v3.equals([ -1, -2, -3 ])).toBe(true);
+	});
+	it("Normalizes the current vector", () => {
+		const fn = (input: InputUser) => vector(input).normalizeSelf().magnitude;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(1);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(1);
+	});
+});
+
 describe("Properties", () => {
 	it("Calculates the magnitude squared", () => {
 		const fn = (input: InputUser) => vector(input).magnitudeSq;
