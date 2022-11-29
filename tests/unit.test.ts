@@ -396,6 +396,21 @@ describe("Mutable operations", () => {
 		expect(fn({ x: 1, y: 2, z: 3 }, 1.951303)).toBe(1.951303);
 		expect(fn({ x: 1, y: 2, z: 3 }, 111.801409, true)).toBe(111.801409);
 	});
+	it("Sets the current vector's component value", () => {
+		const a = vector(1, 2, 3);
+		const fn = (input: Component, value: number) => a.setComponentSelf(input, value).toString();
+
+		expect(fn("x", 2)).toBe("(2, 2, 3)");
+		expect(fn("y", 3)).toBe("(2, 3, 3)");
+		expect(fn("z", 4)).toBe("(2, 3, 4)");
+
+		// @ts-expect-error: test invalid input
+		expect(fn("d", 3)).toBe("(2, 3, 4)");
+		// @ts-expect-error: test invalid input
+		expect(fn("d", "3")).toBe("(2, 3, 4)");
+		// @ts-expect-error: test invalid input
+		expect(fn("f", NaN)).toBe("(2, 3, 4)");
+	});
 });
 
 describe("Properties", () => {

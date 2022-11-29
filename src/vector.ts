@@ -268,6 +268,18 @@ export class Vector {
 	}
 
 	/**
+	 * Sets the current vector's component value.
+	 */
+	setComponentSelf(component: Component, value: number): Vector {
+		if (!this[component]) {
+			return this;
+		}
+
+		this[component] = value;
+		return this;
+	}
+
+	/**
 	 * Sets the magnitude of the vector and returns a new `Vector` instance.
 	 */
 	setMagnitude(value: number): Vector {
