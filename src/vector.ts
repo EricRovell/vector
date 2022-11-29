@@ -85,8 +85,8 @@ export class Vector {
 	 * Calculates the Euclidian distance between two points,
 	 * considering a point as a vector.
 	 */
-	distance(input: Input): number {
-		return this.distanceSq(input) ** 0.5;
+	distance(x?: InputUser | number, y?: number, z?: number): number {
+		return this.distanceSq(x, y, z) ** 0.5;
 	}
 
 	/**
@@ -95,8 +95,8 @@ export class Vector {
 	 *
 	 * Slighty more efficient to calculate, useful to comparing.
 	 */
-	distanceSq(input: Input): number {
-		const other = vector(input);
+	distanceSq(x?: InputUser | number, y?: number, z?: number): number {
+		const other = vector(x, y, z);
 		return (
 			(this.x - other.x) ** 2 +
 			(this.y - other.y) ** 2 +

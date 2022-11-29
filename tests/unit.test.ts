@@ -247,6 +247,8 @@ describe("Operations", () => {
 	it("Calculates the distance between two vectors", () => {
 		const fn = (a: Input, b: Input) => round(vector(a).distance(b), 5);
 
+		expect(round(vector(1, 2, 3).distance(4, 5, 6), 5)).toBe(5.19615);
+		expect(round(vector(-2.5).distance(vector(4, 5.3, -8)), 5)).toBe(11.59051);
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(5.19615);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(11.59051);
 	});

@@ -253,7 +253,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distance(input: Input): number</code>
+    <code>.distance(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the Euclidian distance between two points, considering a point as a vector.
@@ -266,7 +266,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distanceSq(input: Input): number</code>
+    <code>.distanceSq(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the squared Euclidian distance between two points, considering a point as a vector.
