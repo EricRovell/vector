@@ -465,6 +465,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.rotateSelf(value: number, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector by an azimuthal angle (XOY plane).
+
+  ```js
+  vector(1, 2).rotateSelf(Math.PI / 3);
+  vector(1, 2).rotateSelf(60, true);
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.rotate3d(phi: number = 0, theta: number = 0, degrees = false): Vector</code>
   </summary>
 
@@ -473,6 +486,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```js
   vector({ x: 1, y: 2, z: 3 }).rotate3d(Math.PI / 3, Math.PI / 6);
   vector({ x: 1, y: 2, z: 3 }).rotate3d(60, 30, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.rotateSelf3d(phi: number = 0, theta: number = 0, degrees = false): Vector</code>
+  </summary>
+
+  Rotates the current vector by an azimuthal and elevation angles.
+
+  ```js
+  vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(Math.PI / 3, Math.PI / 6);
+  vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(60, 30, true);
   ```
 </details>
 

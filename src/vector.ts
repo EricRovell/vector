@@ -226,6 +226,13 @@ export class Vector {
 	}
 
 	/**
+	 * Rotates the current vector by an azimuthal angle (XOY plane).
+	 */
+	rotateSelf(value: number, degrees = false): Vector {
+		return this.rotateSelf3d(value, 0, degrees);
+	}
+
+	/**
 	 * Rotates the vector by an azimuthal and elevation angles and returns a new `Vector` instance.
 	 */
 	rotate3d(phi = 0, theta = 0, degrees = false): Vector {
@@ -235,6 +242,14 @@ export class Vector {
 			theta: this.getTheta(degrees) + theta,
 			magnitude: this.magnitude
 		});
+	}
+
+	/**
+	 * Rotates the current vector by an azimuthal and elevation angles.
+	 */
+	rotateSelf3d(phi = 0, theta = 0, degrees = false): Vector {
+		[ this.x, this.y, this.z ] = this.rotate3d(phi, theta, degrees).toArray();
+		return this;
 	}
 
 	/**

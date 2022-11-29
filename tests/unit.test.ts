@@ -349,6 +349,37 @@ describe("Mutable operations", () => {
 
 		expect(a.equals([ 14, 14, 29 ])).toBe(true);
 	});
+	it("Rotates a current vector by azimuthal angle", () => {
+		const radians = vector(1)
+			.rotateSelf(1)
+			.rotateSelf(1)
+			.rotateSelf(-0.5)
+			.getPhi();
+
+		const degrees = vector(1)
+			.rotateSelf(60, true)
+			.rotateSelf(30, true)
+			.rotateSelf(-45, true)
+			.getPhi(true);
+
+		expect(round(radians, 2)).toBe(1.5);
+		expect(round(degrees, 2)).toBe(45);
+	});
+	it("Rotates a current vector in space", () => {
+		const radians = vector({ phi: Math.PI / 3, theta: Math.PI / 3 })
+			.rotateSelf3d(Math.PI / 3, Math.PI / 3)
+			.rotateSelf3d(-Math.PI / 2, -Math.PI / 2);
+
+		const degrees = vector({ degrees: true, phi: 0, theta: 0 })
+			.rotateSelf3d(60, 30, true)
+			.rotateSelf3d(30, 15, true)
+			.rotateSelf3d(-45, -30, true);
+
+		expect(round(radians.getPhi(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(radians.getTheta(), 2)).toBe(round(Math.PI / 6, 2));
+		expect(round(degrees.getPhi(true), 2)).toBe(45);
+		expect(round(degrees.getTheta(true), 2)).toBe(15);
+	});
 });
 
 describe("Properties", () => {
