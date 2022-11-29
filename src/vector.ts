@@ -148,7 +148,7 @@ export class Vector {
 	/**
 	 * Linearly interpolate the vector to another vector.
 	 */
-	lerp(input: Input, coef = 0): Vector {
+	lerp(input: Input, coef = 1): Vector {
 		const other = vector(input);
 		const factor = clamp(coef);
 		return new Vector([

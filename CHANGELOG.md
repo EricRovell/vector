@@ -13,6 +13,7 @@
 - [feat]: `set()` method;
 - [feat]: `normalizeSelf()` method;
 - [feat]: update input options for `add()`, `cross()`, `distance()`, `distanceSq()`, `dot()`, `equality()`, `reflect()`, `sub()` methods;
+- [feat]: update `lerp()` default `coef` value to 1;
 
 ## 0.10.0 (2022-11-28)
 

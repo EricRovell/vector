@@ -346,7 +346,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.lerp(input: Input, coef = 0): Vector</code>
+    <code>.lerp(input: Input, coef = 1): Vector</code>
   </summary>
 
   Linearly interpolate the vector to another vector.
