@@ -504,6 +504,22 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.set(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Set's the current vector state from another `Vector` instance or valid vector input.
+
+  ```js
+  const v1 = vector(1, 2, 3).set(0, 0, 0);
+  v1.set([ 3, 4, 5 ]);
+  v1.set({ x: -1, y: -2, z: -3 });
+
+  v1.toString() // -> "(-1, -2, -3)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.setComponent(component: Component, value: number): Vector</code>
   </summary>
 

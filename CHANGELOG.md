@@ -10,6 +10,7 @@
 - [feat]: `setPhiSelf()` method;
 - [feat]: `setThetaSelf()` method;
 - [feat]: `setComponentSelf()` method;
+- [feat]: `set()` method;
 
 ## 0.10.0 (2022-11-28)
 

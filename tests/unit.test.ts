@@ -411,6 +411,15 @@ describe("Mutable operations", () => {
 		// @ts-expect-error: test invalid input
 		expect(fn("f", NaN)).toBe("(2, 3, 4)");
 	});
+	it("Sets the current vector's state", () => {
+		const v1 = vector(1, 2, 3).set(0, 0, 0);
+		const v2 = v1.set([ 3, 4, 5 ]);
+		const v3 = v2.set({ x: -1, y: -2, z: -3 });
+
+		expect(v1.equals([ -1, -2, -3 ])).toBe(true);
+		expect(v2.equals([ -1, -2, -3 ])).toBe(true);
+		expect(v3.equals([ -1, -2, -3 ])).toBe(true);
+	});
 });
 
 describe("Properties", () => {

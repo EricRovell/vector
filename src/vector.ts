@@ -252,6 +252,14 @@ export class Vector {
 	}
 
 	/**
+	 * Set's the current vector state from another `Vector` instance or valid vector input.
+	 */
+	set(x: Input | number, y?: number, z?: number): Vector {
+		[ this.x, this.y, this.z ] = vector(x, y, z).toArray();
+		return this;
+	}
+
+	/**
 	 * Sets the vector component value and returns a new `Vector` instance.
 	 */
 	setComponent(component: Component, value: number): Vector {
