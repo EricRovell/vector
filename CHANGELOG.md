@@ -1,6 +1,6 @@
 # Rational
 
-## 0.11.0
+## 0.11.0 (2022-11-29)
 
 - [feat]: `addSelf()` method;
 - [feat]: `scaleSelf()` method;
