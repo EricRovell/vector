@@ -11,6 +11,7 @@
 - [feat]: `setThetaSelf()` method;
 - [feat]: `setComponentSelf()` method;
 - [feat]: `set()` method;
+- [feat]: `normalizeSelf()` method;
 
 ## 0.10.0 (2022-11-28)
 

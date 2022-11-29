@@ -409,6 +409,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.normalizeSelf(): Vector</code>
+  </summary>
+
+  Makes the current vector a unit vector (sets the magnitude to 1).
+
+  ```js
+  vector(0).normalizeSelf().margnitude;          // -> 0
+  vector(3, 4).normalizeSelf().margnitude;       // -> 5
+  vector(3, 4, 12).normalizeSelf().margnitude;   // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.random(random = Math.random): Vector</code>
   </summary>
 

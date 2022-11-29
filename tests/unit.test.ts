@@ -420,6 +420,13 @@ describe("Mutable operations", () => {
 		expect(v2.equals([ -1, -2, -3 ])).toBe(true);
 		expect(v3.equals([ -1, -2, -3 ])).toBe(true);
 	});
+	it("Normalizes the current vector", () => {
+		const fn = (input: InputUser) => vector(input).normalizeSelf().magnitude;
+
+		expect(fn({ x: 0 })).toBe(0);
+		expect(fn({ x: 3, y: 4 })).toBe(1);
+		expect(fn({ x: 3, y: 4, z: 12 })).toBe(1);
+	});
 });
 
 describe("Properties", () => {

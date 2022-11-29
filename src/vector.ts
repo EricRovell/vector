@@ -183,6 +183,18 @@ export class Vector {
 	}
 
 	/**
+	 * Makes the current vector a unit vector (sets the magnitude to 1).
+	 */
+	normalizeSelf(): Vector {
+		const magnitude = this.magnitude;
+		if (magnitude) {
+			return this.scaleSelf(1 / magnitude);
+		}
+
+		return this;
+	}
+
+	/**
 	 * Makes a new planar vector from a random azimuthal angle.
 	 */
 	random(random = Math.random): Vector {
