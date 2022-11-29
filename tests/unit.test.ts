@@ -241,6 +241,8 @@ describe("Operations", () => {
 	it("Calculates the dot product between two vectors", () => {
 		const fn = (a: Input, b: Input) => vector(a).dot(b);
 
+		expect(vector(1, 2, 3).dot(vector(4, 5, 6 ))).toBe(32);
+		expect(vector(-2.5).dot(vector(4, 5.3, -8 ))).toBe(-10);
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(32);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(-10);
 	});

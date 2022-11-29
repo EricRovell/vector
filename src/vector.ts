@@ -107,8 +107,8 @@ export class Vector {
 	/**
 	 * Calculates the dot product of two vectors.
 	 */
-	dot(input: Input): number {
-		const other = vector(input);
+	dot(x?: InputUser | number, y?: number, z?: number): number {
+		const other = vector(x, y, z);
 		return this.x * other.x + this.y * other.y + this.z * other.z;
 	}
 

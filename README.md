@@ -280,13 +280,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.dot(input: Input): number</code>
+    <code>.dot(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the dot product of two vectors.
 
   ```js
-	vector([ 1, 2, 3 ]).dot([ 4, 5, 6 ])   // -> 32
+	vector(1, 2, 3).dot(4, 5, 6)   // -> 32
 	vector([ -2.5 ]).dot([ 4, 5.3, -8 ])   // -> -10
   ```
 </details>
