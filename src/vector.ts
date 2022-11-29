@@ -115,8 +115,8 @@ export class Vector {
 	/**
 	 * Performs an equality check against another vector input or `Vector` instance.
 	 */
-	equals(input: Input): boolean {
-		const other = vector(input);
+	equals(x?: InputUser | number, y?: number, z?: number): boolean {
+		const other = vector(x, y, z);
 		return (
 			this.x === other.x &&
 			this.y === other.y &&

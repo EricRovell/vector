@@ -293,12 +293,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.equals(input: Input): boolean</code>
+    <code>.equals(x: Input | number, y?: number, z?: number): boolean</code>
   </summary>
 
   Performs an equality check against another vector input or `Vector` instance.
 
   ```js
+  vector(1, 2, 3).equals(1, 2, 3);                  // -> true
   vector({ x: 1, y: 2 }).equals([ 1, 2 ]);          // -> true
   vector({ x: -1, y: -2 }).equals({ x: -1, y: 2});  // -> false
   ```

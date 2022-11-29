@@ -217,6 +217,8 @@ describe("Operations", () => {
 	it("Performs an equality check", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).equals(input2);
 
+		expect(vector(1, 2, 3).equals(1, 2, 3)).toBe(true);
+		expect(vector(1).equals(1, 2, 3)).toBe(false);
 		expect(fn([ 1, 1, 1 ], { x: 1, y: 1, z: 1 })).toBe(true);
 		expect(fn({ x: 1, y: 1, z: 1 }, [ 1, 1, 1 ])).toBe(true);
 		expect(fn([ 1, 1, 1 ], [ 1, 1, 1 ])).toBe(true);
