@@ -156,6 +156,9 @@ describe("Operations", () => {
 	it("Adds two vectors", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).add(input2).toString();
 
+		expect(vector(1).add(vector(1, 2, 3)).toString()).toBe("(2, 2, 3)");
+		expect(vector(1).add(1, 2, 3).toString()).toBe("(2, 2, 3)");
+		expect(vector(1).add([ 1, 2, 3 ]).toString()).toBe("(2, 2, 3)");
 		expect(fn([ 1 ], [ 2 ])).toBe("(3, 0, 0)");
 		expect(fn([ 1 ], [ 2, 3 ])).toBe("(3, 3, 0)");
 		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(2, 2, 3)");
@@ -230,6 +233,8 @@ describe("Operations", () => {
 	it("Calculates the cross product between two vectors", () => {
 		const fn = (a: Input, b: Input) => vector(a).cross(b).toString();
 
+		expect(vector(1, 2, 3).cross(4, 5, 6).toString()).toBe("(-3, 6, -3)");
+		expect(vector(-2.5).cross(vector(4, 5.3, -8)).toString()).toBe("(0, -20, -13.25)");
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe("(-3, 6, -3)");
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe("(0, -20, -13.25)");
 	});

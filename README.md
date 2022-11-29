@@ -172,12 +172,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.add(input: Input): Vector</code>
+    <code>.add(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Performs the addition and returns the sum as new `Vector` instance.
 
   ```js
+  vector(1, 2).add(3, 4).toString();                      // -> "(4, 6, 0)"
   vector({ x: 1, y: 2 }).add({ x: 3, y: 4 }).toString();  // -> "(4, 6, 0)"
   vector([ 1, 2, 3 ]).add([ 4, 5, 6 ]).toString();        // -> "(5, 7, 9)"
   ```
@@ -238,12 +239,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.cross(input: Input): Vector</code>
+    <code>.cross(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Calculates the cross product between two vectors and returns a new `Vector` instance.
 
   ```js
+  vector(1, 2, 3).cross(4, 5, 6)         // -> (-3, 6, -3)
 	vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
 	vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
   ```

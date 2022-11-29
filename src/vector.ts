@@ -23,8 +23,8 @@ export class Vector {
 	/**
 	 * Performs the addition and returns the sum as new `Vector` instance.
 	 */
-	add(input: Input): Vector {
-		const other = vector(input);
+	add(x?: InputUser | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
 		return new Vector([
 			this.x + other.x,
 			this.y + other.y,
@@ -72,8 +72,8 @@ export class Vector {
 	/**
 	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
 	 */
-	cross(input: Input): Vector {
-		const other = vector(input);
+	cross(x?: InputUser | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
 		return new Vector([
 			this.y * other.z - this.z * other.y,
 			this.z * other.x - this.x * other.z,
