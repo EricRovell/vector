@@ -156,6 +156,9 @@ describe("Operations", () => {
 	it("Adds two vectors", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).add(input2).toString();
 
+		expect(vector(1).add(vector(1, 2, 3)).toString()).toBe("(2, 2, 3)");
+		expect(vector(1).add(1, 2, 3).toString()).toBe("(2, 2, 3)");
+		expect(vector(1).add([ 1, 2, 3 ]).toString()).toBe("(2, 2, 3)");
 		expect(fn([ 1 ], [ 2 ])).toBe("(3, 0, 0)");
 		expect(fn([ 1 ], [ 2, 3 ])).toBe("(3, 3, 0)");
 		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(2, 2, 3)");
@@ -204,6 +207,7 @@ describe("Operations", () => {
 	it("Subtracts two vectors", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).sub(input2).toString();
 
+		expect(vector(1, 2, 3).sub(vector(3, 4, 5)).equals(-2, -2, -2)).toBe(true);
 		expect(fn([ 1 ], [ 2 ])).toBe("(-1, 0, 0)");
 		expect(fn([ 1 ], [ 2, 3 ])).toBe("(-1, -3, 0)");
 		expect(fn([ 1 ], [ 1, 2, 3 ])).toBe("(0, -2, -3)");
@@ -214,6 +218,8 @@ describe("Operations", () => {
 	it("Performs an equality check", () => {
 		const fn = (input1: Input, input2: Input) => vector(input1).equals(input2);
 
+		expect(vector(1, 2, 3).equals(1, 2, 3)).toBe(true);
+		expect(vector(1).equals(1, 2, 3)).toBe(false);
 		expect(fn([ 1, 1, 1 ], { x: 1, y: 1, z: 1 })).toBe(true);
 		expect(fn({ x: 1, y: 1, z: 1 }, [ 1, 1, 1 ])).toBe(true);
 		expect(fn([ 1, 1, 1 ], [ 1, 1, 1 ])).toBe(true);
@@ -230,18 +236,24 @@ describe("Operations", () => {
 	it("Calculates the cross product between two vectors", () => {
 		const fn = (a: Input, b: Input) => vector(a).cross(b).toString();
 
+		expect(vector(1, 2, 3).cross(4, 5, 6).toString()).toBe("(-3, 6, -3)");
+		expect(vector(-2.5).cross(vector(4, 5.3, -8)).toString()).toBe("(0, -20, -13.25)");
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe("(-3, 6, -3)");
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe("(0, -20, -13.25)");
 	});
 	it("Calculates the dot product between two vectors", () => {
 		const fn = (a: Input, b: Input) => vector(a).dot(b);
 
+		expect(vector(1, 2, 3).dot(vector(4, 5, 6 ))).toBe(32);
+		expect(vector(-2.5).dot(vector(4, 5.3, -8 ))).toBe(-10);
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(32);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(-10);
 	});
 	it("Calculates the distance between two vectors", () => {
 		const fn = (a: Input, b: Input) => round(vector(a).distance(b), 5);
 
+		expect(round(vector(1, 2, 3).distance(4, 5, 6), 5)).toBe(5.19615);
+		expect(round(vector(-2.5).distance(vector(4, 5.3, -8)), 5)).toBe(11.59051);
 		expect(fn([ 1, 2, 3 ], [ 4, 5, 6 ])).toBe(5.19615);
 		expect(fn([ -2.5 ], [ 4, 5.3, -8 ])).toBe(11.59051);
 	});
@@ -268,7 +280,7 @@ describe("Operations", () => {
 
 		const fn = (coef?: number) => a.lerp(b, coef).toString();
 
-		expect(fn()).toBe("(4, 8, 16)");
+		expect(fn()).toBe("(8, 24, 48)");
 		expect(fn(-0.5)).toBe("(4, 8, 16)");
 		expect(fn(0.25)).toBe("(5, 12, 24)");
 		expect(fn(0.5)).toBe("(6, 16, 32)");
@@ -288,6 +300,7 @@ describe("Operations", () => {
 		const a = vector([ 4, 6 ]);
 		const n = vector([ 0, -1 ]);
 
+		expect(vector(4, 6).reflect(0, -1).equals(4, -6)).toBe(true);
 		expect(a.reflect(n).toString()).toBe("(4, -6, 0)");
 	});
 	it("Generates a random 2D vector", () => {

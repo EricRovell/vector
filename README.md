@@ -172,12 +172,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.add(input: Input): Vector</code>
+    <code>.add(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Performs the addition and returns the sum as new `Vector` instance.
 
   ```js
+  vector(1, 2).add(3, 4).toString();                      // -> "(4, 6, 0)"
   vector({ x: 1, y: 2 }).add({ x: 3, y: 4 }).toString();  // -> "(4, 6, 0)"
   vector([ 1, 2, 3 ]).add([ 4, 5, 6 ]).toString();        // -> "(5, 7, 9)"
   ```
@@ -238,12 +239,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.cross(input: Input): Vector</code>
+    <code>.cross(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Calculates the cross product between two vectors and returns a new `Vector` instance.
 
   ```js
+  vector(1, 2, 3).cross(4, 5, 6)         // -> (-3, 6, -3)
 	vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
 	vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
   ```
@@ -251,7 +253,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distance(input: Input): number</code>
+    <code>.distance(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the Euclidian distance between two points, considering a point as a vector.
@@ -264,7 +266,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.distanceSq(input: Input): number</code>
+    <code>.distanceSq(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the squared Euclidian distance between two points, considering a point as a vector.
@@ -278,25 +280,26 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.dot(input: Input): number</code>
+    <code>.dot(x: Input | number, y?: number, z?: number): number</code>
   </summary>
 
   Calculates the dot product of two vectors.
 
   ```js
-	vector([ 1, 2, 3 ]).dot([ 4, 5, 6 ])   // -> 32
+	vector(1, 2, 3).dot(4, 5, 6)   // -> 32
 	vector([ -2.5 ]).dot([ 4, 5.3, -8 ])   // -> -10
   ```
 </details>
 
 <details>
   <summary>
-    <code>.equals(input: Input): boolean</code>
+    <code>.equals(x: Input | number, y?: number, z?: number): boolean</code>
   </summary>
 
   Performs an equality check against another vector input or `Vector` instance.
 
   ```js
+  vector(1, 2, 3).equals(1, 2, 3);                  // -> true
   vector({ x: 1, y: 2 }).equals([ 1, 2 ]);          // -> true
   vector({ x: -1, y: -2 }).equals({ x: -1, y: 2});  // -> false
   ```
@@ -343,7 +346,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.lerp(input: Input, coef = 0): Vector</code>
+    <code>.lerp(input: Input, coef = 1): Vector</code>
   </summary>
 
   Linearly interpolate the vector to another vector.
@@ -449,7 +452,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.reflect(input: Input): Vector</code>
+    <code>.reflect(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Reflects the vector about a normal line for 2D vector, or about a normal to a plane in 3D.
@@ -660,12 +663,13 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.sub(input: Input): Vector</code>
+    <code>.sub(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
   Performs the subtraction and returns the result as new `Vector` instance.
 
   ```js
+  vector(1, 2, 3).sub(2, 3, 4).toString()                 // -> "(-1, -1, -1)"
   vector({ x: 1, y: 2 }).sub({ x: 3, y: 4 }).toString();  // -> "(-2, -2, 0)"
   vector([ 1, 2, 3 ]).sub([ 4, 5, 6 ]).toString();        // -> "(-3, -3, -3)"
   ```

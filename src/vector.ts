@@ -23,8 +23,8 @@ export class Vector {
 	/**
 	 * Performs the addition and returns the sum as new `Vector` instance.
 	 */
-	add(input: Input): Vector {
-		const other = vector(input);
+	add(x?: InputUser | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
 		return new Vector([
 			this.x + other.x,
 			this.y + other.y,
@@ -72,8 +72,8 @@ export class Vector {
 	/**
 	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
 	 */
-	cross(input: Input): Vector {
-		const other = vector(input);
+	cross(x?: InputUser | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
 		return new Vector([
 			this.y * other.z - this.z * other.y,
 			this.z * other.x - this.x * other.z,
@@ -85,8 +85,8 @@ export class Vector {
 	 * Calculates the Euclidian distance between two points,
 	 * considering a point as a vector.
 	 */
-	distance(input: Input): number {
-		return this.distanceSq(input) ** 0.5;
+	distance(x?: InputUser | number, y?: number, z?: number): number {
+		return this.distanceSq(x, y, z) ** 0.5;
 	}
 
 	/**
@@ -95,8 +95,8 @@ export class Vector {
 	 *
 	 * Slighty more efficient to calculate, useful to comparing.
 	 */
-	distanceSq(input: Input): number {
-		const other = vector(input);
+	distanceSq(x?: InputUser | number, y?: number, z?: number): number {
+		const other = vector(x, y, z);
 		return (
 			(this.x - other.x) ** 2 +
 			(this.y - other.y) ** 2 +
@@ -107,16 +107,16 @@ export class Vector {
 	/**
 	 * Calculates the dot product of two vectors.
 	 */
-	dot(input: Input): number {
-		const other = vector(input);
+	dot(x?: InputUser | number, y?: number, z?: number): number {
+		const other = vector(x, y, z);
 		return this.x * other.x + this.y * other.y + this.z * other.z;
 	}
 
 	/**
 	 * Performs an equality check against another vector input or `Vector` instance.
 	 */
-	equals(input: Input): boolean {
-		const other = vector(input);
+	equals(x?: InputUser | number, y?: number, z?: number): boolean {
+		const other = vector(x, y, z);
 		return (
 			this.x === other.x &&
 			this.y === other.y &&
@@ -148,7 +148,7 @@ export class Vector {
 	/**
 	 * Linearly interpolate the vector to another vector.
 	 */
-	lerp(input: Input, coef = 0): Vector {
+	lerp(input: Input, coef = 1): Vector {
 		const other = vector(input);
 		const factor = clamp(coef);
 		return new Vector([
@@ -224,8 +224,8 @@ export class Vector {
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */
-	reflect(input: Input): Vector {
-		const surface = vector(input).unit;
+	reflect(x?: InputUser | number, y?: number, z?: number): Vector {
+		const surface = vector(x, y, z).unit;
 		return this.sub(surface.scale(2 * this.dot(surface)));
 	}
 
@@ -370,8 +370,8 @@ export class Vector {
 	/**
 	 * Performs the subtraction and returns the sum as new `Vector` instance.
 	 */
-	sub(input: Input): Vector {
-		return this.add(vector(input).inverted);
+	sub(x: Input | number, y?: number, z?: number): Vector {
+		return this.add(vector(x, y, z).inverted);
 	}
 
 	/**
