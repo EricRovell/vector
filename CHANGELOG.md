@@ -1,5 +1,9 @@
 # Rational
 
+## 0.11.1 (2022-12-01)
+
+- [fix]: Update ESM module extension for new Node version;
+
 ## 0.11.0 (2022-11-29)
 
 - [feat]: `addSelf()` method;
