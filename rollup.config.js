@@ -19,9 +19,6 @@ function getPluginsConfig(compilerOptions) {
 	];
 }
 
-/**
- * Bundle everything into ESM module.
- */
 export default [
 	/**
    * Core bundle build in ESM
@@ -29,7 +26,7 @@ export default [
 	{
 		input: "src/index.ts",
 		output: {
-			file: "dist/index.mjs",
+			file: "dist/index.js",
 			format: "es"
 		},
 		plugins: getPluginsConfig({ declaration: true })
@@ -40,7 +37,7 @@ export default [
 	{
 		input: "src/index.ts",
 		output: {
-			file: "dist/index.js",
+			file: "dist/index.cjs",
 			format: "cjs",
 		},
 		plugins: getPluginsConfig({ declaration: false }),
