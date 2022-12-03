@@ -75,8 +75,8 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
   ```js
   vector(1, 2).toString();                  // -> "(1, 2, 0)"
-  vector({ x: 1, y: 2, z: 3 }).toString();  // -> "(1, 2, 0)"
-  vector([ 1, 2, 3 ]).toString();           // -> "(1, 2, 0)"
+  vector({ x: 1, y: 2, z: 3 }).toString();  // -> "(1, 2, 3)"
+  vector([ 1, 2, 3 ]).toString();           // -> "(1, 2, 3)"
   ```
 </details>
 
@@ -166,6 +166,28 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```
 
   The `CoordsPolar` object is considered valid if it is contains at least one of angle keys: `phi` or `theta`. The `magnitude` defaults to unit length.
+</details>
+
+<details>
+  <summary>
+    <code>input: CoordsCylindrical</code>
+  </summary>
+
+  Parses the given input from `CoordsCylindrical` representing the vector [in cylindrical coordinate system](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) and returns a new `Vector` instance:
+
+  ```js
+  vector({ p: Math.SQRT2, phi: Math.PI / 4, z: 5 }))    // -> "(1, 1, 5)"
+  vector({ p: 7.0711, phi: -Math.PI / 4, z: 12 }))      // -> "(5, -5, 12)"
+  ```
+
+  By default angles input require [radians](https://en.wikipedia.org/wiki/Radian). To use degrees, pass a `degrees` property:
+
+  ```js
+  vector({ degrees: true, p: Math.SQRT2, phi: 45, z: 5 }))  // -> "(1, 1, 5)"
+  vector({ degrees: true, p: 7.0711, phi: -45, z: 12 }))    // -> "(5, -5, 12)"
+  ```
+
+  The `CoordsCylindrical` object is considered valid if it is contains all properties: `p`, `phi`, and `z`. Only `degrees` property is optional.
 </details>
 
 ## API

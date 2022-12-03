@@ -26,10 +26,24 @@ export interface CoordsPolar {
 }
 
 /**
+ * Vector defined in Cylindrical coordinates:
+ * 	- r: radias distance;
+ * 	- phi: azimuthal angle;
+ * 	- z: height;
+ */
+export interface CoordsCylindrical {
+	degrees?: boolean;
+	p: number;
+	phi: number;
+	z: number;
+}
+
+/**
  * Valid user input to build a Vector from.
  */
 export type InputUser =
 	| Partial<Coords>
+	| CoordsCylindrical
 	| Partial<CoordsPolar>
 	| CoordsTuple;
 

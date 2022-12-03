@@ -1,5 +1,5 @@
 import { isObject, validateNumbers } from "../utils";
-import type { Coords, CoordsPolar, CoordsTuple } from "../types";
+import type { Coords, CoordsPolar, CoordsTuple, CoordsCylindrical } from "../types";
 
 export const isCoords = (input: unknown): input is Coords => {
 	if (!isObject(input)) {
@@ -25,4 +25,13 @@ export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
 	}
 
 	return validateNumbers(...input);
+};
+
+export const isCoordsCylindrical = (input: unknown): input is CoordsCylindrical => {
+	if (!isObject(input)) {
+		return false;
+	}
+
+	return [ "p", "phi", "z" ]
+		.every(key => key in input);
 };
