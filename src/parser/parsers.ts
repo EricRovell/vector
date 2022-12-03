@@ -47,7 +47,7 @@ const parseCoordsPolar: Parser = coords => {
 /**
  * Parses vector in cylindrical coordinates.
  */
-export const parseCoordsCylindrical: Parser = coords => {
+const parseCoordsCylindrical: Parser = coords => {
 	if (!isCoordsCylindrical(coords)) {
 		return null;
 	}
