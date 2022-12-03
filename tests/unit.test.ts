@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { vector, Vector } from "../src";
-import type { Component, Coords, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
+import type { Component, Coords, CoordsCylindrical, CoordsPolar, CoordsTuple, Input, InputUser } from "../src/types";
 import { round } from "../src/utils";
 
 describe("Rational constructor", () => {
@@ -132,6 +132,19 @@ describe("Parsing", () => {
 		expect(fn({ degrees: true, phi: 90, theta: 180, magnitude: 10 })).toBe("(0, 0, -10)");
 		expect(fn({ degrees: true, phi: 90, theta: 270, magnitude: 10 })).toBe("(0, -10, 0)");
 		expect(fn({ degrees: true, phi: 90, theta: 360, magnitude: 10 })).toBe("(0, 0, 10)");
+	});
+	it("Parses a cylindrical coordinates input", () => {
+		const fn = (input: CoordsCylindrical) => vector(input).toArray().map(val => round(val, 4));
+
+		expect(fn({ p: Math.SQRT2, phi: Math.PI / 4, z: 5 })).toEqual([ 1, 1, 5 ]);
+		expect(fn({ p: 7.0711, phi: -Math.PI / 4, z: 12 })).toEqual([ 5, -5, 12 ]);
+		expect(fn({ p: 7.0711, phi: 5 * Math.PI / 4, z: 12 })).toEqual([ -5, -5, 12 ]);
+		expect(fn({ p: 7.0711, phi: 5 * Math.PI / 4, z: 0 })).toEqual([ -5, -5, 0 ]);
+
+		expect(fn({ degrees: true, p: Math.SQRT2, phi: 45, z: 5 })).toEqual([ 1, 1, 5 ]);
+		expect(fn({ degrees: true, p: 7.0711, phi: -45, z: 12 })).toEqual([ 5, -5, 12 ]);
+		expect(fn({ degrees: true, p: 7.0711, phi: 225, z: 12 })).toEqual([ -5, -5, 12 ]);
+		expect(fn({ degrees: true, p: 7.0711, phi: 225, z: 0 })).toEqual([ -5, -5, 0 ]);
 	});
 	it("Detects invalid input", () => {
 		const fn = (input: InputUser) => vector(input).valid;

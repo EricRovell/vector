@@ -1,5 +1,5 @@
 import { round, deg2rad } from "../utils";
-import { isCoords, isCoordsPolar, isCoordsTuple } from "./guards";
+import { isCoords, isCoordsCylindrical, isCoordsPolar, isCoordsTuple } from "./guards";
 import type { Parser } from "../types";
 
 /**
@@ -45,6 +45,24 @@ const parseCoordsPolar: Parser = coords => {
 };
 
 /**
+ * Parses vector in cylindrical coordinates.
+ */
+export const parseCoordsCylindrical: Parser = coords => {
+	if (!isCoordsCylindrical(coords)) {
+		return null;
+	}
+
+	const { degrees = false, p = 1, phi = 0, z = 0 } = coords;
+	const angle = degrees ? phi * deg2rad : phi;
+
+	return [
+		p * Math.cos(angle),
+		p * Math.sin(angle),
+		z
+	];
+};
+
+/**
  * Parses a coordinates tuple.
  */
 const parseCoordsTuple: Parser = coords => {
@@ -56,8 +74,18 @@ const parseCoordsTuple: Parser = coords => {
 	return [ x, y, z ];
 };
 
+/**
+ * The order is important!
+ *
+ * The cylindrical interface has intersection with cartesian - `z`,
+ * and with spherical - `phi`, that's why all properties there are required
+ * and that's why it is above cartesian and spherical.
+ *
+ * Cartesian and spherical have no intersection, so all properties are optional.
+ */
 export const parsers: Parser[] = [
-	parseCoordsObject,
 	parseCoordsTuple,
-	parseCoordsPolar
+	parseCoordsCylindrical,
+	parseCoordsPolar,
+	parseCoordsObject
 ];

@@ -1,5 +1,9 @@
 # Rational
 
+## 0.12.0 (2022-12-03)
+
+- [feat]: [Cylindrical coordinate system](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) input support;
+
 ## 0.11.1 (2022-12-01)
 
 - [fix]: Update ESM module extension for new Node version;
