@@ -1,5 +1,9 @@
 # Rational
 
+## 0.12.1 (2022-12-04)
+
+- [fix]: rename `postinstall` script, as it used dev dependency and breaked the `CI/CD` pipeline;
+
 ## 0.12.0 (2022-12-03)
 
 - [feat]: [Cylindrical coordinate system](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) input support;
