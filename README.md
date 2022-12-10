@@ -660,6 +660,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.setMagnitudeSelf(value: number): Vector</code>
+  </summary>
+
+  Sets the magnitude of this vector and returns itself.
+
+  ```js
+  vector(1).setMagnitudeSelf(5).magnitude         W // -> 5;
+  vector(1, 2).setMagnitudeSelf(5).magnitude       // -> 5;
+  vector(1, 2, 3).setMagnitudeSelf(-5).magnitude   // -> 5;
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.setPhi(value: number, degrees = false): Vector</code>
   </summary>
 

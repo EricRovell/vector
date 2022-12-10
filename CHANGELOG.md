@@ -1,5 +1,9 @@
 # Rational
 
+## 0.14.0 (2022-12-11)
+
+- [feat]: `.setMagnitudeSelf()` method;
+
 ## 0.13.0 (2022-12-10)
 
 - [feat]: `scale()` and `scaleSelf()` second argument for reciprocal scaling;
