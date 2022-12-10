@@ -406,6 +406,23 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.limitSelf(value: number): Vector</code>
+  </summary>
+
+  Limits the magnitude of this vector and returns itself.
+
+  ```js
+  vector(3, 4).limitSelf(10).magnitude       // -> 5
+  vector(3, 4).limitSelf(2).magnitude        // -> 2
+  vector(3, 4).limitSelf(5).magnitude        // -> 5
+  vector(3, 4, 12).limitSelf(15).magnitude   // -> 13
+  vector(3, 4, 12).limitSelf(10).magnitude   // -> 10
+  vector(3, 4, 12).limitSelf(13).magnitude   // -> 13
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.magnitude: number</code>
   </summary>
 

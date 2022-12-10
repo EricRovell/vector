@@ -3,6 +3,7 @@
 ## 0.14.0 (2022-12-11)
 
 - [feat]: `.setMagnitudeSelf()` method;
+- [feat]: `.limitSelf()` method;
 
 ## 0.13.0 (2022-12-10)
 

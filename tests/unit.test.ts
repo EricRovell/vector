@@ -475,6 +475,19 @@ describe("Mutable operations", () => {
 		expect(fn(1, 2)(5)).toBe(5);
 		expect(fn(1, 2, 3)(5)).toBe(5);
 	});
+	it("Limits the magnitude", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (value: number) => {
+			const magnitude = vector(x, y, z).limitSelf(value).magnitude;
+			return round(magnitude, 10);
+		};
+
+		expect(fn(3, 4)(10)).toBe(5);
+		expect(fn(3, 4)(2)).toBe(2);
+		expect(fn(3, 4)(5)).toBe(5);
+		expect(fn(3, 4, 12)(15)).toBe(13);
+		expect(fn(3, 4, 12)(10)).toBe(10);
+		expect(fn(3, 4, 12)(13)).toBe(13);
+	});
 });
 
 describe("Properties", () => {

@@ -168,6 +168,17 @@ export class Vector {
 	}
 
 	/**
+	 * Limits the magnitude of this vector and returns itself.
+	 */
+	limitSelf(value: number): Vector {
+		if (this.magnitudeSq < value ** 2) {
+			return this;
+		}
+
+		return this.setMagnitudeSelf(value);
+	}
+
+	/**
 	 * Calculates the magnitude of the vector.
 	 */
 	get magnitude(): number {
