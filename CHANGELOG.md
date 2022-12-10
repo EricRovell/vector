@@ -1,5 +1,9 @@
 # Rational
 
+## 0.13.0 (2022-12-10)
+
+- [feat]: `scale()` and `scaleSelf()` second argument for reciprocal scaling;
+
 ## 0.12.1 (2022-12-04)
 
 - [fix]: rename `postinstall` script, as it used dev dependency and breaked the `CI/CD` pipeline;
