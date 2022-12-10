@@ -543,6 +543,62 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.scale(value: number, inverse = false): Vector</code>
+  </summary>
+
+  Performs the scalar vector multiplication and returns a new `Vector` instance:
+
+  ```js
+  vector(1, 2).scale(2).toString();  // -> "(2, 4, 0)"
+  vector(1, 2, 3).scale(-2).toString();    // -> "(-2, -4, -6)"
+  ```
+
+  The second parameter turns the passed `value` into reciprocal, in other words the division will be performed:
+
+  ```js
+  vector(2, 4, 6).scale(2, true).toString(); // -> "(1, 2, 3)"
+  ```
+
+  Although the same effect can be obtained just with `.scale(0.5)`, it is useful when the variable may have zero value. In case of zero division the zero vector will be returned and marked as invalid.
+
+  ```js
+  const v = vector(1, 2, 3).scale(0, true);
+
+  v.valid      // -> false
+  v.toString() // -> "(0, 0, 0)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.scaleSelf(value: number, inverse = false): Vector</code>
+  </summary>
+
+  Scales this vector by a scalar value.
+
+  ```js
+  const a = vector(-1, 2, 3)
+    .scaleSelf(5)
+    .scaleSelf(-2);
+
+  a.toString() // -> "(10, -20, -30)"
+  ```
+
+  The second parameter turns the passed `value` into reciprocal, in other words the division will be performed:
+
+  ```js
+  const v = vector(-12, -18, -24)
+    .scale(2, true)
+    .scale(-3, true);
+
+  v.toString(); // -> "(2, 3, 4)"
+  ```
+
+  It is useful when the variable may have zero value. In this case the vector components won't change.
+</details>
+
+<details>
+  <summary>
     <code>.set(x: Input | number, y?: number, z?: number): Vector</code>
   </summary>
 
@@ -652,62 +708,6 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector({ x: 1, y: 2 }).setThetaSelf(Math.PI / 3);
   vector({ x: 1, y: 2, z: 3 }).setThetaSelf(60, true);
   ```
-</details>
-
-<details>
-  <summary>
-    <code>.scale(value: number, inverse = false): Vector</code>
-  </summary>
-
-  Performs the scalar vector multiplication and returns a new `Vector` instance:
-
-  ```js
-  vector(1, 2).scale(2).toString();  // -> "(2, 4, 0)"
-  vector(1, 2, 3).scale(-2).toString();    // -> "(-2, -4, -6)"
-  ```
-
-  The second parameter turns the passed `value` into reciprocal, in other words the division will be performed:
-
-  ```js
-  vector(2, 4, 6).scale(2, true).toString(); // -> "(1, 2, 3)"
-  ```
-
-  Although the same effect can be obtained just with `.scale(0.5)`, it isuseful when the variable may have zero value. In case of zero division the zero vector will be returned and marked as invalid.
-
-  ```js
-  const v = vector(1, 2, 3).scale(0, true);
-
-  v.valid      // -> false
-  v.toString() // -> "(0, 0, 0)"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.scaleSelf(value: number, inverse = false): Vector</code>
-  </summary>
-
-  Scales this vector by a scalar value.
-
-  ```js
-  const a = vector(-1, 2, 3)
-    .scaleSelf(5)
-    .scaleSelf(-2);
-
-  a.toString() // -> "(10, -20, -30)"
-  ```
-
-  The second parameter turns the passed `value` into reciprocal, in other words the division will be performed:
-
-  ```js
-  const v = vector(-12, -18, -24)
-    .scale(2, true)
-    .scale(-3, true);
-
-  v.toString(); // -> "(2, 3, 4)"
-  ```
-
-  It is useful when the variable may have zero value. In this case the vector components won't change.
 </details>
 
 <details>
