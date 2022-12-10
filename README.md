@@ -858,7 +858,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 ## Other Features
 
-### Extedibility
+### Extendibility
 
 To extend the functionality for your needs, [extend](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) the parent `Vector` class:
 
