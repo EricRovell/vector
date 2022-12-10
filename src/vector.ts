@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { Component, Input, InputUser } from "./types";
-import { clamp, convertAngle } from "./utils";
+import { clamp, convertAngle, round } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -271,6 +271,17 @@ export class Vector {
 	 */
 	rotateSelf3d(phi = 0, theta = 0, degrees = false): Vector {
 		[ this.x, this.y, this.z ] = this.rotate3d(phi, theta, degrees).toArray();
+		return this;
+	}
+
+	/**
+	 * Rounds this vector's component values up to the desired precision.
+	 */
+	round(places = 0) {
+		this.x = round(this.x, places);
+		this.y = round(this.y, places);
+		this.z = round(this.z, places);
+
 		return this;
 	}
 
