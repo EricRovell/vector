@@ -468,6 +468,13 @@ describe("Mutable operations", () => {
 		expect(fn({ x: 3, y: 4 })).toBe(1);
 		expect(fn({ x: 3, y: 4, z: 12 })).toBe(1);
 	});
+	it("Sets the magnitude", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (value: number) => vector(x, y, z).setMagnitudeSelf(value).magnitude;
+
+		expect(fn(1)(5)).toBe(5);
+		expect(fn(1, 2)(5)).toBe(5);
+		expect(fn(1, 2, 3)(5)).toBe(5);
+	});
 });
 
 describe("Properties", () => {

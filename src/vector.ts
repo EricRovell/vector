@@ -306,6 +306,15 @@ export class Vector {
 	}
 
 	/**
+	 * Sets the magnitude of this vector and returns itself.
+	 */
+	setMagnitudeSelf(value: number): Vector {
+		return this
+			.normalizeSelf()
+			.scaleSelf(Math.abs(value));
+	}
+
+	/**
 	 * Rotates the vector to a specific azimuthal angle (OXY plane) and returns a new `Vector` instance.
 	 */
 	setPhi(value: number, degrees = false): Vector {
