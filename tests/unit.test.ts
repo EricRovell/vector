@@ -180,7 +180,7 @@ describe("Operations", () => {
 		expect(fn({ x: 1, y: 2, z: 3 }, [ 1, 2, 3 ])).toBe("(2, 4, 6)");
 	});
 	it("Performs the scalar multiplication of the vector", () => {
-		const fn = (input1: Input, value: number) => vector(input1).scale(value).toString();
+		const fn = (input1: Input, value: number, inverse = false) => vector(input1).scale(value, inverse).toString();
 
 		expect(fn([ 1 ], 3)).toBe("(3, 0, 0)");
 		expect(fn([ 1, 2 ], 3)).toBe("(3, 6, 0)");
@@ -200,6 +200,11 @@ describe("Operations", () => {
 		expect(fn({ x: 1, y: 2 }, 0.5)).toBe("(0.5, 1, 0)");
 		expect(fn({ x: 1, y: 2 }, 0.5)).toBe("(0.5, 1, 0)");
 		expect(fn({ x: 1, y: 2, z: 3 }, 0.5)).toBe("(0.5, 1, 1.5)");
+
+		expect(fn([ 2, 4, 6 ], 2, true)).toBe("(1, 2, 3)");
+		expect(fn([ 1, 3, 5 ], 2, true)).toBe("(0.5, 1.5, 2.5)");
+		expect(fn([ -2, -4, -6 ], 2, true)).toBe("(-1, -2, -3)");
+		expect(fn([ 2, 4, 6 ], 0, true)).toBe("(0, 0, 0)");
 	});
 	it("Inverts the vector", () => {
 		const fn = (input: Input) => vector(input).inverted.toString();
@@ -366,6 +371,16 @@ describe("Mutable operations", () => {
 			.scaleSelf(-2);
 
 		expect(a.equals([ -12, -24, -36 ])).toBe(true);
+	});
+	it("Scales the current vector inversively", () => {
+		const a = vector(24, 60, 36)
+			.scaleSelf(3, true)
+			.scaleSelf(-2, true);
+
+		expect(a.equals([ -4, -10, -6 ])).toBe(true);
+
+		a.scaleSelf(0, true);
+		expect(a.equals(-4, -10, -6)).toBe(true);
 	});
 	it("Subtracts another vector from the current one", () => {
 		const a = vector(12, 15, 25)

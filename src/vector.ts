@@ -348,18 +348,37 @@ export class Vector {
 	/**
 	 * Performs the scalar multiplication and returns as new `Vector` instance.
 	 */
-	scale(value: number): Vector {
-		return new Vector([
+	scale(value: number, inverse = false): Vector {
+		if (inverse && !value) {
+			console.warn("Division by zero!");
+			// @ts-expect-error return vector marked as invalid
+			return vector(null);
+		}
+
+		if (inverse) {
+			value = 1 / value;
+		}
+
+		return new Vector(
 			this.x * value,
 			this.y * value,
 			this.z * value
-		]);
+		);
 	}
 
 	/**
 	 * Scales this vector by a scalar value.
 	 */
-	scaleSelf(value: number): Vector {
+	scaleSelf(value: number, inverse = false): Vector {
+		if (inverse && !value) {
+			console.warn("Division by zero!");
+			return this;
+		}
+
+		if (inverse) {
+			value = 1 / value;
+		}
+
 		this.x *= value;
 		this.y *= value;
 		this.z *= value;
