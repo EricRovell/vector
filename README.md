@@ -246,6 +246,34 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.ceil(places = 0): Vector</code>
+  </summary>
+
+  Rounds this vector's components values to the next upper bound with defined precision.
+
+  ```js
+  vector(1.12345).ceil(4).toString()                           // -> "(1.1235, 0, 0)");
+  vector(1.12345, 2.45678).ceil(4).toString()                  // -> "(1.1235, 2.4568, 0)");
+  vector(1.12345, 2.45678, 3.78921).ceil().toString()          // -> "(2, 3, 4)");
+  vector(Math.SQRT2, Math.PI, 2 * Math.PI).ceil(3).toString()  // -> "(1.415, 3.142, 6.284)");
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.clamp(min = 0, max = 1): Vector</code>
+  </summary>
+
+  Clamps this vector's component values between an upper and lower bound.
+
+  ```js
+  vector(1.2, -1).clamp().toString()        // -> "(1, 0, 0)");
+  vector(5, 10, -2).clamp(2, 8).toString()  // -> "(5, 8, 2)");
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.copy(): Vector</code>
   </summary>
 
@@ -324,6 +352,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector(1, 2, 3).equals(1, 2, 3);                  // -> true
   vector({ x: 1, y: 2 }).equals([ 1, 2 ]);          // -> true
   vector({ x: -1, y: -2 }).equals({ x: -1, y: 2});  // -> false
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.floor(places = 0): Vector</code>
+  </summary>
+
+  Rounds this vector's components values to the next lower bound with defined precision.
+
+  ```js
+  vector(1.12345).floor(4).toString()                           // -> "(1.1234, 0, 0)");
+  vector(1.12345, 2.45678).floor(4).toString()                  // -> "(1.1234, 2.4567, 0)");
+  vector(1.12345, 2.45678, 3.78921).floor(4).toString()         // -> "(1.1234, 2.4567, 3.7892)");
+  vector(Math.SQRT2, Math.PI, 2 * Math.PI).floor(3).toString()  // -> "(1.414, 3.141, 6.283)");
   ```
 </details>
 
@@ -555,6 +598,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   ```js
   vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(Math.PI / 3, Math.PI / 6);
   vector({ x: 1, y: 2, z: 3 }).rotateSelf3d(60, 30, true);
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.round(places = 0): Vector</code>
+  </summary>
+
+  Rounds this vector's component values to the closest bound with defined precision.
+
+  ```js
+  vector(1.12345).round(4).toString()                           // -> "(1.1235, 0, 0)");
+  vector(1.12345, 2.45678).round(4).toString()                  // -> "(1.1235, 2.4568, 0)");
+  vector(1.12345, 2.45678, 3.78921).round(4).toString()         // -> "(1.1235, 2.4568, 3.7892)");
+  vector(Math.SQRT2, Math.PI, 2 * Math.PI).round(3).toString()  // -> "(1.414, 3.142, 6.283)");
   ```
 </details>
 

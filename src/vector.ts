@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { Component, Input, InputUser } from "./types";
-import { clamp, convertAngle } from "./utils";
+import { ceil, clamp, convertAngle, floor, round } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -63,6 +63,28 @@ export class Vector {
 	}
 
 	/**
+	 * Rounds this vector's components values to the next upper bound with defined precision.
+	 */
+	ceil(places = 0): Vector {
+		this.x = ceil(this.x, places);
+		this.y = ceil(this.y, places);
+		this.z = ceil(this.z, places);
+
+		return this;
+	}
+
+	/**
+	 * Clamps this vector's component values between an upper and lower bound.
+	 */
+	clamp(min = 0, max = 1): Vector {
+		this.x = clamp(this.x, min, max);
+		this.y = clamp(this.y, min, max);
+		this.z = clamp(this.z, min, max);
+
+		return this;
+	}
+
+	/**
 	 * Returns a copy of current vector instance.
 	 */
 	copy(): Vector {
@@ -122,6 +144,17 @@ export class Vector {
 			this.y === other.y &&
 			this.z === other.z
 		);
+	}
+
+	/**
+	 * Rounds this vector's components values to the next lower bound with defined precision.
+	 */
+	floor(places = 0): Vector {
+		this.x = floor(this.x, places);
+		this.y = floor(this.y, places);
+		this.z = floor(this.z, places);
+
+		return this;
 	}
 
 	/**
@@ -271,6 +304,17 @@ export class Vector {
 	 */
 	rotateSelf3d(phi = 0, theta = 0, degrees = false): Vector {
 		[ this.x, this.y, this.z ] = this.rotate3d(phi, theta, degrees).toArray();
+		return this;
+	}
+
+	/**
+	 * Rounds this vector's component values to the closest bound with defined precision.
+	 */
+	round(places = 0): Vector {
+		this.x = round(this.x, places);
+		this.y = round(this.y, places);
+		this.z = round(this.z, places);
+
 		return this;
 	}
 

@@ -488,6 +488,60 @@ describe("Mutable operations", () => {
 		expect(fn(3, 4, 12)(10)).toBe(10);
 		expect(fn(3, 4, 12)(13)).toBe(13);
 	});
+	it("Rounds the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (places = 0) => {
+			return vector(x, y, z)
+				.round(places)
+				.toString();
+		};
+
+		expect(fn(1.12345)(4)).toBe("(1.1235, 0, 0)");
+		expect(fn(1.12345, 2.45678)(4)).toBe("(1.1235, 2.4568, 0)");
+		expect(fn(1.12345, 2.45678, 3.78921)(4)).toBe("(1.1235, 2.4568, 3.7892)");
+		expect(fn(1.12345, 2.45678, 3.78921)()).toBe("(1, 2, 4)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.414, 3.142, 6.283)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 3, 6)");
+	});
+	it("Floors the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (places = 0) => {
+			return vector(x, y, z)
+				.floor(places)
+				.toString();
+		};
+
+		expect(fn(1.12345)(4)).toBe("(1.1234, 0, 0)");
+		expect(fn(1.12345, 2.45678)(4)).toBe("(1.1234, 2.4567, 0)");
+		expect(fn(1.12345, 2.45678, 3.78921)(4)).toBe("(1.1234, 2.4567, 3.7892)");
+		expect(fn(1.12345, 2.45678, 3.78921)()).toBe("(1, 2, 3)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.414, 3.141, 6.283)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 3, 6)");
+	});
+	it("Ceils the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (places = 0) => {
+			return vector(x, y, z)
+				.ceil(places)
+				.toString();
+		};
+
+		expect(fn(1.12345)(4)).toBe("(1.1235, 0, 0)");
+		expect(fn(1.12345, 2.45678)(4)).toBe("(1.1235, 2.4568, 0)");
+		expect(fn(1.12345, 2.45678, 3.78921)(4)).toBe("(1.1235, 2.4568, 3.7893)");
+		expect(fn(1.12345, 2.45678, 3.78921)()).toBe("(2, 3, 4)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.415, 3.142, 6.284)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(2, 4, 7)");
+	});
+	it("Clamps the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (min = 0, max = 1) => {
+			return vector(x, y, z)
+				.clamp(min, max)
+				.toString();
+		};
+
+		expect(fn(1.12, -1.12)()).toBe("(1, 0, 0)");
+		expect(fn(1.12, -1.12)(-2, 2)).toBe("(1.12, -1.12, 0)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 1, 1)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(2, 4)).toBe(`(2, ${Math.PI}, 4)`);
+	});
 });
 
 describe("Properties", () => {

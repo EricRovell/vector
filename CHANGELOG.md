@@ -4,6 +4,10 @@
 
 - [feat]: `.setMagnitudeSelf()` method;
 - [feat]: `.limitSelf()` method;
+- [feat]: `round` method;
+- [feat]: `floor` method;
+- [feat]: `ceil` method;
+- [feat]: `clamp` method;
 
 ## 0.13.0 (2022-12-10)
 
