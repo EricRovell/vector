@@ -552,6 +552,18 @@ describe("Mutable operations", () => {
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 1, 1)");
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(2, 4)).toBe(`(2, ${Math.PI}, 4)`);
 	});
+	it("Maps the vector component values", () => {
+		const fn = (x: Input | number, y?: number, z?: number) => (fn: (value: number) => number) => {
+			const v = vector(x, y, z);
+			v.mapSelf(fn);
+			return v;
+		};
+
+		expect(fn(1, 2, 3)((value: number) => value * 2).equals(2, 4, 6)).toBe(true);
+		expect(fn(2, 4, 6)((value: number) => value / 2).equals(1, 2, 3)).toBe(true);
+		expect(fn(0, 5, 10)((value: number) => value + 2).equals(2, 7, 12)).toBe(true);
+		expect(fn(25, 36, 49)((value: number) => value ** 0.5).equals(5, 6, 7)).toBe(true);
+	});
 });
 
 describe("Properties", () => {

@@ -227,7 +227,7 @@ export class Vector {
 	}
 
 	/**
-	 * Calls a defined callack on every vector component and returns a new `Vector` instance.
+	 * Calls a defined callback on every vector component and returns a new `Vector` instance.
 	 */
 	map(fn: (value: number) => number): Vector {
 		const components = this
@@ -235,6 +235,17 @@ export class Vector {
 			.map(value => fn(value));
 
 		return new Vector(...components);
+	}
+
+	/**
+	 * Calls a defined callback on each of this vector component and returns itself.
+	 */
+	mapSelf(fn: (value: number) => number): Vector {
+		[ this.x, this.y, this.z ] = this
+			.toArray()
+			.map(value => fn(value));
+
+		return this;
 	}
 
 	/**
