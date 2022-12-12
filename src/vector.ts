@@ -237,6 +237,13 @@ export class Vector {
 	}
 
 	/**
+	 * Normalizes the vector and returns a new `Vector` instance as unit vector.
+	 */
+	normalize(): Vector {
+		return this.scale(this.magnitude, true);
+	}
+
+	/**
 	 * Makes the current vector a unit vector (sets the magnitude to 1).
 	 */
 	normalizeSelf(): Vector {
@@ -279,7 +286,7 @@ export class Vector {
 	 * or about a normal to a plane in 3D.
 	 */
 	reflect(x?: InputUser | number, y?: number, z?: number): Vector {
-		const surface = vector(x, y, z).unit;
+		const surface = vector(x, y, z).normalize();
 		return this.sub(surface.scale(2 * this.dot(surface)));
 	}
 
@@ -363,7 +370,7 @@ export class Vector {
 	 * Sets the magnitude of the vector and returns a new `Vector` instance.
 	 */
 	setMagnitude(value: number): Vector {
-		return this.unit.scale(value);
+		return this.normalize().scale(value);
 	}
 
 	/**
@@ -476,19 +483,6 @@ export class Vector {
 	 */
 	toString(): `(${number}, ${number}, ${number})` {
 		return `(${this.x}, ${this.y}, ${this.z})`;
-	}
-
-	/**
-	 * Normalizes the original vector and returns the unit vector.
-	 */
-	get unit(): Vector {
-		const magnitude = this.magnitude;
-		if (magnitude) {
-			return this.scale(1 / magnitude);
-		}
-
-		// @ts-expect-error: mark the resulting vector as invalid
-		return vector(null);
 	}
 
 	/**

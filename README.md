@@ -520,6 +520,20 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.normalize(): Vector</code>
+  </summary>
+
+  Normalizes the vector and returns a new `Vector` instance as [unit vector](https://en.wikipedia.org/wiki/Unit_vector):
+
+  ```js
+  vector({ x: 0 }).normalize().magnitude;                // -> 1
+  vector({ x: 3, y: 4 }).normalize().magnitude;          // -> 1
+  vector({ x: 3, y: 4, z: 12 }).normalize().magnitude;   // -> 1
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.normalizeSelf(): Vector</code>
   </summary>
 
@@ -891,20 +905,6 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
   vector([ 1 ]).toString();                  // -> "(1, 0, 0)"
   vector([ 1, 2 ]).toString();               // -> "(0, 2, 0)"
   vector([ 1, 2, 3 ]).toString();            // -> "(0, 0, 3)"
-  ```
-</details>
-
-<details>
-  <summary>
-    <code>.unit: Vector</code>
-  </summary>
-
-  Normalizes the original vector and returns [the unit vector](https://en.wikipedia.org/wiki/Unit_vector):
-
-  ```js
-  vector({ x: 0 }).unit.magnitude;                // -> 1
-  vector({ x: 3, y: 4 }).unit.magnitude;          // -> 1
-  vector({ x: 3, y: 4, z: 12 }).unit.magnitude;   // -> 1
   ```
 </details>
 
