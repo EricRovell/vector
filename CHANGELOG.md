@@ -1,6 +1,6 @@
 # Rational
 
-## 0.14.0 (2022-12-11)
+## 0.14.0 (2022-12-12)
 
 - [feat]: `.setMagnitudeSelf()` method;
 - [feat]: `.limitSelf()` method;
