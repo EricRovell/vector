@@ -530,6 +530,18 @@ describe("Mutable operations", () => {
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.415, 3.142, 6.284)");
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(2, 4, 7)");
 	});
+	it("Clamps the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (min = 0, max = 1) => {
+			return vector(x, y, z)
+				.clamp(min, max)
+				.toString();
+		};
+
+		expect(fn(1.12, -1.12)()).toBe("(1, 0, 0)");
+		expect(fn(1.12, -1.12)(-2, 2)).toBe("(1.12, -1.12, 0)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 1, 1)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(2, 4)).toBe(`(2, ${Math.PI}, 4)`);
+	});
 });
 
 describe("Properties", () => {

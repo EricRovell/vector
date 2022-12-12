@@ -261,6 +261,19 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.clamp(min = 0, max = 1): Vector</code>
+  </summary>
+
+  Clamps this vector's component values between an upper and lower bound.
+
+  ```js
+  vector(1.2, -1).clamp().toString()        // -> "(1, 0, 0)");
+  vector(5, 10, -2).clamp(2, 8).toString()  // -> "(5, 8, 2)");
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.copy(): Vector</code>
   </summary>
 

@@ -74,6 +74,17 @@ export class Vector {
 	}
 
 	/**
+	 * Clamps this vector's component values between an upper and lower bound.
+	 */
+	clamp(min = 0, max = 1): Vector {
+		this.x = clamp(this.x, min, max);
+		this.y = clamp(this.y, min, max);
+		this.z = clamp(this.z, min, max);
+
+		return this;
+	}
+
+	/**
 	 * Returns a copy of current vector instance.
 	 */
 	copy(): Vector {
