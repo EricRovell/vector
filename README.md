@@ -480,6 +480,32 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.map: Vector</code>
+  </summary>
+
+  Calls a defined callback on every vector component and returns a new `Vector` instance:
+
+  ```js
+  vector(1, 2, 3).map(value => value * 2).toString() // -> "(2, 4, 6)"
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.mapSelf: Vector</code>
+  </summary>
+
+  Calls a defined callback on each of this vector component and returns itself.
+
+  ```js
+  const v = vector(1, 2, 3);
+  v.mapSelf(value => value * 2);
+  v.toString() // -> "(2, 4, 6)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.magnitudeSq: number</code>
   </summary>
 

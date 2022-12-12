@@ -66,22 +66,14 @@ export class Vector {
 	 * Rounds this vector's components values to the next upper bound with defined precision.
 	 */
 	ceil(places = 0): Vector {
-		this.x = ceil(this.x, places);
-		this.y = ceil(this.y, places);
-		this.z = ceil(this.z, places);
-
-		return this;
+		return this.mapSelf(value => ceil(value, places));
 	}
 
 	/**
 	 * Clamps this vector's component values between an upper and lower bound.
 	 */
 	clamp(min = 0, max = 1): Vector {
-		this.x = clamp(this.x, min, max);
-		this.y = clamp(this.y, min, max);
-		this.z = clamp(this.z, min, max);
-
-		return this;
+		return this.mapSelf(value => clamp(value, min, max));
 	}
 
 	/**
@@ -150,11 +142,7 @@ export class Vector {
 	 * Rounds this vector's components values to the next lower bound with defined precision.
 	 */
 	floor(places = 0): Vector {
-		this.x = floor(this.x, places);
-		this.y = floor(this.y, places);
-		this.z = floor(this.z, places);
-
-		return this;
+		return this.mapSelf(value => floor(value, places));
 	}
 
 	/**
@@ -224,6 +212,28 @@ export class Vector {
 	 */
 	get magnitudeSq(): number {
 		return this.x ** 2 + this.y ** 2 + this.z ** 2;
+	}
+
+	/**
+	 * Calls a defined callback on every vector component and returns a new `Vector` instance.
+	 */
+	map(fn: (value: number) => number): Vector {
+		const components = this
+			.toArray()
+			.map(value => fn(value));
+
+		return new Vector(...components);
+	}
+
+	/**
+	 * Calls a defined callback on each of this vector component and returns itself.
+	 */
+	mapSelf(fn: (value: number) => number): Vector {
+		[ this.x, this.y, this.z ] = this
+			.toArray()
+			.map(value => fn(value));
+
+		return this;
 	}
 
 	/**
@@ -311,11 +321,7 @@ export class Vector {
 	 * Rounds this vector's component values to the closest bound with defined precision.
 	 */
 	round(places = 0): Vector {
-		this.x = round(this.x, places);
-		this.y = round(this.y, places);
-		this.z = round(this.z, places);
-
-		return this;
+		return this.mapSelf(value => round(value, places));
 	}
 
 	/**
@@ -423,11 +429,7 @@ export class Vector {
 			value = 1 / value;
 		}
 
-		return new Vector(
-			this.x * value,
-			this.y * value,
-			this.z * value
-		);
+		return this.map(item => item * value);
 	}
 
 	/**
@@ -443,11 +445,7 @@ export class Vector {
 			value = 1 / value;
 		}
 
-		this.x *= value;
-		this.y *= value;
-		this.z *= value;
-
-		return this;
+		return this.mapSelf(item => item * value);
 	}
 
 	/**

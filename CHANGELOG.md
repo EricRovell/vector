@@ -1,5 +1,11 @@
 # Rational
 
+## 0.15.0 (2022-12-12)
+
+- [feat]: `.map()` method;
+- [feat]: `.mapSelf()` method;
+- [refactor]: use `.mapSelf` and `.map` internally to simplify other methods internals;
+
 ## 0.14.0 (2022-12-12)
 
 - [feat]: `.setMagnitudeSelf()` method;

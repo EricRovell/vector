@@ -352,6 +352,16 @@ describe("Operations", () => {
 		// @ts-expect-error: test invalid input
 		expect(fn("f", NaN)).toBe("(0, 0, 0)");
 	});
+	it("Maps the components and creates a new Vector instance", () => {
+		const fn = (x: Input | number, y?: number, z?: number) => (fn: (value: number) => number) => {
+			return vector(x, y, z).map(fn);
+		};
+
+		expect(fn(1, 2, 3)((value: number) => value * 2).equals(2, 4, 6)).toBe(true);
+		expect(fn(2, 4, 6)((value: number) => value / 2).equals(1, 2, 3)).toBe(true);
+		expect(fn(0, 5, 10)((value: number) => value + 2).equals(2, 7, 12)).toBe(true);
+		expect(fn(25, 36, 49)((value: number) => value ** 0.5).equals(5, 6, 7)).toBe(true);
+	});
 });
 
 describe("Mutable operations", () => {
@@ -541,6 +551,18 @@ describe("Mutable operations", () => {
 		expect(fn(1.12, -1.12)(-2, 2)).toBe("(1.12, -1.12, 0)");
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 1, 1)");
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(2, 4)).toBe(`(2, ${Math.PI}, 4)`);
+	});
+	it("Maps the vector component values", () => {
+		const fn = (x: Input | number, y?: number, z?: number) => (fn: (value: number) => number) => {
+			const v = vector(x, y, z);
+			v.mapSelf(fn);
+			return v;
+		};
+
+		expect(fn(1, 2, 3)((value: number) => value * 2).equals(2, 4, 6)).toBe(true);
+		expect(fn(2, 4, 6)((value: number) => value / 2).equals(1, 2, 3)).toBe(true);
+		expect(fn(0, 5, 10)((value: number) => value + 2).equals(2, 7, 12)).toBe(true);
+		expect(fn(25, 36, 49)((value: number) => value ** 0.5).equals(5, 6, 7)).toBe(true);
 	});
 });
 
