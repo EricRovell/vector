@@ -1,10 +1,11 @@
 # Rational
 
-## 0.15.0 (2022-12-12)
+## 0.15.0 (2022-12-13)
 
 - [feat]: `.map()` method;
 - [feat]: `.mapSelf()` method;
 - [refactor]: use `.mapSelf` and `.map` internally to simplify other methods internals;
+- [breaking]: replace `.unit` getter with `.normalize()` method;
 
 ## 0.14.0 (2022-12-12)
 

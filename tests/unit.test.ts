@@ -599,15 +599,15 @@ describe("Properties", () => {
 		expect(fn({ x: 3, y: 4, z: 12 }, 13)).toBe(13);
 	});
 	it("Normalizes the vector and returns a unit vector", () => {
-		const fn = (input: InputUser) => vector(input).unit.magnitude;
+		const fn = (input: InputUser) => vector(input).normalize().magnitude;
 
 		expect(fn({ x: 3, y: 4 })).toBe(1);
 		expect(fn({ x: 3, y: 4, z: 12 })).toBe(1);
 	});
 	it("Do not normalize the zero vector, marks as invalid", () => {
-		expect(vector({ x: 0 }).unit.valid).toBe(false);
-		expect(vector([ 0, 0 ]).unit.valid).toBe(false);
-		expect(vector([ 0, 0, 0 ]).unit.valid).toBe(false);
+		expect(vector({ x: 0 }).normalize().valid).toBe(false);
+		expect(vector([ 0, 0 ]).normalize().valid).toBe(false);
+		expect(vector([ 0, 0, 0 ]).normalize().valid).toBe(false);
 	});
 });
 
