@@ -30,6 +30,13 @@ export function round(number: number, digits = 0, base = Math.pow(10, digits)): 
 }
 
 /**
+ * Round the number up to the desired precision.
+ */
+export function floor(number: number, digits = 0, base = Math.pow(10, digits)): number {
+	return Math.floor(number * base) / base + 0;
+}
+
+/**
  * Validates numbers input.
  */
 export const validateNumbers = (...items: unknown[]) => {

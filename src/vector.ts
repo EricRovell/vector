@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { Component, Input, InputUser } from "./types";
-import { clamp, convertAngle, round } from "./utils";
+import { clamp, convertAngle, floor, round } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -122,6 +122,17 @@ export class Vector {
 			this.y === other.y &&
 			this.z === other.z
 		);
+	}
+
+	/**
+	 * Rounds this vector's components values to the next lower bound with defined precision.
+	 */
+	floor(places = 0) {
+		this.x = floor(this.x, places);
+		this.y = floor(this.y, places);
+		this.z = floor(this.z, places);
+
+		return this;
 	}
 
 	/**
@@ -275,7 +286,7 @@ export class Vector {
 	}
 
 	/**
-	 * Rounds this vector's component values up to the desired precision.
+	 * Rounds this vector's component values to the closest bound with defined precision.
 	 */
 	round(places = 0) {
 		this.x = round(this.x, places);

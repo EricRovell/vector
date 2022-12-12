@@ -502,6 +502,20 @@ describe("Mutable operations", () => {
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.414, 3.142, 6.283)");
 		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 3, 6)");
 	});
+	it("Floors the vector components values", () => {
+		const fn = (x: number | InputUser, y?: number, z?: number) => (places = 0) => {
+			return vector(x, y, z)
+				.floor(places)
+				.toString();
+		};
+
+		expect(fn(1.12345)(4)).toBe("(1.1234, 0, 0)");
+		expect(fn(1.12345, 2.45678)(4)).toBe("(1.1234, 2.4567, 0)");
+		expect(fn(1.12345, 2.45678, 3.78921)(4)).toBe("(1.1234, 2.4567, 3.7892)");
+		expect(fn(1.12345, 2.45678, 3.78921)()).toBe("(1, 2, 3)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)(3)).toBe("(1.414, 3.141, 6.283)");
+		expect(fn(Math.SQRT2, Math.PI, 2 * Math.PI)()).toBe("(1, 3, 6)");
+	});
 });
 
 describe("Properties", () => {

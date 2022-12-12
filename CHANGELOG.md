@@ -5,6 +5,7 @@
 - [feat]: `.setMagnitudeSelf()` method;
 - [feat]: `.limitSelf()` method;
 - [feat]: `round` method;
+- [feat]: `floor` method;
 
 ## 0.13.0 (2022-12-10)
 

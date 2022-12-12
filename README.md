@@ -329,6 +329,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.floor(places = 0): Vector</code>
+  </summary>
+
+  Rounds this vector's components values to the next lower bound with defined precision.
+
+  ```js
+  vector(1.12345).floor(4).toString()                           // -> "(1.1234, 0, 0)");
+  vector(1.12345, 2.45678).floor(4).toString()                  // -> "(1.1234, 2.4567, 0)");
+  vector(1.12345, 2.45678, 3.78921).floor(4).toString()         // -> "(1.1234, 2.4567, 3.7892)");
+  vector(Math.SQRT2, Math.PI, 2 * Math.PI).floor(3).toString()  // -> "(1.414, 3.141, 6.283)");
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.getPhi(degrees = false): number</code>
   </summary>
 
@@ -563,7 +578,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
     <code>.round(places = 0): Vector</code>
   </summary>
 
-  Rounds this vector's component values up to the desired precision.
+  Rounds this vector's component values to the closest bound with defined precision.
 
   ```js
   vector(1.12345).round(4).toString()                           // -> "(1.1235, 0, 0)");
