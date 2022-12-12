@@ -6,6 +6,7 @@
 - [feat]: `.limitSelf()` method;
 - [feat]: `round` method;
 - [feat]: `floor` method;
+- [feat]: `ceil` method;
 
 ## 0.13.0 (2022-12-10)
 

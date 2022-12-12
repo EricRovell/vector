@@ -246,6 +246,21 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.ceil(places = 0): Vector</code>
+  </summary>
+
+  Rounds this vector's components values to the next upper bound with defined precision.
+
+  ```js
+  vector(1.12345).ceil(4).toString()                           // -> "(1.1235, 0, 0)");
+  vector(1.12345, 2.45678).ceil(4).toString()                  // -> "(1.1235, 2.4568, 0)");
+  vector(1.12345, 2.45678, 3.78921).ceil().toString()          // -> "(2, 3, 4)");
+  vector(Math.SQRT2, Math.PI, 2 * Math.PI).ceil(3).toString()  // -> "(1.415, 3.142, 6.284)");
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.copy(): Vector</code>
   </summary>
 

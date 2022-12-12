@@ -1,6 +1,6 @@
 import { parse } from "./parser";
 import type { Component, Input, InputUser } from "./types";
-import { clamp, convertAngle, floor, round } from "./utils";
+import { ceil, clamp, convertAngle, floor, round } from "./utils";
 
 /**
  * A class to describe a 2 or 3-dimensional vector,
@@ -60,6 +60,17 @@ export class Vector {
 		const cosine = clamp(this.dot(other) / magnitude / magnitudeOther, -1, 1);
 		const angle = Math.acos(cosine) * (signed ? Math.sign(this.cross(other).z || 1) : 1);
 		return convertAngle(angle, degrees);
+	}
+
+	/**
+	 * Rounds this vector's components values to the next upper bound with defined precision.
+	 */
+	ceil(places = 0) {
+		this.x = ceil(this.x, places);
+		this.y = ceil(this.y, places);
+		this.z = ceil(this.z, places);
+
+		return this;
 	}
 
 	/**
