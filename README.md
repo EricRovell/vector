@@ -480,6 +480,18 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
+    <code>.map: Vector</code>
+  </summary>
+
+  Calls a defined callack on every vector component and returns a new `Vector` instance:
+
+  ```js
+  vector(1, 2, 3).map(value => value * 2).toString() // -> "(2, 4, 6)"
+  ```
+</details>
+
+<details>
+  <summary>
     <code>.magnitudeSq: number</code>
   </summary>
 

@@ -227,6 +227,17 @@ export class Vector {
 	}
 
 	/**
+	 * Calls a defined callack on every vector component and returns a new `Vector` instance.
+	 */
+	map(fn: (value: number) => number): Vector {
+		const components = this
+			.toArray()
+			.map(value => fn(value));
+
+		return new Vector(...components);
+	}
+
+	/**
 	 * Makes the current vector a unit vector (sets the magnitude to 1).
 	 */
 	normalizeSelf(): Vector {

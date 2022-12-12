@@ -1,5 +1,9 @@
 # Rational
 
+## 0.15.0 (2022-12-12)
+
+- [feat]: `.map()` method;
+
 ## 0.14.0 (2022-12-12)
 
 - [feat]: `.setMagnitudeSelf()` method;
