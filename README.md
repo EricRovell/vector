@@ -480,7 +480,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.map: Vector</code>
+    <code>.map(fn: (value: number) => number): Vector</code>
   </summary>
 
   Calls a defined callback on every vector component and returns a new `Vector` instance:
@@ -492,7 +492,7 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
 <details>
   <summary>
-    <code>.mapSelf: Vector</code>
+    <code>.mapSelf(fn: (value: number) => number): Vector</code>
   </summary>
 
   Calls a defined callback on each of this vector component and returns itself.
