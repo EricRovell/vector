@@ -65,7 +65,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's components values to the next upper bound with defined precision.
 	 */
-	ceil(places = 0) {
+	ceil(places = 0): Vector {
 		this.x = ceil(this.x, places);
 		this.y = ceil(this.y, places);
 		this.z = ceil(this.z, places);
@@ -149,7 +149,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's components values to the next lower bound with defined precision.
 	 */
-	floor(places = 0) {
+	floor(places = 0): Vector {
 		this.x = floor(this.x, places);
 		this.y = floor(this.y, places);
 		this.z = floor(this.z, places);
@@ -310,7 +310,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's component values to the closest bound with defined precision.
 	 */
-	round(places = 0) {
+	round(places = 0): Vector {
 		this.x = round(this.x, places);
 		this.y = round(this.y, places);
 		this.z = round(this.z, places);
