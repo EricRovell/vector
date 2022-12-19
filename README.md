@@ -1027,3 +1027,7 @@ export type {
 ## Tests
 
 To run the tests use the `npm run test` command.
+
+## Attribution
+
+Vector's logo is done thanks to [FreakAddL](https://t.me/portfolio_e_g)
