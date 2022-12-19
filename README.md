@@ -51,10 +51,10 @@ Euclidian vector (also known as "Geometric" vector) library written in Typescrip
 ## Features
 
 - Dependency-free;
-- Extendable;
-- Immutable;
-- Simple chainable API;
-- Types included;
+- [Extendable](#extendibility);
+- Both [immutable and mutable](#immutability) methods;
+- [Chainable API](#method-chaining);
+- [Types included](#types);
 - Works in a browser and Node.js;
 
 ## Getting started
@@ -948,6 +948,15 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 </details>
 
 ## Other Features
+
+### Immutability
+
+All operations have both mutable and immutable methods. They are easy to distinguish by `self` postfix:
+
+- `.add()` is immutable;
+- `addSelf()` is mutable;
+
+The only exception are rounding that are mutable only: `.round()`, `.ceil()`, `floor()`, and `clamp()`.
 
 ### Extendibility
 
