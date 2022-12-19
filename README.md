@@ -970,6 +970,24 @@ const instance = new VectorExtended([ 1, 2, 3 ]);
 instance.sum; // -> 6
 ```
 
+## Method Chaining
+
+Most of the methods are chainable, no matter is it mutable or immutable method:
+
+```
+const v = vector(1, 2, 3)
+  .add(1, 2, 3)
+  .sub(1, 2, 3)
+  .scale(2)
+  .toString(); // "(2, 4, 6)";
+
+const v = vector(1, 2, 3)
+  .addSelf(1, 2, 3)
+  .subSelf(1, 2, 3)
+  .scaleSelf(2)
+  .toString(); // "(2, 4, 6)";
+```
+
 ## Iterability
 
 The `Vector` instance can be iterated via `for ... of` loop to loop through the vector's components:
