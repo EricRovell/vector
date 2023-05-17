@@ -365,6 +365,8 @@ describe("Vector operations", () => {
 			v2: Coords;
 			outputRadians: number;
 			outputDegrees: number;
+			sign: -1 | 0 | 1;
+			signInverse: -1 | 0 | 1;
 		}
 
 		const tests: TestCase[] = [
@@ -372,72 +374,155 @@ describe("Vector operations", () => {
 				v1: { x: 1, y: 2, z: 3 },
 				v2: { x: 2, y: 3, z: 4 },
 				outputRadians: 0.12187,
-				outputDegrees: 6.98250
+				outputDegrees: 6.98250,
+				sign: -1,
+				signInverse: 1
 			},
 			{
 				v1: { x: 1, y: -2, z: 3 },
 				v2: { x: -2, y: 3, z: -4 },
 				outputRadians: 3.01973,
-				outputDegrees: 173.01750
+				outputDegrees: 173.01750,
+				sign: -1,
+				signInverse: 1
 			},
 			{
 				v1: { x: -1, y: 2, z: -3 },
 				v2: { x: 1, y: -2, z: 3 },
 				outputRadians: Math.PI,
-				outputDegrees: 180
+				outputDegrees: 180,
+				sign: 1,
+				signInverse: 1
 			},
 			{
 				v1: { x: -1, y: -2, z: -3 },
 				v2: { x: -1, y: -2, z: -3 },
 				outputRadians: 0,
-				outputDegrees: 0
+				outputDegrees: 0,
+				sign: 0,
+				signInverse: 0
+			},
+			{
+				v1: { x: 0, y: 0, z: 0 },
+				v2: { x: -1, y: -2, z: -3 },
+				outputRadians: 0,
+				outputDegrees: 0,
+				sign: 0,
+				signInverse: 0
+			},
+			{
+				v1: { x: -1, y: -2, z: -3 },
+				v2: { x: 0, y: 0, z: 0 },
+				outputRadians: 0,
+				outputDegrees: 0,
+				sign: 0,
+				signInverse: 0
 			}
 		];
 
-		describe("Radians", () => {
-			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
-					return vector(v1.x, v1.y, v1.z).angle(v2);
-				};
-	
-				for (const { v1, v2, outputRadians } of tests) {
-					expect(test(v1, v2)).toBeCloseTo(outputRadians, 5);
-					expect(test(v2, v1)).toBeCloseTo(outputRadians, 5);
-				}
+		
+		describe("Unsigined", () => {
+			describe("Radians", () => {
+				it("Should use plane arguments as an input", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						return vector(v1.x, v1.y, v1.z).angle(v2);
+					};
+		
+					for (const { v1, v2, outputRadians } of tests) {
+						expect(test(v1, v2)).toBeCloseTo(outputRadians, 5);
+						expect(test(v2, v1)).toBeCloseTo(outputRadians, 5);
+					}
+				});
+				it("Should use plane arguments as an input and another vector instance", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						const another = vector(v2.x, v2.y, v2.z);
+						return vector(v1.x, v1.y, v1.z).angle(another);
+					};
+		
+					for (const { v1, v2, outputRadians } of tests) {
+						expect(test(v1, v2)).toBeCloseTo(outputRadians, 5);
+						expect(test(v2, v1)).toBeCloseTo(outputRadians, 5);
+					}
+				});
 			});
-			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
-					const another = vector(v2.x, v2.y, v2.z);
-					return vector(v1.x, v1.y, v1.z).angle(another);
-				};
-	
-				for (const { v1, v2, outputRadians } of tests) {
-					expect(test(v1, v2)).toBeCloseTo(outputRadians, 5);
-					expect(test(v2, v1)).toBeCloseTo(outputRadians, 5);
-				}
+			describe("Degrees", () => {
+				it("Should use plane arguments as an input", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						return vector(v1.x, v1.y, v1.z).angle(v2, false, true);
+					};
+		
+					for (const { v1, v2, outputDegrees } of tests) {
+						expect(test(v1, v2)).toBeCloseTo(outputDegrees, 5);
+						expect(test(v2, v1)).toBeCloseTo(outputDegrees, 5);
+					}
+				});
+				it("Should use plane arguments as an input and another vector instance", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						const another = vector(v2.x, v2.y, v2.z);
+						return vector(v1.x, v1.y, v1.z).angle(another, false, true);
+					};
+		
+					for (const { v1, v2, outputDegrees } of tests) {
+						expect(test(v1, v2)).toBeCloseTo(outputDegrees, 5);
+						expect(test(v2, v1)).toBeCloseTo(outputDegrees, 5);
+					}
+				});
 			});
 		});
-		describe("Degrees", () => {
-			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
-					return vector(v1.x, v1.y, v1.z).angle(v2, false, true);
-				};
-	
-				for (const { v1, v2, outputDegrees } of tests) {
-					expect(test(v1, v2)).toBeCloseTo(outputDegrees, 5);
-					expect(test(v2, v1)).toBeCloseTo(outputDegrees, 5);
-				}
+		describe("Signed", () => {
+			describe("Radians", () => {
+				it("Should use plane arguments as an input", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						return Math.sign(
+							vector(v1.x, v1.y, v1.z).angle(v2, true)
+						);
+					};
+		
+					for (const { v1, v2, sign, signInverse } of tests) {
+						expect(test(v1, v2)).toBe(sign);
+						expect(test(v2, v1)).toBe(signInverse);
+					}
+				});
+				it("Should use plane arguments as an input and another vector instance", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						const another = vector(v2.x, v2.y, v2.z);
+						return Math.sign(
+							vector(v1.x, v1.y, v1.z).angle(another, true)
+						);
+					};
+		
+					for (const { v1, v2, sign, signInverse } of tests) {
+						expect(test(v1, v2)).toBe(sign);
+						expect(test(v2, v1)).toBe(signInverse);
+					}
+				});
 			});
-			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
-					const another = vector(v2.x, v2.y, v2.z);
-					return vector(v1.x, v1.y, v1.z).angle(another, false, true);
-				};
-	
-				for (const { v1, v2, outputDegrees } of tests) {
-					expect(test(v1, v2)).toBeCloseTo(outputDegrees, 5);
-					expect(test(v2, v1)).toBeCloseTo(outputDegrees, 5);
-				}
+			describe("Degrees", () => {
+				it("Should use plane arguments as an input", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						return Math.sign(
+							vector(v1.x, v1.y, v1.z).angle(v2, true, true)
+						);
+					};
+		
+					for (const { v1, v2, sign, signInverse } of tests) {
+						expect(test(v1, v2)).toBe(sign);
+						expect(test(v2, v1)).toBe(signInverse);
+					}
+				});
+				it("Should use plane arguments as an input and another vector instance", () => {
+					const test = (v1: Coords, v2: Coords) => {
+						const another = vector(v2.x, v2.y, v2.z);
+						return Math.sign(
+							vector(v1.x, v1.y, v1.z).angle(another, true, true)
+						);
+					};
+		
+					for (const { v1, v2, sign, signInverse } of tests) {
+						expect(test(v1, v2)).toBe(sign);
+						expect(test(v2, v1)).toBe(signInverse);
+					}
+				});
 			});
 		});
 	});
