@@ -19,10 +19,10 @@ export type CoordsTuple = readonly [ x: number, y?: number, z?: number ];
  *   - `theta` is the azimuthal angle;
  */
 export interface CoordsPolar {
+	degrees?: boolean;
 	magnitude: number;
 	phi: number;
 	theta: number;
-	degrees: boolean;
 }
 
 /**
@@ -52,6 +52,11 @@ export type InputUser =
  * Vector or user input that can be transformed to Vector instance.
  */
 export type Input = InputUser | Vector;
+
+/**
+ * Defines a string representation of a vector.
+ */
+export type VectorString = `(${number}, ${number}, ${number})`;
 
 /**
  * Parser function that attempts to produce a Ratio.
