@@ -1,5 +1,9 @@
 # Rational
 
+## 0.15.1 (2023-05-17)
+
+- [fix]: handle non-positive values for `.limit()` and `.limitSelf()` methods;
+
 ## 0.15.0 (2022-12-13)
 
 - [feat]: `.map()` method;

@@ -183,6 +183,10 @@ export class Vector {
 	 * Limits the magnitude of the vector and returns a new `Vector` instance.
 	 */
 	limit(value: number): Vector {
+		if (value <= 0) {
+			return this.setMagnitude(0);
+		}
+
 		return this.magnitudeSq < value ** 2
 			? this
 			: this.setMagnitude(value);
@@ -192,6 +196,10 @@ export class Vector {
 	 * Limits the magnitude of this vector and returns itself.
 	 */
 	limitSelf(value: number): Vector {
+		if (value <= 0) {
+			return this.setMagnitudeSelf(0);
+		}
+
 		if (this.magnitudeSq < value ** 2) {
 			return this;
 		}
