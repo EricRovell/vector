@@ -3,5 +3,6 @@ export type {
 	Coords,
 	CoordsTuple,
 	Input,
-	InputUser
+	InputUser,
+	VectorString
 } from "./types";
