@@ -1,11 +1,11 @@
 import { parsers } from "./parsers";
-import type { CoordsTuple, InputUser } from "../types";
+import type { CartesianTuple, UserInput } from "../types";
 import { validateNumbers } from "../utils";
 
-type Parser = (x?: InputUser | number, y?: number, z?: number) => CoordsTuple | null;
+type Parser = (x?: UserInput | number, y?: number, z?: number) => CartesianTuple | null;
 
 /**
- * Parses input into CoordsTupe.
+ * Parses input into CartesianTupe.
  *
  * Supported input:
  *  + parse(x, y, z);

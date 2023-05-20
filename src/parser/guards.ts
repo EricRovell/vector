@@ -1,7 +1,7 @@
 import { isObject, validateNumbers } from "../utils";
-import type { Coords, CoordsPolar, CoordsTuple, CoordsCylindrical } from "../types";
+import type { Cartesian, Polar, CartesianTuple, Cylindrical } from "../types";
 
-export const isCoords = (input: unknown): input is Coords => {
+export const isCartesian = (input: unknown): input is Cartesian => {
 	if (!isObject(input)) {
 		return false;
 	}
@@ -10,7 +10,7 @@ export const isCoords = (input: unknown): input is Coords => {
 		.some(key => key in input));
 };
 
-export const isCoordsPolar = (input: unknown): input is CoordsPolar => {
+export const isPolar = (input: unknown): input is Polar => {
 	if (!isObject(input)) {
 		return false;
 	}
@@ -19,7 +19,7 @@ export const isCoordsPolar = (input: unknown): input is CoordsPolar => {
 		.some(key => key in input);
 };
 
-export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
+export const isCartesianTuple = (input: unknown): input is CartesianTuple => {
 	if (!Array.isArray(input) || input.length < 1 || input.length > 3) {
 		return false;
 	}
@@ -27,7 +27,7 @@ export const isCoordsTuple = (input: unknown): input is CoordsTuple => {
 	return validateNumbers(...input);
 };
 
-export const isCoordsCylindrical = (input: unknown): input is CoordsCylindrical => {
+export const isCylindrical = (input: unknown): input is Cylindrical => {
 	if (!isObject(input)) {
 		return false;
 	}

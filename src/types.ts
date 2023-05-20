@@ -1,24 +1,27 @@
 import type { Vector } from "./vector";
 
 /**
- * Vector components.
+ * Cartesian vector components.
  */
 export type Component = "x" | "y" | "z";
 
-export interface Coords {
+/**
+ * Vector state defined in Cartesian coordinate system.
+ */
+export interface Cartesian {
 	x: number;
 	y: number;
 	z: number;
 }
 
-export type CoordsTuple = readonly [ x: number, y?: number, z?: number ];
+export type CartesianTuple = readonly [ x: number, y?: number, z?: number ];
 
 /**
- * Vector defined in polar coordinates:
- *   - `phi` is the polar angle;
- *   - `theta` is the azimuthal angle;
+ * Vector state defined in Polar coordinate system:
+ *   - `phi` - the polar angle;
+ *   - `theta` - the azimuthal angle;
  */
-export interface CoordsPolar {
+export interface Polar {
 	degrees?: boolean;
 	magnitude: number;
 	phi: number;
@@ -26,12 +29,12 @@ export interface CoordsPolar {
 }
 
 /**
- * Vector defined in Cylindrical coordinates:
+ * Vector state defined in Cylindrical coordinate system:
  * 	- r: radias distance;
  * 	- phi: azimuthal angle;
  * 	- z: height;
  */
-export interface CoordsCylindrical {
+export interface Cylindrical {
 	degrees?: boolean;
 	p: number;
 	phi: number;
@@ -39,19 +42,19 @@ export interface CoordsCylindrical {
 }
 
 /**
- * Valid user input to build a Vector from.
+ * Valid user input to build a Vector instance from.
  */
-export type InputUser =
-	| Partial<Coords>
-	| CoordsCylindrical
-	| Partial<CoordsPolar>
-	| CoordsTuple;
+export type UserInput =
+	| Partial<Cartesian>
+	| Cylindrical
+	| Partial<Polar>
+	| CartesianTuple;
 
 /**
  * Defines an input for operations where
- * Vector or user input that can be transformed to Vector instance.
+ * Vector or user input that can be transformed into Vector instance.
  */
-export type Input = InputUser | Vector;
+export type Input = UserInput | Vector;
 
 /**
  * Defines a string representation of a vector.
@@ -61,4 +64,4 @@ export type VectorString = `(${number}, ${number}, ${number})`;
 /**
  * Parser function that attempts to produce a Ratio.
  */
-export type Parser<T = InputUser> = (input: T) => CoordsTuple | null;
+export type Parser<T = UserInput> = (input: T) => CartesianTuple | null;

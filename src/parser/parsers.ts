@@ -1,13 +1,13 @@
 import { round, deg2rad } from "../utils";
-import { isCoords, isCoordsCylindrical, isCoordsPolar, isCoordsTuple } from "./guards";
+import { isCartesian, isCylindrical, isPolar, isCartesianTuple } from "./guards";
 import type { Parser } from "../types";
 
 /**
  * Parses a coordinates object.
  */
-const parseCoordsObject: Parser = coords => {
-	if (isCoords(coords)) {
-		const { x = 0, y = 0, z = 0 } = coords;
+const parseCartesianObject: Parser = Cartesian => {
+	if (isCartesian(Cartesian)) {
+		const { x = 0, y = 0, z = 0 } = Cartesian;
 		return [ x, y, z ];
 	}
 
@@ -17,16 +17,16 @@ const parseCoordsObject: Parser = coords => {
 /**
  * Parses vector in polar coordinates.
  */
-const parseCoordsPolar: Parser = coords => {
-	if (!isCoordsPolar(coords)) {
+const parsePolar: Parser = Cartesian => {
+	if (!isPolar(Cartesian)) {
 		return null;
 	}
 
-	const { degrees = false, magnitude = 1 } = coords;
+	const { degrees = false, magnitude = 1 } = Cartesian;
 	let {
 		phi = 0,
 		theta = (degrees ? 90 : Math.PI / 2)
-	} = coords;
+	} = Cartesian;
 
 	if ([ magnitude, phi, theta ].some(value => typeof value !== "number" || Number.isNaN(value))) {
 		return null;
@@ -47,12 +47,12 @@ const parseCoordsPolar: Parser = coords => {
 /**
  * Parses vector in cylindrical coordinates.
  */
-const parseCoordsCylindrical: Parser = coords => {
-	if (!isCoordsCylindrical(coords)) {
+const parseCylindrical: Parser = Cartesian => {
+	if (!isCylindrical(Cartesian)) {
 		return null;
 	}
 
-	const { degrees = false, p = 1, phi = 0, z = 0 } = coords;
+	const { degrees = false, p = 1, phi = 0, z = 0 } = Cartesian;
 	const angle = degrees ? phi * deg2rad : phi;
 
 	return [
@@ -65,12 +65,12 @@ const parseCoordsCylindrical: Parser = coords => {
 /**
  * Parses a coordinates tuple.
  */
-const parseCoordsTuple: Parser = coords => {
-	if (!isCoordsTuple(coords)) {
+const parseCartesianTuple: Parser = Cartesian => {
+	if (!isCartesianTuple(Cartesian)) {
 		return null;
 	}
 
-	const [ x = 0, y = 0, z = 0 ] = coords;
+	const [ x = 0, y = 0, z = 0 ] = Cartesian;
 	return [ x, y, z ];
 };
 
@@ -84,8 +84,8 @@ const parseCoordsTuple: Parser = coords => {
  * Cartesian and spherical have no intersection, so all properties are optional.
  */
 export const parsers: Parser[] = [
-	parseCoordsTuple,
-	parseCoordsCylindrical,
-	parseCoordsPolar,
-	parseCoordsObject
+	parseCartesianTuple,
+	parseCylindrical,
+	parsePolar,
+	parseCartesianObject
 ];

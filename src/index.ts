@@ -1,8 +1,10 @@
 export { vector, Vector } from "./vector";
 export type {
-	Coords,
-	CoordsTuple,
+	Cartesian,
+	CartesianTuple,
+	Polar,
+	Cylindrical,
 	Input,
-	InputUser,
+	UserInput,
 	VectorString
 } from "./types";

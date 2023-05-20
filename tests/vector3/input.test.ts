@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { vector } from "../../src";
 import type {
-	Coords,
-	CoordsCylindrical,
-	CoordsPolar,
-	CoordsTuple,
+	Cartesian,
+	Cylindrical,
+	Polar,
+	CartesianTuple,
 	Input,
 	VectorString
 } from "../../src/types";
@@ -44,7 +44,7 @@ describe("Parsing user input", () => {
 			const test = (x: number, y?: number, z?: number) => vector(x, y, z).toString();
 	
 			interface TestCase {
-				input: CoordsTuple;
+				input: CartesianTuple;
 				output: `(${number}, ${number}, ${number})`;
 			}
 	
@@ -70,10 +70,10 @@ describe("Parsing user input", () => {
 	});
 	describe("Parsing a cartesian coordinates object", () => {
 		it("Should handle a valid input", () => {
-			const test = (input: Coords) => vector(input).toString();
+			const test = (input: Cartesian) => vector(input).toString();
 	
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				output: VectorString;
 			}
 	
@@ -157,10 +157,10 @@ describe("Parsing user input", () => {
 	});
 	describe("Parsing a cartesian coordinates tuple", () => {
 		it("Should handles a valid input", () => {
-			const test = (input: CoordsTuple) => vector(input).toString();
+			const test = (input: CartesianTuple) => vector(input).toString();
 	
 			interface TestCase {
-				input: CoordsTuple;
+				input: CartesianTuple;
 				output: VectorString;
 			}
 	
@@ -187,7 +187,7 @@ describe("Parsing user input", () => {
 	describe("Parsing a polar coordinates object", () => {
 		it("Should handle an input defined in radians", () => {
 			interface TestCase {
-				input: Partial<Exclude<CoordsPolar, "degrees">>;
+				input: Partial<Exclude<Polar, "degrees">>;
 				output: VectorString;
 			}
 	
@@ -322,7 +322,7 @@ describe("Parsing user input", () => {
 		});
 		it("Should handle an input defined in degrees", () => {
 			interface TestCase {
-				input: Partial<CoordsPolar>;
+				input: Partial<Polar>;
 				output: VectorString;
 			}
 	
@@ -459,7 +459,7 @@ describe("Parsing user input", () => {
 	describe("Parsing a cylindrical coordinates object", () => {
 		it("Should handle an input defined in radians", () => {
 			interface TestCase {
-				input: Partial<Exclude<CoordsCylindrical, "degrees">>;
+				input: Partial<Exclude<Cylindrical, "degrees">>;
 				output: VectorString;
 			}
 	
@@ -492,7 +492,7 @@ describe("Parsing user input", () => {
 		});
 		it("Should handle an input defined in degrees", () => {
 			interface TestCase {
-				input: Partial<CoordsCylindrical>;
+				input: Partial<Cylindrical>;
 				output: VectorString;
 			}
 	

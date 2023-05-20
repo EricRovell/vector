@@ -1,5 +1,5 @@
 import { parse } from "./parser";
-import type { Component, Input, InputUser } from "./types";
+import type { Component, Input, UserInput } from "./types";
 import { ceil, clamp, convertAngle, floor, round } from "./utils";
 
 /**
@@ -12,7 +12,7 @@ export class Vector {
 	y: number;
 	z: number;
 
-	constructor(x?: InputUser | number, y?: number, z?: number) {
+	constructor(x?: UserInput | number, y?: number, z?: number) {
 		this.parsed = parse(x, y, z);
 		const [ vx = 0, vy = 0, vz = 0 ] = this.parsed ?? [];
 		this.x = vx;
@@ -23,7 +23,7 @@ export class Vector {
 	/**
 	 * Performs the addition and returns the sum as new `Vector` instance.
 	 */
-	add(x?: InputUser | number, y?: number, z?: number): Vector {
+	add(x?: UserInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
 		return new Vector([
 			this.x + other.x,
@@ -86,7 +86,7 @@ export class Vector {
 	/**
 	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
 	 */
-	cross(x?: InputUser | number, y?: number, z?: number): Vector {
+	cross(x?: UserInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
 		return new Vector([
 			this.y * other.z - this.z * other.y,
@@ -98,7 +98,7 @@ export class Vector {
 	/**
 	 * Sets this vector to the cross product between the original vector and another valid input.
 	 */
-	crossSelf(x?: InputUser | number, y?: number, z?: number): Vector {
+	crossSelf(x?: UserInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
 		[ this.x, this.y, this.z ] = [
 			this.y * other.z - this.z * other.y,
@@ -113,7 +113,7 @@ export class Vector {
 	 * Calculates the Euclidian distance between two points,
 	 * considering a point as a vector.
 	 */
-	distance(x?: InputUser | number, y?: number, z?: number): number {
+	distance(x?: UserInput | number, y?: number, z?: number): number {
 		return this.distanceSq(x, y, z) ** 0.5;
 	}
 
@@ -123,7 +123,7 @@ export class Vector {
 	 *
 	 * Slighty more efficient to calculate, useful to comparing.
 	 */
-	distanceSq(x?: InputUser | number, y?: number, z?: number): number {
+	distanceSq(x?: UserInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);
 		return (
 			(this.x - other.x) ** 2 +
@@ -135,7 +135,7 @@ export class Vector {
 	/**
 	 * Calculates the dot product of two vectors.
 	 */
-	dot(x?: InputUser | number, y?: number, z?: number): number {
+	dot(x?: UserInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);
 		return this.x * other.x + this.y * other.y + this.z * other.z;
 	}
@@ -143,7 +143,7 @@ export class Vector {
 	/**
 	 * Performs an equality check against another vector input or `Vector` instance.
 	 */
-	equals(x?: InputUser | number, y?: number, z?: number): boolean {
+	equals(x?: UserInput | number, y?: number, z?: number): boolean {
 		const other = vector(x, y, z);
 		return (
 			this.x === other.x &&
@@ -302,7 +302,7 @@ export class Vector {
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */
-	reflect(x?: InputUser | number, y?: number, z?: number): Vector {
+	reflect(x?: UserInput | number, y?: number, z?: number): Vector {
 		const surface = vector(x, y, z).normalize();
 		return this.sub(surface.scale(2 * this.dot(surface)));
 	}

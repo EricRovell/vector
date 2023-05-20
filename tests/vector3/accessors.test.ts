@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { Coords, VectorString, vector } from "../../src";
+import { Cartesian, VectorString, vector } from "../../src";
 
 describe("Accessors", () => {
 	describe("Getters", () => {
 		describe("Magnitude", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				magnitudeSq: number;
 				magnitude: number;
 			}
@@ -41,7 +41,7 @@ describe("Accessors", () => {
 		});
 		describe("Azimuthal angle", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				outputRadians: number;
 				outputDegrees: number;
 			}
@@ -59,7 +59,7 @@ describe("Accessors", () => {
 				}
 			];
 
-			const test = (input: Partial<Coords>, degrees = false) => {
+			const test = (input: Partial<Cartesian>, degrees = false) => {
 				return vector(input).getPhi(degrees);
 			};
 
@@ -76,7 +76,7 @@ describe("Accessors", () => {
 		});
 		describe("Elevation angle", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				outputRadians: number;
 				outputDegrees: number;
 			}
@@ -94,7 +94,7 @@ describe("Accessors", () => {
 				}
 			];
 
-			const test = (input: Partial<Coords>, degrees = false) => {
+			const test = (input: Partial<Cartesian>, degrees = false) => {
 				return vector(input).getTheta(degrees);
 			};
 
@@ -114,7 +114,7 @@ describe("Accessors", () => {
 		describe("Rotation", () => {
 			describe("Azimuthal angle", () => {
 				interface TestCase {
-					input: Partial<Coords>;
+					input: Partial<Cartesian>;
 					angleDegrees: number;
 					angleRadians: number;
 				}
@@ -133,7 +133,7 @@ describe("Accessors", () => {
 				];
 	
 				describe("Immutable", () => {
-					const test = (input: Partial<Coords>, angle: number, degrees = false) => {
+					const test = (input: Partial<Cartesian>, angle: number, degrees = false) => {
 						const instance = vector(input.x, input.y, input.z);
 						expect(instance.getPhi(degrees)).not.toBeCloseTo(angle, 6);
 						expect(instance.setPhi(angle, degrees).getPhi(degrees)).toBeCloseTo(angle, 6);
@@ -150,14 +150,14 @@ describe("Accessors", () => {
 						}
 					});
 					it("Should rotate the azimuthal angle by angle in radians", () => {
-						const test = (input: Partial<Coords>, angle: number) => {
+						const test = (input: Partial<Cartesian>, angle: number) => {
 							return vector(input).rotate(angle);
 						};
 					
 						expect(test({ x: 1 }, 1).rotate(1).rotate(-0.5).getPhi()).toBeCloseTo(1.5, 1);
 					});
 					it("Should rotate the azimuthal angle by angle in degrees", () => {
-						const test = (input: Partial<Coords>, angle: number) => {
+						const test = (input: Partial<Cartesian>, angle: number) => {
 							return vector(input).rotate(angle ,true);
 						};
 					
@@ -165,7 +165,7 @@ describe("Accessors", () => {
 					});
 				});
 				describe("Mutable", () => {
-					const test = (input: Partial<Coords>, angle: number, degrees = false) => {
+					const test = (input: Partial<Cartesian>, angle: number, degrees = false) => {
 						const instance = vector(input.x, input.y, input.z);
 						expect(instance.getPhi(degrees)).not.toBeCloseTo(angle, 6);
 						instance.setPhiSelf(angle, degrees);
@@ -204,7 +204,7 @@ describe("Accessors", () => {
 			});
 			describe("Elevation angle", () => {
 				interface TestCase {
-					input: Partial<Coords>;
+					input: Partial<Cartesian>;
 					angleDegrees: number;
 					angleRadians: number;
 				}
@@ -223,7 +223,7 @@ describe("Accessors", () => {
 				];
 	
 				describe("Immutable", () => {
-					const test = (input: Partial<Coords>, angle: number, degrees = false) => {
+					const test = (input: Partial<Cartesian>, angle: number, degrees = false) => {
 						const instance = vector(input.x, input.y, input.z);
 						expect(instance.getTheta(degrees)).not.toBeCloseTo(angle, 6);
 						expect(instance.setTheta(angle, degrees).getTheta(degrees)).toBeCloseTo(angle, 6);
@@ -241,7 +241,7 @@ describe("Accessors", () => {
 					});
 				});
 				describe("Mutable", () => {
-					const test = (input: Partial<Coords>, angle: number, degrees = false) => {
+					const test = (input: Partial<Cartesian>, angle: number, degrees = false) => {
 						const instance = vector(input.x, input.y, input.z);
 						expect(instance.getTheta(degrees)).not.toBeCloseTo(angle, 6);
 						instance.setThetaSelf(angle, degrees);
@@ -303,8 +303,8 @@ describe("Accessors", () => {
 		});
 		describe("Components", () => {
 			interface TestCase {
-				v1: Coords;
-				v2: Coords;
+				v1: Cartesian;
+				v2: Cartesian;
 			}
 
 			const tests: TestCase[] = [
@@ -319,7 +319,7 @@ describe("Accessors", () => {
 			];
 			
 			it("Should set the components state from arguments", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
 					instance.set(v2.x, v2.y, v2.z);
 					expect(instance.x).toBe(v2.x);
@@ -332,7 +332,7 @@ describe("Accessors", () => {
 				}
 			});
 			it("Should set the components state from another vector instance", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
 					const anotherInstance = vector(v2.x, v2.y, v2.z);
 					instance.set(anotherInstance);
@@ -352,7 +352,7 @@ describe("Accessors", () => {
 		});
 		describe("Component", () => {
 			interface TestCase {
-				input: Coords;
+				input: Cartesian;
 				component: "x" | "y" | "z";
 				value: number;
 				output: VectorString;
@@ -381,7 +381,7 @@ describe("Accessors", () => {
 
 			describe("Immutable", () => {
 				it("Should set the vector's component value", () => {
-					const test = (v: Coords, component: "x" | "y" | "z", value: number) => {
+					const test = (v: Cartesian, component: "x" | "y" | "z", value: number) => {
 						return vector(v.x, v.y, v.z).setComponent(component, value).toString();
 					};
 	
@@ -418,7 +418,7 @@ describe("Accessors", () => {
 			});
 			describe("Mutable", () => {
 				it("Should set the vector's component value", () => {
-					const test = (v: Coords, component: "x" | "y" | "z", value: number, output: VectorString) => {
+					const test = (v: Cartesian, component: "x" | "y" | "z", value: number, output: VectorString) => {
 						const instance = vector(v.x, v.y, v.z);
 						expect(instance[component]).toBe(v[component]);
 						instance.setComponentSelf(component, value);
@@ -466,7 +466,7 @@ describe("Accessors", () => {
 		});
 		describe("Magnitude", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				magnitude: number;
 				limits: {
 					limit: number;
@@ -557,7 +557,7 @@ describe("Accessors", () => {
 
 			describe("Immutable", () => {
 				it("Should set the magnitude", () => {
-					const test = (input: Partial<Coords>, magnitude: number) => {
+					const test = (input: Partial<Cartesian>, magnitude: number) => {
 						const v1 = vector(input.x, input.y, input.z);
 						const v2 = v1.setMagnitude(magnitude);
 						expect(v1.magnitude).not.toBe(v2.magnitude);
@@ -569,7 +569,7 @@ describe("Accessors", () => {
 					}
 				});
 				it("Should limit the magnitude", () => {
-					const test = (input: Partial<Coords>, magnitude: number, limit: number) => {
+					const test = (input: Partial<Cartesian>, magnitude: number, limit: number) => {
 						return vector(input.x, input.y, input.z)
 							.setMagnitude(magnitude)
 							.limit(limit)
@@ -583,7 +583,7 @@ describe("Accessors", () => {
 					}
 				});
 				it("Should normalize the vector", () => {
-					const test = (input: Partial<Coords>) => {
+					const test = (input: Partial<Cartesian>) => {
 						return vector(input.x, input.y, input.z)
 							.normalize()
 							.magnitude;
@@ -599,7 +599,7 @@ describe("Accessors", () => {
 			});
 			describe("Mutable", () => {
 				it("Should set the magnitude", () => {
-					const test = (input: Partial<Coords>, magnitude: number) => {
+					const test = (input: Partial<Cartesian>, magnitude: number) => {
 						const instance = vector(input.x, input.y, input.z);
 						expect(instance.magnitude).not.toBe(magnitude);
 						instance.setMagnitudeSelf(magnitude);
@@ -611,7 +611,7 @@ describe("Accessors", () => {
 					}
 				});
 				it("Should limit the magnitude", () => {
-					const test = (input: Partial<Coords>, magnitude: number, limit: number) => {
+					const test = (input: Partial<Cartesian>, magnitude: number, limit: number) => {
 						const instance = vector(input.x, input.y, input.z);
 						instance.setMagnitudeSelf(magnitude);
 						instance.limitSelf(limit);
@@ -625,7 +625,7 @@ describe("Accessors", () => {
 					}
 				});
 				it("Should normalize the vector", () => {
-					const test = (input: Partial<Coords>) => {
+					const test = (input: Partial<Cartesian>) => {
 						const instance = vector(input.x, input.y, input.z);
 						instance.normalizeSelf();
 						return instance.magnitude;
@@ -642,7 +642,7 @@ describe("Accessors", () => {
 		});
 		describe("Inversion", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				output: VectorString;
 			}
 
@@ -674,7 +674,7 @@ describe("Accessors", () => {
 			];
 
 			describe("Immutable", () => {
-				const test = (input: Partial<Coords>, output: VectorString) => {
+				const test = (input: Partial<Cartesian>, output: VectorString) => {
 					const instance = vector(input.x, input.y, input.z).inverted;
 					expect(instance.toString()).toBe(output);
 				};
@@ -688,7 +688,7 @@ describe("Accessors", () => {
 		});
 		describe("Rounding", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				places?: number;
 				clampRange?: [ left: number, right: number],
 				outputRound: VectorString;
@@ -821,7 +821,7 @@ describe("Accessors", () => {
 		});
 		describe("Mapping", () => {
 			interface TestCase {
-				input: Partial<Coords>;
+				input: Partial<Cartesian>;
 				func: (value: number) => number;
 				output: VectorString;
 			}
@@ -850,7 +850,7 @@ describe("Accessors", () => {
 			];
 
 			describe("Immutable", () => {
-				const test = (input: Partial<Coords>, func: TestCase["func"]) => {
+				const test = (input: Partial<Cartesian>, func: TestCase["func"]) => {
 					return vector(input.x, input.y, input.z)
 						.map(func)
 						.toString();
@@ -863,7 +863,7 @@ describe("Accessors", () => {
 				});
 			});
 			describe("Mutable", () => {
-				const test = (input: Partial<Coords>, func: TestCase["func"]) => {
+				const test = (input: Partial<Cartesian>, func: TestCase["func"]) => {
 					const instance = vector(input.x, input.y, input.z);
 					instance.mapSelf(func);
 					return instance.toString();

@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { Coords, VectorString, vector } from "../../src";
+import { Cartesian, VectorString, vector } from "../../src";
 
 describe("Vector operations", () => {
 	describe("Addition", () => {
 		interface TestCase {
-			v1: Partial<Coords>;
-			v2: Partial<Coords>;
+			v1: Partial<Cartesian>;
+			v2: Partial<Cartesian>;
 			output: VectorString;
 		}
 
@@ -34,7 +34,7 @@ describe("Vector operations", () => {
 
 		describe("Immutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>) => {
 					return vector(v1.x, v1.y, v1.z).add(v2.x, v2.y, v2.z).toString();
 				};
 
@@ -44,7 +44,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>) => {
 					const another = vector(v2.x, v2.y, v2.z);
 					return vector(v1.x, v1.y, v1.z).add(another).toString();
 				};
@@ -57,7 +57,7 @@ describe("Vector operations", () => {
 		});
 		describe("Mutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>, output: VectorString) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>, output: VectorString) => {
 					const v = vector(v1.x, v1.y, v1.z);
 					expect(v.toString()).toBe(`(${v1.x || 0}, ${v1.y || 0}, ${v1.z || 0})`);
 					v.addSelf(v2.x as number, v2.y, v2.z);
@@ -70,7 +70,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>, output: VectorString) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>, output: VectorString) => {
 					const v11 = vector(v1.x, v1.y, v1.z);
 					const v22 = vector(v2.x, v2.y, v2.z);
 					expect(v11.toString()).toBe(`(${v1.x || 0}, ${v1.y || 0}, ${v1.z || 0})`);
@@ -96,8 +96,8 @@ describe("Vector operations", () => {
 	});
 	describe("Subtraction", () => {
 		interface TestCase {
-			v1: Partial<Coords>;
-			v2: Partial<Coords>;
+			v1: Partial<Cartesian>;
+			v2: Partial<Cartesian>;
 			output12: VectorString;
 			output21: VectorString;
 		}
@@ -137,7 +137,7 @@ describe("Vector operations", () => {
 
 		describe("Immutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>) => {
 					return vector(v1.x, v1.y, v1.z).sub(v2.x as number, v2.y, v2.z).toString();
 				};
 
@@ -147,7 +147,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>) => {
 					const another = vector(v2.x, v2.y, v2.z);
 					return vector(v1.x, v1.y, v1.z).sub(another).toString();
 				};
@@ -160,7 +160,7 @@ describe("Vector operations", () => {
 		});
 		describe("Mutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>, diff: VectorString) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>, diff: VectorString) => {
 					const v = vector(v1.x, v1.y, v1.z);
 					expect(v.toString()).toBe(`(${v1.x || 0}, ${v1.y || 0}, ${v1.z || 0})`);
 					v.subSelf(v2.x as number, v2.y, v2.z);
@@ -173,7 +173,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Partial<Coords>, v2: Partial<Coords>, diff: VectorString) => {
+				const test = (v1: Partial<Cartesian>, v2: Partial<Cartesian>, diff: VectorString) => {
 					const v11 = vector(v1.x, v1.y, v1.z);
 					const v22 = vector(v2.x, v2.y, v2.z);
 					expect(v11.toString()).toBe(`(${v1.x || 0}, ${v1.y || 0}, ${v1.z || 0})`);
@@ -198,8 +198,8 @@ describe("Vector operations", () => {
 	});
 	describe("Cross product", () => {
 		interface TestCase {
-			v1: Coords;
-			v2: Coords;
+			v1: Cartesian;
+			v2: Cartesian;
 			output12: VectorString;
 			output21: VectorString;
 		}
@@ -233,7 +233,7 @@ describe("Vector operations", () => {
 
 		describe("Immutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					return vector(v1.x, v1.y, v1.z).cross(v2.x, v2.y, v2.z).toString();
 				};
 
@@ -243,7 +243,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					const another = vector(v2.x, v2.y, v2.z);
 					return vector(v1.x, v1.y, v1.z).cross(another).toString();
 				};
@@ -256,7 +256,7 @@ describe("Vector operations", () => {
 		});
 		describe("Mutable", () => {
 			it("Should use plane arguments as an input and an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
 					instance.crossSelf(v2.x, v2.y, v2.z);
 					return instance.toString();
@@ -268,7 +268,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-				const test = (v1: Coords, v2: Coords) => {
+				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
 					const anotherInstance = vector(v2.x, v2.y, v2.z);
 					instance.crossSelf(anotherInstance);
@@ -284,8 +284,8 @@ describe("Vector operations", () => {
 	});
 	describe("Dot product", () => {
 		interface TestCase {
-			v1: Coords;
-			v2: Coords;
+			v1: Cartesian;
+			v2: Cartesian;
 			output: number
 		}
 
@@ -313,7 +313,7 @@ describe("Vector operations", () => {
 		];
 
 		it("Should use plane arguments as an input and an addendum", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				return vector(v1.x, v1.y, v1.z).dot(v2.x, v2.y, v2.z);
 			};
 
@@ -323,7 +323,7 @@ describe("Vector operations", () => {
 			}
 		});
 		it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				const another = vector(v2.x, v2.y, v2.z);
 				return vector(v1.x, v1.y, v1.z).dot(another);
 			};
@@ -336,8 +336,8 @@ describe("Vector operations", () => {
 	});
 	describe("Distance between", () => {
 		interface TestCase {
-			v1: Coords;
-			v2: Coords;
+			v1: Cartesian;
+			v2: Cartesian;
 			output: number
 		}
 
@@ -365,7 +365,7 @@ describe("Vector operations", () => {
 		];
 
 		it("Should use plane arguments as an input and an addendum", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				return vector(v1.x, v1.y, v1.z).distance(v2.x, v2.y, v2.z);
 			};
 
@@ -375,7 +375,7 @@ describe("Vector operations", () => {
 			}
 		});
 		it("Should use plane arguments as an input and another vector instance as an addendum", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				const another = vector(v2.x, v2.y, v2.z);
 				return vector(v1.x, v1.y, v1.z).distance(another);
 			};
@@ -388,8 +388,8 @@ describe("Vector operations", () => {
 	});
 	describe("Angle between", () => {
 		interface TestCase {
-			v1: Coords;
-			v2: Coords;
+			v1: Cartesian;
+			v2: Cartesian;
 			outputRadians: number;
 			outputDegrees: number;
 			sign: -1 | 0 | 1;
@@ -451,7 +451,7 @@ describe("Vector operations", () => {
 		describe("Unsigined", () => {
 			describe("Radians", () => {
 				it("Should use plane arguments as an input", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						return vector(v1.x, v1.y, v1.z).angle(v2);
 					};
 		
@@ -461,7 +461,7 @@ describe("Vector operations", () => {
 					}
 				});
 				it("Should use plane arguments as an input and another vector instance", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						const another = vector(v2.x, v2.y, v2.z);
 						return vector(v1.x, v1.y, v1.z).angle(another);
 					};
@@ -474,7 +474,7 @@ describe("Vector operations", () => {
 			});
 			describe("Degrees", () => {
 				it("Should use plane arguments as an input", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						return vector(v1.x, v1.y, v1.z).angle(v2, false, true);
 					};
 		
@@ -484,7 +484,7 @@ describe("Vector operations", () => {
 					}
 				});
 				it("Should use plane arguments as an input and another vector instance", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						const another = vector(v2.x, v2.y, v2.z);
 						return vector(v1.x, v1.y, v1.z).angle(another, false, true);
 					};
@@ -499,7 +499,7 @@ describe("Vector operations", () => {
 		describe("Signed", () => {
 			describe("Radians", () => {
 				it("Should use plane arguments as an input", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						return Math.sign(
 							vector(v1.x, v1.y, v1.z).angle(v2, true)
 						);
@@ -511,7 +511,7 @@ describe("Vector operations", () => {
 					}
 				});
 				it("Should use plane arguments as an input and another vector instance", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						const another = vector(v2.x, v2.y, v2.z);
 						return Math.sign(
 							vector(v1.x, v1.y, v1.z).angle(another, true)
@@ -526,7 +526,7 @@ describe("Vector operations", () => {
 			});
 			describe("Degrees", () => {
 				it("Should use plane arguments as an input", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						return Math.sign(
 							vector(v1.x, v1.y, v1.z).angle(v2, true, true)
 						);
@@ -538,7 +538,7 @@ describe("Vector operations", () => {
 					}
 				});
 				it("Should use plane arguments as an input and another vector instance", () => {
-					const test = (v1: Coords, v2: Coords) => {
+					const test = (v1: Cartesian, v2: Cartesian) => {
 						const another = vector(v2.x, v2.y, v2.z);
 						return Math.sign(
 							vector(v1.x, v1.y, v1.z).angle(another, true, true)
@@ -555,7 +555,7 @@ describe("Vector operations", () => {
 	});
 	describe("Scaling", () => {
 		interface TestCase {
-			input: Coords;
+			input: Cartesian;
 			outputList: {
 				scale: number;
 				output: VectorString;
@@ -593,7 +593,7 @@ describe("Vector operations", () => {
 
 		describe("Immutable", () => {
 			it("Should perform the scalar multiplication of the vector", () => {
-				const test = (v: Coords, scaleValue: number) => {
+				const test = (v: Cartesian, scaleValue: number) => {
 					return vector(v.x, v.y, v.z).scale(scaleValue).toString();
 				};
 
@@ -604,7 +604,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should perform the inversed scalar multiplication of the vector", () => {
-				const test = (v: Coords, scaleValue: number) => {
+				const test = (v: Cartesian, scaleValue: number) => {
 					return vector(v.x, v.y, v.z).scale(scaleValue, true).toString();
 				};
 
@@ -617,7 +617,7 @@ describe("Vector operations", () => {
 		});
 		describe("Mutable", () => {
 			it("Should perform the scalar multiplication of the vector", () => {
-				const test = (v: Coords, scaleValue: number) => {
+				const test = (v: Cartesian, scaleValue: number) => {
 					const instance = vector(v.x, v.y, v.z);
 					instance.scaleSelf(scaleValue);
 					return instance.toString();
@@ -630,7 +630,7 @@ describe("Vector operations", () => {
 				}
 			});
 			it("Should perform the inversed scalar multiplication of the vector", () => {
-				const test = (v: Coords, scaleValue: number) => {
+				const test = (v: Cartesian, scaleValue: number) => {
 					const instance = vector(v.x, v.y, v.z);
 					instance.scaleSelf(scaleValue, true);
 					return instance.toString();
@@ -664,8 +664,8 @@ describe("Vector operations", () => {
 	});
 	describe("Linear interpolation", () => {
 		interface TestCase {
-			input: Coords;
-			destination: Coords;
+			input: Cartesian;
+			destination: Cartesian;
 			steps: {
 				step: number;
 				output: VectorString;
@@ -702,7 +702,7 @@ describe("Vector operations", () => {
 		];
 
 		it("Should linearly interpolate the vector to destination vector", () => {
-			const test = (input: Coords, destination: Coords, steps: TestCase["steps"]) => {
+			const test = (input: Cartesian, destination: Cartesian, steps: TestCase["steps"]) => {
 				const v1 = vector(input.x, input.y, input.z);
 				const v2 = vector(destination.x, destination.y, destination.z);
 
@@ -716,7 +716,7 @@ describe("Vector operations", () => {
 			}
 		});
 		it("Should use the input as fallback on negative step value", () => {
-			const test = (input: Coords, destination: Coords) => {
+			const test = (input: Cartesian, destination: Cartesian) => {
 				const v1 = vector(input.x, input.y, input.z);
 				const v2 = vector(destination.x, destination.y, destination.z);
 				expect(v1.lerp(v2).toString()).toBe(v2.toString());
@@ -727,7 +727,7 @@ describe("Vector operations", () => {
 			}
 		});
 		it("Should come to destination when step is not provided", () => {
-			const test = (input: Coords, destination: Coords) => {
+			const test = (input: Cartesian, destination: Cartesian) => {
 				const v1 = vector(input.x, input.y, input.z);
 				const v2 = vector(destination.x, destination.y, destination.z);
 				expect(v1.lerp(v2, -1).toString()).toBe(v1.toString());
@@ -740,8 +740,8 @@ describe("Vector operations", () => {
 	});
 	describe("Reflection", () => {
 		interface TestCase {
-			v1: Coords;
-			v2: Coords;
+			v1: Cartesian;
+			v2: Cartesian;
 			output: VectorString;
 		}
 
@@ -754,7 +754,7 @@ describe("Vector operations", () => {
 		];
 
 		it("Should reflect the vector against another vector input", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				return vector(v1.x, v1.y, v1.z)
 					.reflect(v2.z, v2.y, v2.z)
 					.toString();
@@ -765,7 +765,7 @@ describe("Vector operations", () => {
 			}
 		});
 		it("Should reflect the vector against another vector instance", () => {
-			const test = (v1: Coords, v2: Coords) => {
+			const test = (v1: Cartesian, v2: Cartesian) => {
 				const instance = vector(v1.x, v1.y, v1.z);
 				const anotherInstance = vector(v2.z, v2.y, v2.z);
 				return instance.reflect(anotherInstance).toString();
