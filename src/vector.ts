@@ -96,6 +96,20 @@ export class Vector {
 	}
 
 	/**
+	 * Sets this vector to the cross product between the original vector and another valid input.
+	 */
+	crossSelf(x?: InputUser | number, y?: number, z?: number): Vector {
+		const other = vector(x, y, z);
+		[ this.x, this.y, this.z ] = [
+			this.y * other.z - this.z * other.y,
+			this.z * other.x - this.x * other.z,
+			this.x * other.y - this.y * other.x
+		];
+
+		return this;
+	}
+
+	/**
 	 * Calculates the Euclidian distance between two points,
 	 * considering a point as a vector.
 	 */
