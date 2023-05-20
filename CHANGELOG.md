@@ -1,8 +1,9 @@
 # Rational
 
-## 0.15.1 (2023-05-17)
+## 0.16.0 (2023-05-20)
 
 - [fix]: handle non-positive values for `.limit()` and `.limitSelf()` methods;
+- [feat]: implemented `crossSelf()` method, the mutable version of `cross()`;
 
 ## 0.15.0 (2022-12-13)
 

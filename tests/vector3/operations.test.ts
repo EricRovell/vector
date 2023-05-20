@@ -254,6 +254,33 @@ describe("Vector operations", () => {
 				}
 			});
 		});
+		describe("Mutable", () => {
+			it("Should use plane arguments as an input and an addendum", () => {
+				const test = (v1: Coords, v2: Coords) => {
+					const instance = vector(v1.x, v1.y, v1.z);
+					instance.crossSelf(v2.x, v2.y, v2.z);
+					return instance.toString();
+				};
+
+				for (const { v1, v2, output12, output21 } of tests) {
+					expect(test(v1, v2)).toBe(output12);
+					expect(test(v2, v1)).toBe(output21);
+				}
+			});
+			it("Should use plane arguments as an input and another vector instance as an addendum", () => {
+				const test = (v1: Coords, v2: Coords) => {
+					const instance = vector(v1.x, v1.y, v1.z);
+					const anotherInstance = vector(v2.x, v2.y, v2.z);
+					instance.crossSelf(anotherInstance);
+					return instance.toString();
+				};
+
+				for (const { v1, v2, output12, output21 } of tests) {
+					expect(test(v1, v2)).toBe(output12);
+					expect(test(v2, v1)).toBe(output21);
+				}
+			});
+		});
 	});
 	describe("Dot product", () => {
 		interface TestCase {

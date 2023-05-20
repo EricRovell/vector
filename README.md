@@ -303,8 +303,22 @@ vector({ x: 1, y: 2 }).toString();  // -> "(1, 2, 0)"
 
   ```js
   vector(1, 2, 3).cross(4, 5, 6)         // -> (-3, 6, -3)
-	vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
-	vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
+  vector([ 1, 2, 3 ]).cross([ 4, 5, 6 ]) // -> (-3, 6, -3)
+  vector([ -2.5 ]).cross([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
+  ```
+</details>
+
+<details>
+  <summary>
+    <code>.crossSelf(x: Input | number, y?: number, z?: number): Vector</code>
+  </summary>
+
+  Sets this vector to the cross product between the original vector and another valid input.
+
+  ```js
+  vector(1, 2, 3).crossSelf(4, 5, 6)         // -> (-3, 6, -3)
+  vector([ 1, 2, 3 ]).crossSelf([ 4, 5, 6 ]) // -> (-3, 6, -3)
+  vector([ -2.5 ]).crossSelf([ 4, 5.3, -8 ]) // -> (0, -20, -13.25)
   ```
 </details>
 
