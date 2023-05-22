@@ -148,7 +148,7 @@ vector([ 1, 2, 3 ]).toString();   // -> "(0, 0, 3)"
 		<code>({ degrees?: boolean, magnitude?: number = 1, phi: number = 0, theta: number = Math.PI / 2 }: Polar)</code>
 	</summary>
 
-	Parses the `Polar` input representing the vector [in polar coordinates](https://en.wikipedia.org/wiki/Vector_notation#Spherical_vectors) and returns a new `Vector` instance:
+Parses the `Polar` input representing the vector [in polar coordinates](https://en.wikipedia.org/wiki/Vector_notation#Spherical_vectors) and returns a new `Vector` instance:
 
 ```ts
 /**
@@ -1002,7 +1002,7 @@ instance.sum; // -> 6
 
 Most of the methods are chainable, no matter is it mutable or immutable method:
 
-```
+```js
 const v = vector(1, 2, 3)
 	.add(1, 2, 3)
 	.sub(1, 2, 3)
