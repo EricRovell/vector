@@ -464,7 +464,7 @@ describe("Parsing user input", () => {
 			}
 	
 			const test = (input: TestCase["input"]) => {
-				return vector(input).round(4).toString();
+				return vector(input).roundSelf(4).toString();
 			};
 	
 			const tests: TestCase[] = [
@@ -497,7 +497,7 @@ describe("Parsing user input", () => {
 			}
 	
 			const test = (input: TestCase["input"]) => {
-				return vector(input).round(4).toString();
+				return vector(input).roundSelf(4).toString();
 			};
 	
 			const tests: TestCase[] = [

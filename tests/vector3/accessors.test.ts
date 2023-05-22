@@ -321,7 +321,7 @@ describe("Accessors", () => {
 			it("Should set the components state from arguments", () => {
 				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
-					instance.set(v2.x, v2.y, v2.z);
+					instance.setSelf(v2.x, v2.y, v2.z);
 					expect(instance.x).toBe(v2.x);
 					expect(instance.y).toBe(v2.y);
 					expect(instance.z).toBe(v2.z);
@@ -335,7 +335,7 @@ describe("Accessors", () => {
 				const test = (v1: Cartesian, v2: Cartesian) => {
 					const instance = vector(v1.x, v1.y, v1.z);
 					const anotherInstance = vector(v2.x, v2.y, v2.z);
-					instance.set(anotherInstance);
+					instance.setSelf(anotherInstance);
 					expect(instance.x).toBe(anotherInstance.x);
 					expect(instance.y).toBe(anotherInstance.y);
 					expect(instance.z).toBe(anotherInstance.z);
@@ -347,7 +347,7 @@ describe("Accessors", () => {
 			});
 			it("Should fallback the state to zero vector on wrong input", () => {
 				// @ts-expect-error: Testing wrong input
-				expect(vector(1, 2, 3).set(null).toString()).toBe("(0, 0, 0)");
+				expect(vector(1, 2, 3).setSelf(null).toString()).toBe("(0, 0, 0)");
 			});
 		});
 		describe("Component", () => {
@@ -758,14 +758,14 @@ describe("Accessors", () => {
 				it("Should round the vector's component values by defined accuracy", () => {
 					for (const { input, places, outputRound } of tests) {
 						if (places) {
-							expect(vector(input.x, input.y, input.z).round(places).toString()).toBe(outputRound);
+							expect(vector(input.x, input.y, input.z).roundSelf(places).toString()).toBe(outputRound);
 						}
 					}
 				});
 				it("Should round the vector's component values to integers by default", () => {
 					for (const { input, places, outputRound } of tests) {
 						if (!places) {
-							expect(vector(input.x, input.y, input.z).round().toString()).toBe(outputRound);
+							expect(vector(input.x, input.y, input.z).roundSelf().toString()).toBe(outputRound);
 						}
 					}
 				});
@@ -774,14 +774,14 @@ describe("Accessors", () => {
 				it("Should floor the vector's component values by defined accuracy", () => {
 					for (const { input, places, outputFloor } of tests) {
 						if (places) {
-							expect(vector(input.x, input.y, input.z).floor(places).toString()).toBe(outputFloor);
+							expect(vector(input.x, input.y, input.z).floorSelf(places).toString()).toBe(outputFloor);
 						}
 					}
 				});
 				it("Should round the vector's component values to integers by default", () => {
 					for (const { input, places, outputFloor } of tests) {
 						if (!places) {
-							expect(vector(input.x, input.y, input.z).floor().toString()).toBe(outputFloor);
+							expect(vector(input.x, input.y, input.z).floorSelf().toString()).toBe(outputFloor);
 						}
 					}
 				});
@@ -790,14 +790,14 @@ describe("Accessors", () => {
 				it("Should floor the vector's component values by defined accuracy", () => {
 					for (const { input, places, outputCeil } of tests) {
 						if (places) {
-							expect(vector(input.x, input.y, input.z).ceil(places).toString()).toBe(outputCeil);
+							expect(vector(input.x, input.y, input.z).ceilSelf(places).toString()).toBe(outputCeil);
 						}
 					}
 				});
 				it("Should round the vector's component values to integers by default", () => {
 					for (const { input, places, outputCeil } of tests) {
 						if (!places) {
-							expect(vector(input.x, input.y, input.z).ceil().toString()).toBe(outputCeil);
+							expect(vector(input.x, input.y, input.z).ceilSelf().toString()).toBe(outputCeil);
 						}
 					}
 				});
