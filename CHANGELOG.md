@@ -1,5 +1,9 @@
 # Rational
 
+## Unreleased
+
+- [breaking]: rename `.random()` method into `.random2d()`;
+
 ## 0.17.0 (2023-05-22)
 
 - [breaking]: rename input types;
