@@ -68,7 +68,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's components values to the next upper bound with defined precision.
 	 */
-	ceil(places = 0): Vector {
+	ceilSelf(places = 0): Vector {
 		return this.mapSelf(value => ceil(value, places));
 	}
 
@@ -158,7 +158,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's components values to the next lower bound with defined precision.
 	 */
-	floor(places = 0): Vector {
+	floorSelf(places = 0): Vector {
 		return this.mapSelf(value => floor(value, places));
 	}
 
@@ -350,7 +350,7 @@ export class Vector {
 	/**
 	 * Rounds this vector's component values to the closest bound with defined precision.
 	 */
-	round(places = 0): Vector {
+	roundSelf(places = 0): Vector {
 		return this.mapSelf(value => round(value, places));
 	}
 
@@ -398,7 +398,7 @@ export class Vector {
 	/**
 	 * Set's the current vector state from another `Vector` instance or valid vector input.
 	 */
-	set(x: Input | number, y?: number, z?: number): Vector {
+	setSelf(x: Input | number, y?: number, z?: number): Vector {
 		[ this.x, this.y, this.z ] = vector(x, y, z).toArray();
 		return this;
 	}

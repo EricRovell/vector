@@ -289,14 +289,14 @@ Note: this method do not accept simple arguments input, because it is hard to ma
 
 <details>
 	<summary>
-		<code>.ceil(places = 0): Vector</code>
+		<code>.ceilSelf(places = 0): Vector</code>
 	</summary>
 
 Rounds this vector's components values to the next upper bound with defined precision.
 
 ```js
-vector(1.12345, 2.45678, 3.78921).ceil().toString()          // -> "(2, 3, 4)");
-vector(Math.SQRT2, Math.PI, 2 * Math.PI).ceil(3).toString()  // -> "(1.415, 3.142, 6.284)");
+vector(1.12345, 2.45678, 3.78921).ceilSelf().toString()          // -> "(2, 3, 4)");
+vector(Math.SQRT2, Math.PI, 2 * Math.PI).ceilSelf(3).toString()  // -> "(1.415, 3.142, 6.284)");
 ```
 </details>
 
@@ -405,14 +405,14 @@ vector({ x: -1, y: -2 }).equals({ x: -1, y: 2});  // -> false
 
 <details>
 	<summary>
-		<code>.floor(places = 0): Vector</code>
+		<code>.floorSelf(places = 0): Vector</code>
 	</summary>
 
 Rounds this vector's components values to the next lower bound with defined precision.
 
 ```js
-vector(1.12345, 2.45678, 3.78921).floor(4).toString()         // -> "(1.1234, 2.4567, 3.7892)");
-vector(Math.SQRT2, Math.PI, 2 * Math.PI).floor(3).toString()  // -> "(1.414, 3.141, 6.283)");
+vector(1.12345, 2.45678, 3.78921).floorSelf(4).toString()         // -> "(1.1234, 2.4567, 3.7892)");
+vector(Math.SQRT2, Math.PI, 2 * Math.PI).floorSelf(3).toString()  // -> "(1.414, 3.141, 6.283)");
 ```
 </details>
 
@@ -690,14 +690,14 @@ vector(1, 2, 3).rotateSelf3d(60, 30, true);
 
 <details>
 	<summary>
-		<code>.round(places = 0): Vector</code>
+		<code>.roundSelf(places = 0): Vector</code>
 	</summary>
 
 Rounds this vector's component values to the closest bound with defined precision.
 
 ```js
-vector(1.12345, 2.45678, 3.78921).round(4).toString()         // -> "(1.1235, 2.4568, 3.7892)");
-vector(Math.SQRT2, Math.PI, 2 * Math.PI).round(3).toString()  // -> "(1.414, 3.142, 6.283)");
+vector(1.12345, 2.45678, 3.78921).roundSelf(4).toString()         // -> "(1.1235, 2.4568, 3.7892)");
+vector(Math.SQRT2, Math.PI, 2 * Math.PI).roundSelf(3).toString()  // -> "(1.414, 3.142, 6.283)");
 ```
 </details>
 
@@ -754,14 +754,14 @@ It is useful when the variable may have zero value. In this case the vector comp
 
 <details>
 	<summary>
-		<code>.set(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.setSelf(x: Input | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Set's the current vector state from another `Vector` instance or valid vector input.
 
 ```js
 const v1 = vector(1, 2, 3);
-v1.set(-1, -2, -3);
+v1.setSelf(-1, -2, -3);
 
 v1.toString() // -> "(-1, -2, -3)"
 ```
@@ -974,8 +974,6 @@ All operations have both mutable and immutable methods. They are easy to disting
 
 - `.add()` is immutable;
 - `addSelf()` is mutable;
-
-The only exception are rounding that are mutable only: `.round()`, `.ceil()`, `floor()`, and `clamp()`.
 
 ### Extendibility
 
