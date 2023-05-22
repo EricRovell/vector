@@ -5,7 +5,7 @@ describe("Randomness", () => {
 	describe("Vector 2D", () => {
 		it("Should generate a random 2D vector", () => {
 			for (let i = 0; i < 10; i++) {
-				for (const component of vector().random().toArray()) {
+				for (const component of vector().random2d().toArray()) {
 					expect(component).lessThanOrEqual(1);
 					expect(component).greaterThanOrEqual(-1);
 				}

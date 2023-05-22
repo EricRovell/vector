@@ -279,16 +279,16 @@ export class Vector {
 	}
 
 	/**
-	 * Creates a new planar vector from a random azimuthal angle.
+	 * Creates a random planar unit vector (OXY plane).
 	 */
-	random(random = Math.random): Vector {
+	random2d(random = Math.random): Vector {
 		return new Vector({
 			phi: 2 * Math.PI * random()
 		});
 	}
 
 	/**
-	 * Makes a new random 3D vector.
+	 * Creates a random 3D unit vector.
 	 *
 	 * Correct distribution thanks to [wolfram](https://mathworld.wolfram.com/SpherePointPicking.html).
 	 */

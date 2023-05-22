@@ -595,13 +595,13 @@ vector(3, 4, 12).normalizeSelf().margnitude;   // -> 13
 
 <details>
 	<summary>
-		<code>.random(random = Math.random): Vector</code>
+		<code>.random2(random = Math.random): Vector</code>
 	</summary>
 
-Creates a new planar vector from a random azimuthal angle.
+Creates a random planar unit vector (OXY plane).
 
 ```js
-vector().random().toString() // ->  "(0.23565, 0.75624, 0)"
+vector().random2().toString() // ->  "(0.23565, 0.75624, 0)"
 ```
 </details>
 
@@ -610,7 +610,7 @@ vector().random().toString() // ->  "(0.23565, 0.75624, 0)"
 		<code>.random3d(random = Math.random): Vector</code>
 	</summary>
 
-Makes a new 3D vector.
+Creates a random 3D unit vector.
 
 Correct distribution thanks to [wolfram](https://mathworld.wolfram.com/SpherePointPicking.html).
 
