@@ -595,13 +595,13 @@ vector(3, 4, 12).normalizeSelf().margnitude;   // -> 13
 
 <details>
 	<summary>
-		<code>.random2(random = Math.random): Vector</code>
+		<code>.random2d(random = Math.random): Vector</code>
 	</summary>
 
 Creates a random planar unit vector (OXY plane).
 
 ```js
-vector().random2().toString() // ->  "(0.23565, 0.75624, 0)"
+vector().random2d().toString() // ->  "(0.23565, 0.75624, 0)"
 ```
 </details>
 
