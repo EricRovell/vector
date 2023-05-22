@@ -2,7 +2,9 @@
 
 ## 0.17.0 (2023-05-22)
 
+- [breaking]: rename input types;
 - [breaking]: rename `.set()`, `.round()`, `.ceil()`, `.floor()` methods by adding `self` postfix to mark methods as mutable;
+- [feat]: implement `[Symbol.toPrimitive]`;
 
 ## 0.16.0 (2023-05-20)
 
