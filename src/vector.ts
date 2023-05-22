@@ -546,10 +546,6 @@ export class Vector {
 
 		return this.valueOf();
 	}
-
-	get [Symbol.toStringTag]() {
-		return "Vector";
-	}
 }
 
 /**
