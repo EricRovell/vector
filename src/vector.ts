@@ -538,6 +538,18 @@ export class Vector {
 		yield this.y;
 		yield this.z;
 	}
+
+	[Symbol.toPrimitive](hint: "number" | "string" | "default") {
+		if (hint === "string") {
+			return this.toString();
+		}
+
+		return this.valueOf();
+	}
+
+	get [Symbol.toStringTag]() {
+		return "Vector";
+	}
 }
 
 /**
