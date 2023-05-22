@@ -37,14 +37,16 @@
 	</a>
 </div>
 
+# Vector
+
 <div align="center">
 	<img
 		src="./assets/logo.png"
 		alt="V letter as a logo for Vector library"
+		width="150px"
+		height="150px"
 	/>
 </div>
-
-# Vector
 
 Euclidian vector (also known as "Geometric" vector) library written in Typescript. A vector is an entity that has both magnitude and direction. Both 2D and 3D vectors are supported.
 
