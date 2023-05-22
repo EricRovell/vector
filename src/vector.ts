@@ -45,11 +45,14 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the angle between two vectors.
+	 * Calculates the angle between the vector instance and another valid vector input.
+	 * The angle can be signed if `signed` boolean argument is passed.
+	 * 
+	 * Note: this method do not accept simple arguments input,
+	 * because it is hard to manage angle options and make the code simple.
 	 */
 	angle(input: Input, signed = false, degrees = false): number {
 		const other = vector(input);
-
 		const magnitude = this.magnitude;
 		const magnitudeOther = other.magnitude;
 
@@ -77,14 +80,14 @@ export class Vector {
 	}
 
 	/**
-	 * Returns a copy of current vector instance.
+	 * Returns a copy of the vector instance.
 	 */
 	copy(): Vector {
 		return new Vector([ this.x, this.y, this.z ]);
 	}
 
 	/**
-	 * Calculates the cross product between two vectors and returns a new `Vector` instance.
+	 * Calculates the cross product between the instance and another valid vector input and returns a new `Vector` instance.
 	 */
 	cross(x?: UserInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
@@ -110,16 +113,16 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the Euclidian distance between two points,
-	 * considering a point as a vector.
+	 * Calculates the Euclidian distance between the vector
+	 * and another valid vector input, considering a point as a vector.
 	 */
 	distance(x?: UserInput | number, y?: number, z?: number): number {
 		return this.distanceSq(x, y, z) ** 0.5;
 	}
 
 	/**
-	 * Calculates the squared Euclidian distance between two points,
-	 * considering a point as a vector.
+	 * Calculates the squared Euclidian distance between the vector
+	 * and another valid vector input, considering a point as a vector.
 	 *
 	 * Slighty more efficient to calculate, useful to comparing.
 	 */
@@ -133,7 +136,7 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the dot product of two vectors.
+	 * Calculates the dot product of the vector and another valid vector input.
 	 */
 	dot(x?: UserInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);
@@ -141,7 +144,7 @@ export class Vector {
 	}
 
 	/**
-	 * Performs an equality check against another vector input or `Vector` instance.
+	 * Performs an equality check against another valid vector input.
 	 */
 	equals(x?: UserInput | number, y?: number, z?: number): boolean {
 		const other = vector(x, y, z);
@@ -182,6 +185,8 @@ export class Vector {
 
 	/**
 	 * Linearly interpolate the vector to another vector.
+	 * 
+	 * Note: this method do not accept simple arguments input.
 	 */
 	lerp(input: Input, coef = 1): Vector {
 		const other = vector(input);
@@ -194,7 +199,7 @@ export class Vector {
 	}
 
 	/**
-	 * Limits the magnitude of the vector and returns a new `Vector` instance.
+	 * Limits the magnitude of the vector and returns the result as new `Vector` instance.
 	 */
 	limit(value: number): Vector {
 		if (value <= 0) {
@@ -230,7 +235,8 @@ export class Vector {
 
 	/**
 	 * Calculates the squared magnitude of the vector.
-	 * Usefull when the real length is not required, for example to compare vectors.
+	 * It may be useful and faster where the real value is not that important.
+	 * For example, to compare two vectors' length.
 	 */
 	get magnitudeSq(): number {
 		return this.x ** 2 + this.y ** 2 + this.z ** 2;
@@ -259,21 +265,21 @@ export class Vector {
 	}
 
 	/**
-	 * Normalizes the vector and returns a new `Vector` instance as unit vector.
+	 * Normalizes the vector and returns a new `Vector` instance as [unit vector](https://en.wikipedia.org/wiki/Unit_vector):
 	 */
 	normalize(): Vector {
 		return this.scale(this.magnitude, true);
 	}
 
 	/**
-	 * Makes the current vector a unit vector (sets the magnitude to 1).
+	 * Makes the current vector a [unit vector](https://en.wikipedia.org/wiki/Unit_vector).
 	 */
 	normalizeSelf(): Vector {
 		return this.scaleSelf(this.magnitude, true);
 	}
 
 	/**
-	 * Makes a new planar vector from a random azimuthal angle.
+	 * Creates a new planar vector from a random azimuthal angle.
 	 */
 	random(random = Math.random): Vector {
 		return new Vector({
@@ -346,6 +352,47 @@ export class Vector {
 	 */
 	round(places = 0): Vector {
 		return this.mapSelf(value => round(value, places));
+	}
+
+	/**
+	 * Performs the scalar multiplication and returns as new `Vector` instance.
+	 * 
+	 * The second parameter turns the passed `value` into reciprocal, in other words the division will be performed.
+	 * Although the same effect can be obtained just with `.scale(0.5)`, it is useful when the variable may have zero value.
+	 * In case of zero division the zero vector will be returned and marked as invalid.
+	 */
+	scale(value: number, inverse = false): Vector {
+		if (inverse && !value) {
+			console.warn("Division by zero!");
+			// @ts-expect-error return vector marked as invalid
+			return vector(null);
+		}
+
+		if (inverse) {
+			value = 1 / value;
+		}
+
+		return this.map(item => item * value);
+	}
+
+	/**
+	 * Scales this vector by a scalar value.
+	 * 
+	 * The second parameter turns the passed `value` into reciprocal, in other words the division will be performed.
+	 * It is useful when the variable may have zero value.
+	 * In this case the vector components won't change.
+	 */
+	scaleSelf(value: number, inverse = false): Vector {
+		if (inverse && !value) {
+			console.warn("Division by zero!");
+			return this;
+		}
+
+		if (inverse) {
+			value = 1 / value;
+		}
+
+		return this.mapSelf(item => item * value);
 	}
 
 	/**
@@ -437,39 +484,6 @@ export class Vector {
 	setThetaSelf(value: number, degrees = false): Vector {
 		[ this.x, this.y, this.z ] = this.setTheta(value, degrees).toArray();
 		return this;
-	}
-
-	/**
-	 * Performs the scalar multiplication and returns as new `Vector` instance.
-	 */
-	scale(value: number, inverse = false): Vector {
-		if (inverse && !value) {
-			console.warn("Division by zero!");
-			// @ts-expect-error return vector marked as invalid
-			return vector(null);
-		}
-
-		if (inverse) {
-			value = 1 / value;
-		}
-
-		return this.map(item => item * value);
-	}
-
-	/**
-	 * Scales this vector by a scalar value.
-	 */
-	scaleSelf(value: number, inverse = false): Vector {
-		if (inverse && !value) {
-			console.warn("Division by zero!");
-			return this;
-		}
-
-		if (inverse) {
-			value = 1 / value;
-		}
-
-		return this.mapSelf(item => item * value);
 	}
 
 	/**
