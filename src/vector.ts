@@ -113,7 +113,7 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the Euclidian distance between the vector
+	 * Calculates the Euclidean distance between the vector
 	 * and another valid vector input, considering a point as a vector.
 	 */
 	distance(x?: UserInput | number, y?: number, z?: number): number {
@@ -121,10 +121,10 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the squared Euclidian distance between the vector
+	 * Calculates the squared Euclidean distance between the vector
 	 * and another valid vector input, considering a point as a vector.
 	 *
-	 * Slighty more efficient to calculate, useful to comparing.
+	 * Slightly more efficient to calculate, useful to comparing.
 	 */
 	distanceSq(x?: UserInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);

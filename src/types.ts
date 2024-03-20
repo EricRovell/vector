@@ -30,7 +30,7 @@ export interface Polar {
 
 /**
  * Vector state defined in Cylindrical coordinate system:
- * 	- r: radias distance;
+ * 	- r: radians distance;
  * 	- phi: azimuthal angle;
  * 	- z: height;
  */

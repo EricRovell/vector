@@ -48,7 +48,7 @@
 	/>
 </div>
 
-Euclidian vector (also known as "Geometric" vector) library written in Typescript. A vector is an entity that has both magnitude and direction. Both 2D and 3D vectors are supported.
+Euclidean vector (also known as "Geometric" vector) library written in Typescript. A vector is an entity that has both magnitude and direction. Both 2D and 3D vectors are supported.
 
 ## Features
 
@@ -359,7 +359,7 @@ vector(1, 2, 3).crossSelf(4, 5, 6)         // -> (-3, 6, -3)
 		<code>.distance(x: Input | number, y?: number, z?: number): number</code>
 	</summary>
 
-Calculates the Euclidian distance between the vector and another valid vector input, considering a point as a vector.
+Calculates the Euclidean distance between the vector and another valid vector input, considering a point as a vector.
 
 ```js
 vector(1, 2, 3).distance(4, 5, 6) // -> 5.19615
@@ -371,8 +371,8 @@ vector(1, 2, 3).distance(4, 5, 6) // -> 5.19615
 		<code>.distanceSq(x: Input | number, y?: number, z?: number): number</code>
 	</summary>
 
-Calculates the squared Euclidian distance between the vector and another valid vector input, considering a point as a vector.
-Slighty more efficient to calculate, useful to comparing.
+Calculates the squared Euclidean distance between the vector and another valid vector input, considering a point as a vector.
+Slightly more efficient to calculate, useful to comparing.
 
 ```js
 vector(1, 2, 3).distanceSq(4, 5, 6) // -> 27
@@ -423,7 +423,7 @@ vector(Math.SQRT2, Math.PI, 2 * Math.PI).floorSelf(3).toString()  // -> "(1.414,
 		<code>.getPhi(degrees = false): number</code>
 	</summary>
 
-Calculates vector's azimutal angle.
+Calculates vector's azimuthal angle.
 
 ```js
 vector(3, 4).getPhi();         // -> 0.927295
@@ -590,8 +590,8 @@ vector(3, 4, 5).normalize().magnitude; // -> 1
 Makes the current vector a [unit vector](https://en.wikipedia.org/wiki/Unit_vector).
 
 ```js
-vector().normalizeSelf().margnitude;          // -> 0
-vector(3, 4, 12).normalizeSelf().margnitude;   // -> 13
+vector().normalizeSelf().magnitude;          // -> 0
+vector(3, 4, 12).normalizeSelf().magnitude;   // -> 13
 ```
 </details>
 
