@@ -5,7 +5,7 @@ import { validateNumbers } from "../utils";
 type Parser = (x?: UserInput | number, y?: number, z?: number) => CartesianTuple | null;
 
 /**
- * Parses input into CartesianTupe.
+ * Parses input into Cartesian Tuple.
  *
  * Supported input:
  *  + parse(x, y, z);
