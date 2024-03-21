@@ -24,16 +24,10 @@
 
 <div align="center">
 	<a href="https://bundlephobia.com/package/@ericrovell/vector">
-		<img alt="minified size" src="https://badgen.net/bundlephobia/min/@ericrovell/vector/" />
+		<img alt="minified size" src="https://flat-badgen.vercel.app/bundlephobia/min/@ericrovell/vector/" />
 	</a>
 	<a href="https://bundlephobia.com/package/@ericrovell/vector">
-		<img alt="minzipped size" src="https://badgen.net/bundlephobia/minzip/@ericrovell/vector/" />
-	</a>
-	<a href="https://bundlephobia.com/package/@ericrovell/vector">
-		<img alt="dependency count" src="https://badgen.net/bundlephobia/dependency-count/@ericrovell/vector/" />
-	</a>
-	<a href="https://bundlephobia.com/package/@ericrovell/vector">
-		<img alt="tree-shaking" src="https://badgen.net/bundlephobia/tree-shaking/@ericrovell/vector/" />
+		<img alt="minzipped size" src="https://flat-badgen.vercel.app/bundlephobia/minzip/@ericrovell/vector/" />
 	</a>
 </div>
 
@@ -223,10 +217,10 @@ The `Cylindrical` object is considered valid if it is contains all the propertie
 Most methods input arguments signature is:
 
 ```ts
-(x: Input | number, y?: number, z?: number)
+(x: VectorInput | number, y?: number, z?: number)
 ```
 
-Where the `Input` is any supported valid vector input representation. This way the valid input besides numeric arguments are:
+Where the `VectorInput` is any supported valid vector input representation. This way the valid input besides numeric arguments are:
 
 - `Cartesian`;
 - `CartesianTuple`;
@@ -246,7 +240,7 @@ vector({ x: 1, y: 2, z: 3 }).add([ 1, 2, 3]).toString();  // "(2, 4, 6)";
 
 <details>
 	<summary>
-		<code>.add(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.add(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Performs the addition and returns the sum as new `Vector` instance.
@@ -258,7 +252,7 @@ vector(1, 2).add(3, 4).toString();  // -> "(4, 6, 0)"
 
 <details>
 	<summary>
-		<code>.addSelf(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.addSelf(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Adds the another `Vector` instance or a valid vector input to this vector.
@@ -274,7 +268,7 @@ v1.toString(); // ->  "(2, 4, 6)"
 
 <details>
 	<summary>
-		<code>.angle(input: Input, signed = false, degrees = false): number</code>
+		<code>.angle(input: VectorInput, signed = false, degrees = false): number</code>
 	</summary>
 
 Calculates the angle between the vector instance and another valid vector input.
@@ -286,7 +280,7 @@ vector(1, 2, 3).angle(4, 5, 6, true) // -> -0.22573
 vector(1, 2, 3).angle(4, 5, 6, true, true) // -> -12.93315
 ```
 
-Note: this method do not accept simple arguments input, because it is hard to manage angle options and make the code simple.
+Note: this method do not accept simple arguments input.
 </details>
 
 <details>
@@ -332,7 +326,7 @@ b.toString(); // -> "(1, 2, 3)"
 
 <details>
 	<summary>
-		<code>.cross(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.cross(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Calculates the cross product between the instance and another valid vector input and returns a new `Vector` instance.
@@ -344,7 +338,7 @@ vector(1, 2, 3).cross(4, 5, 6)         // -> (-3, 6, -3)
 
 <details>
 	<summary>
-		<code>.crossSelf(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.crossSelf(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Sets this vector to the cross product between the original vector and another valid input.
@@ -356,7 +350,7 @@ vector(1, 2, 3).crossSelf(4, 5, 6)         // -> (-3, 6, -3)
 
 <details>
 	<summary>
-		<code>.distance(x: Input | number, y?: number, z?: number): number</code>
+		<code>.distance(x: VectorInput | number, y?: number, z?: number): number</code>
 	</summary>
 
 Calculates the Euclidean distance between the vector and another valid vector input, considering a point as a vector.
@@ -368,7 +362,7 @@ vector(1, 2, 3).distance(4, 5, 6) // -> 5.19615
 
 <details>
 	<summary>
-		<code>.distanceSq(x: Input | number, y?: number, z?: number): number</code>
+		<code>.distanceSq(x: VectorInput | number, y?: number, z?: number): number</code>
 	</summary>
 
 Calculates the squared Euclidean distance between the vector and another valid vector input, considering a point as a vector.
@@ -381,7 +375,7 @@ vector(1, 2, 3).distanceSq(4, 5, 6) // -> 27
 
 <details>
 	<summary>
-		<code>.dot(x: Input | number, y?: number, z?: number): number</code>
+		<code>.dot(x: VectorInput | number, y?: number, z?: number): number</code>
 	</summary>
 
 Calculates the dot product of the vector and another valid vector input.
@@ -393,7 +387,7 @@ vector(1, 2, 3).dot(4, 5, 6)   // -> 32
 
 <details>
 	<summary>
-		<code>.equals(x: Input | number, y?: number, z?: number): boolean</code>
+		<code>.equals(x: VectorInput | number, y?: number, z?: number): boolean</code>
 	</summary>
 
 Performs an equality check against another valid vector input.
@@ -458,7 +452,7 @@ vector(-1, 2).inverted;  // -> "(1, -2, 0)"
 
 <details>
 	<summary>
-		<code>.lerp(input: Input, coef = 1): Vector</code>
+		<code>.lerp(input: VectorInput, coef = 1): Vector</code>
 	</summary>
 
 Linearly interpolate the vector to another vector.
@@ -623,7 +617,7 @@ vector().random3d().toString() // ->  "(0.23565, 0.75624, -0.56571)"
 
 <details>
 	<summary>
-		<code>.reflect(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.reflect(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Reflects the vector about a normal line for 2D vector, or about a normal to a plane in 3D.
@@ -756,7 +750,7 @@ It is useful when the variable may have zero value. In this case the vector comp
 
 <details>
 	<summary>
-		<code>.setSelf(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.setSelf(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Set's the current vector state from another `Vector` instance or valid vector input.
@@ -880,7 +874,7 @@ vector(1, 2, 3).setThetaSelf(60, true);
 
 <details>
 	<summary>
-		<code>.sub(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.sub(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Performs the subtraction and returns the result as new `Vector` instance.
@@ -892,7 +886,7 @@ vector(1, 2, 3).sub(2, 3, 4).toString()  // -> "(-1, -1, -1)"
 
 <details>
 	<summary>
-		<code>.subSelf(x: Input | number, y?: number, z?: number): Vector</code>
+		<code>.subSelf(x: VectorInput | number, y?: number, z?: number): Vector</code>
 	</summary>
 
 Subtracts another `Vector` instance or valid vector input from this vector.
@@ -982,10 +976,10 @@ All operations have both mutable and immutable methods. They are easy to disting
 To extend the functionality for your needs, [extend](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends) the parent `Vector` class:
 
 ```js
-import { Vector, type Input } from "@ericrovell/vector";
+import { Vector, type VectorInput } from "@ericrovell/vector";
 
 class VectorExtended extends Vector {
-	constructor(input: Input) {
+	constructor(input: VectorInput) {
 		super(input);
 	}
 
@@ -1041,7 +1035,7 @@ export type {
 	CartesianTuple,
 	Polar,
 	Cylindrical,
-	Input,
+	VectorInput,
 	Vector
 } from "@ericrovell/vector";
 ```

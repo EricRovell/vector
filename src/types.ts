@@ -54,14 +54,17 @@ export type UserInput =
  * Defines an input for operations where
  * Vector or user input that can be transformed into Vector instance.
  */
-export type Input = UserInput | Vector;
+export type VectorInput = UserInput | Vector;
 
 /**
  * Defines a string representation of a vector.
  */
 export type VectorString = `(${number}, ${number}, ${number})`;
 
-/**
- * Parser function that attempts to produce a Ratio.
- */
-export type Parser<T = UserInput> = (input: T) => CartesianTuple | null;
+export interface ParseOutput {
+	input?: VectorInput;
+	output: Nullish<CartesianTuple>;
+	valid: boolean;
+}
+
+export type Nullish<T> = T | null;

@@ -1,13 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { vector } from "../../src";
+import { vector } from "../src";
 import type {
 	Cartesian,
 	Cylindrical,
 	Polar,
 	CartesianTuple,
-	Input,
 	VectorString
-} from "../../src/types";
+} from "../src/types";
 
 describe("Parsing user input", () => {
 	describe("Handling empty input", () => {
@@ -29,6 +28,7 @@ describe("Parsing user input", () => {
 				{ magnitude: 5 },
 				{ degrees: true, magnitude: 5 },
 				{ phi: "23" },
+				{ theta: "23" },
 				{ phi: NaN }
 			];
 	
@@ -40,7 +40,7 @@ describe("Parsing user input", () => {
 		});
 	});
 	describe("Parsing arguments input", () => {
-		it("Should parses arguments input", () => {
+		it("Should parse arguments input", () => {
 			const test = (x: number, y?: number, z?: number) => vector(x, y, z).toString();
 	
 			interface TestCase {

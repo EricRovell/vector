@@ -3,7 +3,6 @@
 	"compilerOptions": {
 		"moduleResolution": "bundler",
 		"emitDeclarationOnly": true,
-		"isolatedModules": true,
 		"declaration": true,
 		"outFile": "./dist/index.d.ts"
 	}

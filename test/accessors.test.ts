@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Cartesian, VectorString, vector } from "../../src";
+import { Cartesian, VectorString, vector } from "../src";
 
 describe("Accessors", () => {
 	describe("Getters", () => {

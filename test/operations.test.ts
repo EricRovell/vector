@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Cartesian, VectorString, vector } from "../../src";
+import { Cartesian, VectorString, vector } from "../src";
 
 describe("Vector operations", () => {
 	describe("Addition", () => {
@@ -448,7 +448,7 @@ describe("Vector operations", () => {
 		];
 
 		
-		describe("Unsigined", () => {
+		describe("Unsigned", () => {
 			describe("Radians", () => {
 				it("Should use plane arguments as an input", () => {
 					const test = (v1: Cartesian, v2: Cartesian) => {
@@ -603,7 +603,7 @@ describe("Vector operations", () => {
 					}
 				}
 			});
-			it("Should perform the inversed scalar multiplication of the vector", () => {
+			it("Should perform the inverse scalar multiplication of the vector", () => {
 				const test = (v: Cartesian, scaleValue: number) => {
 					return vector(v.x, v.y, v.z).scale(scaleValue, true).toString();
 				};
@@ -629,7 +629,7 @@ describe("Vector operations", () => {
 					}
 				}
 			});
-			it("Should perform the inversed scalar multiplication of the vector", () => {
+			it("Should perform the inverse scalar multiplication of the vector", () => {
 				const test = (v: Cartesian, scaleValue: number) => {
 					const instance = vector(v.x, v.y, v.z);
 					instance.scaleSelf(scaleValue, true);
