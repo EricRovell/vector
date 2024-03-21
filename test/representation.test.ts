@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { vector, Vector } from "../../src";
-import type { Cartesian, VectorString, Input, CartesianTuple } from "../../src/types";
+import { vector, Vector } from "../src";
+import type { Cartesian, VectorString, VectorInput, CartesianTuple } from "../src/types";
 
 describe("Constructor", () => {
 	it("Accepts a class instance input", () => {
@@ -115,7 +115,7 @@ describe("Entity", () => {
 	describe("Equality", () => {
 		interface TestCase {
 			v1: CartesianTuple;
-			v2: Input;
+			v2: VectorInput;
 			output: boolean;
 		}
 
@@ -153,7 +153,7 @@ describe("Entity", () => {
 		];
 
 		it("Compares the vector instance to vector input", () => {
-			const test = (v1: CartesianTuple, v2: Input) => {
+			const test = (v1: CartesianTuple, v2: VectorInput) => {
 				return vector(...v1).equals(v2);
 			};
 
@@ -162,7 +162,7 @@ describe("Entity", () => {
 			}
 		});
 		it("Compares the vector instances", () => {
-			const test = (v1: CartesianTuple, v2: Input) => {
+			const test = (v1: CartesianTuple, v2: VectorInput) => {
 				return vector(...v1).equals(
 					vector(v2)
 				);

@@ -4,7 +4,7 @@ export type {
 	CartesianTuple,
 	Polar,
 	Cylindrical,
-	Input,
 	UserInput,
+	VectorInput,
 	VectorString
 } from "./types";

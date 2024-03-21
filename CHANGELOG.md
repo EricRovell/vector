@@ -1,6 +1,6 @@
-# Rational
+# Changelog
 
-## Unreleased
+## 1.0.0 (2021-03-21)
 
 - [breaking]: rename `.random()` method into `.random2d()`;
 

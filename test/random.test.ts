@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { vector } from "../../src";
+import { vector } from "../src";
 
 describe("Randomness", () => {
 	describe("Vector 2D", () => {

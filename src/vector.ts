@@ -1,5 +1,5 @@
 import { parse } from "./parser";
-import type { Component, Input, UserInput } from "./types";
+import type { Component, VectorInput } from "./types";
 import { ceil, clamp, convertAngle, floor, round } from "./utils";
 
 /**
@@ -7,24 +7,32 @@ import { ceil, clamp, convertAngle, floor, round } from "./utils";
  * specifically a Euclidean (also known as geometric) vector.
  */
 export class Vector {
-	private readonly parsed: ReturnType<typeof parse>;
+	readonly parsed: ReturnType<typeof parse>;
 	x: number;
 	y: number;
 	z: number;
 
-	constructor(x?: UserInput | number, y?: number, z?: number) {
+	constructor(x?: VectorInput | number, y?: number, z?: number) {
 		this.parsed = parse(x, y, z);
-		const [ vx = 0, vy = 0, vz = 0 ] = this.parsed ?? [];
-		this.x = vx;
-		this.y = vy;
-		this.z = vz;
+
+		if (this.parsed.valid) {
+			const [ vx = 0, vy = 0, vz = 0 ] = this.parsed.output ?? [];
+			this.x = vx;
+			this.y = vy;
+			this.z = vz;
+		} else {
+			this.x = 0;
+			this.y = 0;
+			this.z = 0;
+		}
 	}
 
 	/**
 	 * Performs the addition and returns the sum as new `Vector` instance.
 	 */
-	add(x?: UserInput | number, y?: number, z?: number): Vector {
+	add(x?: VectorInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
+
 		return new Vector([
 			this.x + other.x,
 			this.y + other.y,
@@ -35,7 +43,7 @@ export class Vector {
 	/**
 	 * Adds the another `Vector` instance or valid vector input to this vector.
 	 */
-	addSelf(x: Input | number, y?: number, z?: number): Vector {
+	addSelf(x: VectorInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
 		this.x += other.x;
 		this.y += other.y;
@@ -48,10 +56,9 @@ export class Vector {
 	 * Calculates the angle between the vector instance and another valid vector input.
 	 * The angle can be signed if `signed` boolean argument is passed.
 	 * 
-	 * Note: this method do not accept simple arguments input,
-	 * because it is hard to manage angle options and make the code simple.
+	 * Note: this method do not accept cartesian arguments form input.
 	 */
-	angle(input: Input, signed = false, degrees = false): number {
+	angle(input: VectorInput, signed = false, degrees = false): number {
 		const other = vector(input);
 		const magnitude = this.magnitude;
 		const magnitudeOther = other.magnitude;
@@ -89,8 +96,9 @@ export class Vector {
 	/**
 	 * Calculates the cross product between the instance and another valid vector input and returns a new `Vector` instance.
 	 */
-	cross(x?: UserInput | number, y?: number, z?: number): Vector {
+	cross(x?: VectorInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
+
 		return new Vector([
 			this.y * other.z - this.z * other.y,
 			this.z * other.x - this.x * other.z,
@@ -101,8 +109,9 @@ export class Vector {
 	/**
 	 * Sets this vector to the cross product between the original vector and another valid input.
 	 */
-	crossSelf(x?: UserInput | number, y?: number, z?: number): Vector {
+	crossSelf(x?: VectorInput | number, y?: number, z?: number): Vector {
 		const other = vector(x, y, z);
+	
 		[ this.x, this.y, this.z ] = [
 			this.y * other.z - this.z * other.y,
 			this.z * other.x - this.x * other.z,
@@ -113,21 +122,22 @@ export class Vector {
 	}
 
 	/**
-	 * Calculates the Euclidian distance between the vector
+	 * Calculates the Euclidean distance between the vector
 	 * and another valid vector input, considering a point as a vector.
 	 */
-	distance(x?: UserInput | number, y?: number, z?: number): number {
+	distance(x?: VectorInput | number, y?: number, z?: number): number {
 		return this.distanceSq(x, y, z) ** 0.5;
 	}
 
 	/**
-	 * Calculates the squared Euclidian distance between the vector
+	 * Calculates the squared Euclidean distance between the vector
 	 * and another valid vector input, considering a point as a vector.
 	 *
-	 * Slighty more efficient to calculate, useful to comparing.
+	 * Slightly more efficient to calculate, useful to comparing.
 	 */
-	distanceSq(x?: UserInput | number, y?: number, z?: number): number {
+	distanceSq(x?: VectorInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);
+
 		return (
 			(this.x - other.x) ** 2 +
 			(this.y - other.y) ** 2 +
@@ -138,7 +148,7 @@ export class Vector {
 	/**
 	 * Calculates the dot product of the vector and another valid vector input.
 	 */
-	dot(x?: UserInput | number, y?: number, z?: number): number {
+	dot(x?: VectorInput | number, y?: number, z?: number): number {
 		const other = vector(x, y, z);
 		return this.x * other.x + this.y * other.y + this.z * other.z;
 	}
@@ -146,8 +156,9 @@ export class Vector {
 	/**
 	 * Performs an equality check against another valid vector input.
 	 */
-	equals(x?: UserInput | number, y?: number, z?: number): boolean {
+	equals(x?: VectorInput | number, y?: number, z?: number): boolean {
 		const other = vector(x, y, z);
+
 		return (
 			this.x === other.x &&
 			this.y === other.y &&
@@ -186,11 +197,12 @@ export class Vector {
 	/**
 	 * Linearly interpolate the vector to another vector.
 	 * 
-	 * Note: this method do not accept simple arguments input.
+	 * Note: this method do not accept cartesian arguments form input.
 	 */
-	lerp(input: Input, coef = 1): Vector {
+	lerp(input: VectorInput, coef = 1): Vector {
 		const other = vector(input);
 		const factor = clamp(coef);
+
 		return new Vector([
 			this.x + (other.x - this.x) * factor,
 			this.y + (other.y - this.y) * factor,
@@ -308,7 +320,7 @@ export class Vector {
 	 * Reflects the vector about a normal line for 2D vector,
 	 * or about a normal to a plane in 3D.
 	 */
-	reflect(x?: UserInput | number, y?: number, z?: number): Vector {
+	reflect(x?: VectorInput | number, y?: number, z?: number): Vector {
 		const surface = vector(x, y, z).normalize();
 		return this.sub(surface.scale(2 * this.dot(surface)));
 	}
@@ -363,8 +375,8 @@ export class Vector {
 	 */
 	scale(value: number, inverse = false): Vector {
 		if (inverse && !value) {
-			console.warn("Division by zero!");
-			// @ts-expect-error return vector marked as invalid
+			//console.warn("Division by zero!");
+			// @ts-expect-error: Marks the vector as invalid on purpose
 			return vector(null);
 		}
 
@@ -384,7 +396,7 @@ export class Vector {
 	 */
 	scaleSelf(value: number, inverse = false): Vector {
 		if (inverse && !value) {
-			console.warn("Division by zero!");
+			//console.warn("Division by zero!");
 			return this;
 		}
 
@@ -398,7 +410,7 @@ export class Vector {
 	/**
 	 * Set's the current vector state from another `Vector` instance or valid vector input.
 	 */
-	setSelf(x: Input | number, y?: number, z?: number): Vector {
+	setSelf(x: VectorInput | number, y?: number, z?: number): Vector {
 		[ this.x, this.y, this.z ] = vector(x, y, z).toArray();
 		return this;
 	}
@@ -408,7 +420,7 @@ export class Vector {
 	 */
 	setComponent(component: Component, value: number): Vector {
 		if (!this[component]) {
-			// @ts-expect-error: mark the vector as invalid
+			// @ts-expect-error: Marks the vector as invalid on purpose
 			return vector(null);
 		}
 
@@ -489,14 +501,14 @@ export class Vector {
 	/**
 	 * Performs the subtraction and returns the sum as new `Vector` instance.
 	 */
-	sub(x: Input | number, y?: number, z?: number): Vector {
+	sub(x: VectorInput | number, y?: number, z?: number): Vector {
 		return this.add(vector(x, y, z).inverted);
 	}
 
 	/**
 	 * Subtracts another `Vector` instance or valid vector input from this vector.
 	 */
-	subSelf(x: Input | number, y?: number, z?: number): Vector {
+	subSelf(x: VectorInput | number, y?: number, z?: number): Vector {
 		return this.addSelf(
 			vector(x, y, z).scale(-1)
 		);
@@ -520,7 +532,7 @@ export class Vector {
 	 * Returns a boolean indicating whether or not a user input was valid.
 	 */
 	get valid(): boolean {
-		return Boolean(this.parsed);
+		return this.parsed.valid;
 	}
 
 	/**
@@ -552,7 +564,7 @@ export class Vector {
  * Creates an instance of 2 or 3-dimensional vector,
  * specifically a Euclidean (also known as geometric) vector.
  */
-export function vector(x?: Input | number, y?: number, z?: number): Vector {
+export function vector(x?: VectorInput | number, y?: number, z?: number): Vector {
 	if (x instanceof Vector) {
 		return x;
 	}
