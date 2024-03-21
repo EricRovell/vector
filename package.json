@@ -1,6 +1,6 @@
 {
 	"name": "@ericrovell/vector",
-	"version": "0.17.0",
+	"version": "1.0.0",
 	"description": "Euclidean vector library written in JavaScript",
 	"type": "module",
 	"module": "./dist/index.js",
